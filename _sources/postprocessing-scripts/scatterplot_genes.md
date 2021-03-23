@@ -1,7 +1,8 @@
 
 ## Create a scatterplot for all genes and all essential genes.
 
-:::{admonition} Click here!
+:::{admonition} Click here to see the code!
+:class: tip, dropdown
 ```python
 
 import os, sys
