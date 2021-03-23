@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>1. Flowchart of the pipeline &#8212; SATAY DATA ANALYSIS LAAN-LAB TU DELFT</title>
+    <title>1. Python scripts &#8212; SATAY DATA ANALYSIS LAAN-LAB TU DELFT</title>
     
   <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -59,8 +59,8 @@
     <link rel="shortcut icon" href="../_static/Greg.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2. All what you need to know from SATAY" href="satay_analysis_notes.html" />
-    <link rel="prev" title="Status of the project" href="../Introduction.html" />
+    <link rel="next" title="2. Create a scatterplot for all genes and all essential genes." href="scatterplot_genes.html" />
+    <link rel="prev" title="1. Main steps of the BASH GUI" href="../bash-GUI/how-to-use-the-bash-gui.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -102,24 +102,24 @@
   Get started
  </span>
 </p>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Intro/flowchart.html">
    1. Flowchart of the pipeline
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="satay_analysis_notes.html">
+  <a class="reference internal" href="../Intro/satay_analysis_notes.html">
    2. All what you need to know from SATAY
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="data-analysis-workflow.html">
+  <a class="reference internal" href="../Intro/data-analysis-workflow.html">
    3. Data analysis steps
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Installation_Guide_SATAY_Analysis_Software.html">
+  <a class="reference internal" href="../Intro/Installation_Guide_SATAY_Analysis_Software.html">
    4. Software installation guide for whole genome sequencing and transposon mapping
   </a>
  </li>
@@ -141,14 +141,14 @@
   Postprocessing python scripts
  </span>
 </p>
-<ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="../postprocessing-scripts/Introduction.html">
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    1. Python scripts
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../postprocessing-scripts/scatterplot_genes.html">
+  <a class="reference internal" href="scatterplot_genes.html">
    2. Create a scatterplot for all genes and all essential genes.
   </a>
  </li>
@@ -192,7 +192,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/Intro/flowchart.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/postprocessing-scripts/Introduction.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -212,7 +212,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/leilaicruz/SATAY-jupyter-book/issues/new?title=Issue%20on%20page%20%2FIntro/flowchart.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/leilaicruz/SATAY-jupyter-book/issues/new?title=Issue%20on%20page%20%2Fpostprocessing-scripts/Introduction.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -240,9 +240,29 @@
         
               <div>
                 
-  <div class="section" id="flowchart-of-the-pipeline">
-<h1><span class="section-number">1. </span>Flowchart of the pipeline<a class="headerlink" href="#flowchart-of-the-pipeline" title="Permalink to this headline">¶</a></h1>
-<p><img alt="" src="../_images/satay_processing_pipeline.png" /></p>
+  <div class="section" id="python-scripts">
+<h1><span class="section-number">1. </span>Python scripts<a class="headerlink" href="#python-scripts" title="Permalink to this headline">¶</a></h1>
+<p>The software discussed in the previous section is solely for the processing of the data.
+The codes that are discussed here are for the postprocessing analysis.
+These are all python scripts that are not depended on Linux (they run and are tested in Windows) and only use rather standard python package like numpy, matplotlib, pandas, seaborn and scipy.
+The python version used for creating and testing is Python v3.8.5.</p>
+<p>The order in which to run the programs shouldn’t matter as these scripts are all independed of each other except for genomicfeatures_dataframe.py which is sometimes called by other scripts.
+However, most scripts are depending on one or more python modules, which are all expected to be located in a python_modules folder inside the folder where the python scripts are located (see <a class="reference external" href="https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/tree/satay_processing/python_scripts">github</a> for an example how this is organized).
+Also many python scripts and modules are depending on data files stored in a folder called data_files located in the same folder of the python_scripts folder.
+The input for most scripts and modules are the output files of the processing.</p>
+<p>This is a typical order which can be used of the scripts described below:</p>
+<ol class="simple">
+<li><p>clean_bedwigfiles.py (to clean the bed and wig files).</p></li>
+<li><p>transposonread_profileplot_genome.py (to check the insertion and read distribution throughout the genome).</p></li>
+<li><p>transposonread_profileplot.py (to check the insertions and read distribution per chromosome in more detail).</p></li>
+<li><p>scatterplot_genes.py (to check the distribution for the number of insertions per gene and per essential gene).</p></li>
+<li><p><a class="reference external" href="http://volcanoplot.py">volcanoplot.py</a> (only when comparing multiple datasets with different genetic backgrounds to see which genes have a significant change in insertion and read counts).</p></li>
+</ol>
+<p>Most of the python scripts consists of one or more functions.
+These functions are called at the end of each script after the line <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">'__main__':</span></code>.
+The user input for these functions are stated at the beginning of the script in the <code class="docutils literal notranslate"><span class="pre">#INPUT</span></code> section.
+All packages where the scripts are depending on are called at the beginning of the script.
+The scripts also contain a help text about how to use the functions.</p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -258,7 +278,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./Intro"
+            path: "./postprocessing-scripts"
         },
         predefinedOutput: true
     }
@@ -273,8 +293,8 @@
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="../Introduction.html" title="previous page">Status of the project</a>
-    <a class='right-next' id="next-link" href="satay_analysis_notes.html" title="next page"><span class="section-number">2. </span>All what you need to know from SATAY</a>
+    <a class='left-prev' id="prev-link" href="../bash-GUI/how-to-use-the-bash-gui.html" title="previous page"><span class="section-number">1. </span>Main steps of the BASH GUI</a>
+    <a class='right-next' id="next-link" href="scatterplot_genes.html" title="next page"><span class="section-number">2. </span>Create a scatterplot for all genes and all essential genes.</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
