@@ -5,10 +5,15 @@ Hello there 😄 Welcome to this Jupyter Book instance to document mainly a data
 ## Status of the project
 - In progress (03/2021)
   
-### Essential next steps
-- Unit testing with continuous integration
-- CLI and pip install "PIPELINE-X"
-- GitFlow for further collaboration on the development process
+### Next steps
+
+1. Make the software package ready to be published in [Journal of Open Source Software](https://joss.readthedocs.io/en/latest/index.html)
+
+    - Automated testing with continuous integration
+    - Comand line interface with a pip install mode
+    - GitFlow implementation for contributors to the software
+2. Including [bowtie](http://bowtie-bio.sourceforge.net/index.shtml) as other alignment tool as part of the pipeline. (This is the tool the Kornmann Lab uses for alignment)
+
 
 
 ## What do we have currently?
@@ -16,6 +21,7 @@ Hello there 😄 Welcome to this Jupyter Book instance to document mainly a data
 - [ ] Release 1.0.0
 
 ## How can you used now?
+
 
 
 ## Software License

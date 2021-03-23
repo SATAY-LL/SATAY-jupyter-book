@@ -187,6 +187,7 @@ def cleanfiles(filepath=None, custom_header=None, split_chromosomes=False):
         print("Extension not recognized")
 
 ```
+
 ### How to use the code in the same script 
 
 ```python

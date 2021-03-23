@@ -134,6 +134,11 @@
    1. Main steps of the BASH GUI
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bash-GUI/processing_workflow.html">
+   2. Code for the bash GUI
+  </a>
+ </li>
 </ul>
 <p class="caption collapsible-parent">
  <span class="caption-text">
@@ -152,8 +157,23 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="postprocessing-scripts/transposonread_profileplot_genome.html">
+   3. Transposon profile for the whole genome
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="postprocessing-scripts/transposonread_profileplot.html">
+   4. Transposon profile for a chromosome of interest
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="postprocessing-scripts/scatterplot_genes.html">
-   3. Create a scatterplot for all genes and all essential genes.
+   5. Create a scatterplot for all genes and all essential genes.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="postprocessing-scripts/volcanoplot.html">
+   6. Volcano plots to two different libraries
   </a>
  </li>
 </ul>
@@ -248,8 +268,8 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#essential-next-steps">
-     Essential next steps
+    <a class="reference internal nav-link" href="#next-steps">
+     Next steps
     </a>
    </li>
   </ul>
@@ -288,13 +308,18 @@
 <ul class="simple">
 <li><p>In progress (03/2021)</p></li>
 </ul>
-<div class="section" id="essential-next-steps">
-<h2>Essential next steps<a class="headerlink" href="#essential-next-steps" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="next-steps">
+<h2>Next steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>Make the software package ready to be published in <a class="reference external" href="https://joss.readthedocs.io/en/latest/index.html">Journal of Open Source Software</a></p>
 <ul class="simple">
-<li><p>Unit testing with continuous integration</p></li>
-<li><p>CLI and pip install “PIPELINE-X”</p></li>
-<li><p>GitFlow for further collaboration on the development process</p></li>
+<li><p>Automated testing with continuous integration</p></li>
+<li><p>Comand line interface with a pip install mode</p></li>
+<li><p>GitFlow implementation for contributors to the software</p></li>
 </ul>
+</li>
+<li><p>Including <a class="reference external" href="http://bowtie-bio.sourceforge.net/index.shtml">bowtie</a> as other alignment tool as part of the pipeline. (This is the tool the Kornmann Lab uses for alignment)</p></li>
+</ol>
 </div>
 </div>
 <div class="section" id="what-do-we-have-currently">

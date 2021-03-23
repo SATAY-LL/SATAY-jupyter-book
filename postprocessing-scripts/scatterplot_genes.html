@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3. Create a scatterplot for all genes and all essential genes. &#8212; SATAY DATA ANALYSIS LAAN-LAB TU DELFT</title>
+    <title>5. Create a scatterplot for all genes and all essential genes. &#8212; SATAY DATA ANALYSIS LAAN-LAB TU DELFT</title>
     
   <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -59,7 +59,8 @@
     <link rel="shortcut icon" href="../_static/Greg.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="2. Cleaning bed and wig files" href="clean_bedwigfiles.html" />
+    <link rel="next" title="6. Volcano plots to two different libraries" href="volcanoplot.html" />
+    <link rel="prev" title="4. Transposon profile for a chromosome of interest" href="transposonread_profileplot.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -134,6 +135,11 @@
    1. Main steps of the BASH GUI
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../bash-GUI/processing_workflow.html">
+   2. Code for the bash GUI
+  </a>
+ </li>
 </ul>
 <p class="caption collapsible-parent">
  <span class="caption-text">
@@ -151,9 +157,24 @@
    2. Cleaning bed and wig files
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="transposonread_profileplot_genome.html">
+   3. Transposon profile for the whole genome
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="transposonread_profileplot.html">
+   4. Transposon profile for a chromosome of interest
+  </a>
+ </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   3. Create a scatterplot for all genes and all essential genes.
+   5. Create a scatterplot for all genes and all essential genes.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="volcanoplot.html">
+   6. Volcano plots to two different libraries
   </a>
  </li>
 </ul>
@@ -244,7 +265,7 @@
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#how-to-use-the-code-in-the-same-script">
-   3.1. How to use the code in the same script
+   5.1. How to use the code in the same script
   </a>
  </li>
 </ul>
@@ -259,7 +280,7 @@
               <div>
                 
   <div class="section" id="create-a-scatterplot-for-all-genes-and-all-essential-genes">
-<h1><span class="section-number">3. </span>Create a scatterplot for all genes and all essential genes.<a class="headerlink" href="#create-a-scatterplot-for-all-genes-and-all-essential-genes" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">5. </span>Create a scatterplot for all genes and all essential genes.<a class="headerlink" href="#create-a-scatterplot-for-all-genes-and-all-essential-genes" title="Permalink to this headline">¶</a></h1>
 <div class="tip dropdown admonition">
 <p class="admonition-title">Click here to see the code!</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
@@ -397,7 +418,7 @@
 </div>
 </div>
 <div class="section" id="how-to-use-the-code-in-the-same-script">
-<h2><span class="section-number">3.1. </span>How to use the code in the same script<a class="headerlink" href="#how-to-use-the-code-in-the-same-script" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.1. </span>How to use the code in the same script<a class="headerlink" href="#how-to-use-the-code-in-the-same-script" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">read_gene_df</span> <span class="o">=</span> <span class="n">scatterplot</span><span class="p">(</span><span class="n">pergenefile</span><span class="p">)</span>
@@ -436,7 +457,8 @@
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="clean_bedwigfiles.html" title="previous page"><span class="section-number">2. </span>Cleaning bed and wig files</a>
+    <a class='left-prev' id="prev-link" href="transposonread_profileplot.html" title="previous page"><span class="section-number">4. </span>Transposon profile for a chromosome of interest</a>
+    <a class='right-next' id="next-link" href="volcanoplot.html" title="next page"><span class="section-number">6. </span>Volcano plots to two different libraries</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
