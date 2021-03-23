@@ -1,7 +1,8 @@
+
 ## Create a scatterplot for all genes and all essential genes.
 
-"""
-```{code-cell} ipython3
+
+```python
 
 import os, sys
 import re
@@ -35,20 +36,6 @@ def scatterplot(pergenefile):
         - essential_genes_names.py located in python_modules directory (the python_modules directory is expected to be located in the same directory as this script).
         - Cerevisiae_EssentialGenes_List_1.txt and Cerevisiae_EssentialGenes_List_2.txt, located in the Data_Files directory (the Data_Files directory is expected to be located in the parent directory of this script).
     '''
-
-#%%
-#THIS COMMENT IS FOR THE FOLLOWING SECTIONS:
-#    - READ FILE
-#    - DETERMINE NUMBER OF READS PER INSERTION PER GENE
-#    - DETERMINE ESSENTIAL GENES
-#    - CREATE DATAFRAME
-#
-#THIS CAN BE REPLACED BY THE FOLLOWNG CODE:
-#    file_dirname = os.path.dirname(os.path.abspath('__file__'))
-#    sys.path.insert(1,os.path.join(file_dirname,'python_modules'))
-#    from dataframe_from_pergene import dataframe_from_pergenefile
-#    
-#    read_gene_df_a = dataframe_from_pergenefile(pergenefile_a)
 
 
 #%% read file
@@ -87,10 +74,6 @@ def scatterplot(pergenefile):
 
     del (i)
 
-
-#%% determine essential genes
-    # known_essential_gene_list = list_known_essentials(input_files=[os.path.join(file_dirname,'..','data_files','Cerevisiae_EssentialGenes_List_1.txt'),
-    #                                                                 os.path.join(file_dirname,'..','data_files','Cerevisiae_EssentialGenes_List_2.txt')])
 
     known_essential_gene_list = list_known_essentials(input_files=[r"C:\Users\gregoryvanbeek\Documents\GitHub\LaanLab-SATAY-DataAnalysis\data_files\Cerevisiae_EssentialGenes_List_1.txt",
                                                                     r"C:\Users\gregoryvanbeek\Documents\GitHub\LaanLab-SATAY-DataAnalysis\data_files\Cerevisiae_EssentialGenes_List_2.txt"])
