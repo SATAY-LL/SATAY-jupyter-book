@@ -138,9 +138,10 @@ def scatterplot(pergenefile):
 ```
 :::
 
+### How to use the code in the same script 
+
 ```python
 
-#%%
 if __name__ == '__main__':
     read_gene_df = scatterplot(pergenefile)
 
