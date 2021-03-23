@@ -350,7 +350,7 @@ If a gene y is suppressed that is part of the same network as gene x, does this 
 In other words, are there common changes in the subnetwork when a random change is made within this subnetwork?</p></li>
 <li><p>Are there relations between the changes in the interaction network after a mutation and the Genetic Ontology (GO-)terms of changed genes?</p></li>
 </ul>
-<p>To check the essentiality of genes, SATAY (SAturated Transposon Analysis in Yeast) experiments will be performed on different genetic backgrounds [Michel <a class="reference external" href="http://et.al">et.al</a>., 2017] [Segal <a class="reference external" href="http://et.al">et.al</a>., 2018].
+<p>To check the essentiality of genes, SATAY (SAturated Transposon Analysis in Yeast) experiments will be performed on different genetic backgrounds [Michel et.al., 2017] [Segal et.al., 2018].
 This uses transposons to inhibit genes and it allows to compare the effects of this inhibition on the fitness of the cells (see for example the <a class="reference external" href="https://galaxyproject.github.io/training-material/topics/genome-annotation/tutorials/tnseq/tutorial.html">galaxyproject website</a> which explains it in the context of bacteria, but the same principles hold for yeast cells).</p>
 <ul class="simple">
 <li><p>Transposons are small pieces of DNA that can integrate in a random location in the genome.
@@ -374,7 +374,7 @@ And the website for the library generation can be found <a class="reference exte
 </div>
 <div class="section" id="gene-essentiality">
 <h2><span class="section-number">2.1. </span>Gene Essentiality<a class="headerlink" href="#gene-essentiality" title="Permalink to this headline">¶</a></h2>
-<p>Essentiality of genes are defined as its deletion is detrimental to cell in the form that either the cell cannot grow anymore and dies, or the cell cannot give rise to offspring. Essentiality can be grouped in two categories, namely type I and type II [Chen <a class="reference external" href="http://et.al">et.al</a>. 2016].</p>
+<p>Essentiality of genes are defined as its deletion is detrimental to cell in the form that either the cell cannot grow anymore and dies, or the cell cannot give rise to offspring. Essentiality can be grouped in two categories, namely type I and type II [Chen et.al. 2016].</p>
 <ul class="simple">
 <li><p>Type I essential genes are genes, when inhibited, show a loss-of-function that can only be rescued (or masked) when the lost function is recovered by a gain-of-function mechanism.</p></li>
 <li><p>Typically these genes are important for some indispensable core function in the cell (e.g. Cdc42 in <em>S. Cerevisiae</em> that is type I essential for cell polarity).</p></li>
@@ -450,16 +450,16 @@ In the processing, it might therefore look as if these genes are essential, but 
 The cells just grow very slowly.</p></li>
 </ol>
 <p>The other way around might also occur, where essential genes are partly tolerant to transposons.
-This is shown by Michel <a class="reference external" href="http://et.al">et.al</a>. to be caused that some regions (that code for specific subdomains of the proteins) of the essential genes are dispensable.
+This is shown by Michel et.al. to be caused that some regions (that code for specific subdomains of the proteins) of the essential genes are dispensable.
 The transposons in these essential genes are clearly located at a specific region in the gene, the one that codes for a non-essential subdomain.
 However, this is not always possible, as in some cases deletion of non-essential subdomains of essential genes create unstable, unexpressed or toxin proteins.
 The difference in essentiality between subdomains in a single protein only happens in essential genes, not in non-essential genes.
-Michel <a class="reference external" href="http://et.al">et.al</a>. devised an algorithm to estimate the likelihood <span class="math notranslate nohighlight">\(L\)</span> of a gene having an essential subdomain:</p>
+Michel et.al. devised an algorithm to estimate the likelihood <span class="math notranslate nohighlight">\(L\)</span> of a gene having an essential subdomain:</p>
 <div class="math notranslate nohighlight">
 \[L = \frac{\text{d }N_{\text{cds}}}{l_{\text{cds}}}\]</div>
 <p>where <span class="math notranslate nohighlight">\(d\)</span> is the longest interval (in terms of base pairs) between 5 neighbouring transposons in a Coding DNA Sequence (cds) (<span class="math notranslate nohighlight">\(\geq 300\)</span> bp), <span class="math notranslate nohighlight">\(N_{cds}\)</span> is the total number transposons mapping in the cds (<span class="math notranslate nohighlight">\(\geq 20\)</span>) transposons) and <span class="math notranslate nohighlight">\(l_{cds}\)</span> is the total length of the CDS.
 Additionally, it must hold that <span class="math notranslate nohighlight">\(0.1 l_{cds} \leq d \leq 0.9 l_{cds}\)</span>.</p>
-<p>It is expected that only essential genes carry essential subdomains, and indeed what was found by Michel <a class="reference external" href="http://et.al">et.al</a>. that the genes with the highest likelihood were mostly also genes previously annotated as essential by other studies.</p>
+<p>It is expected that only essential genes carry essential subdomains, and indeed what was found by Michel et.al. that the genes with the highest likelihood were mostly also genes previously annotated as essential by other studies.</p>
 <p>Because of the reasons mentioned before, not a simple binary conclusion can be made solely based on the amount of transposon insertions or the number of reads.
 Instead, a gene with little reads <em>might</em> be essential, but to be sure the results from other experiments need to be implemented as well, for example where the cells were grown in a different growth conditions.
 Therefore, SATAY analysis only says something about the relative fitness of cells where a specific gene is inhibited in the current growth conditions.</p>
@@ -467,7 +467,7 @@ Therefore, SATAY analysis only says something about the relative fitness of cell
 <h3><span class="section-number">2.2.1. </span>Methods and File types<a class="headerlink" href="#methods-and-file-types" title="Permalink to this headline">¶</a></h3>
 <p>Many essential genes in wild type cells are already known and published.
 The results from our SATAY experiments we can verify using the known essential genes and check how well they fit with the number of reads in each gene.
-Also, we can use a similar approach as was performed by the Kornmann lab [Michel <a class="reference external" href="http://et.al">et.al</a>. 2017] using wild type cells.</p>
+Also, we can use a similar approach as was performed by the Kornmann lab [Michel et.al. 2017] using wild type cells.</p>
 </div>
 <div class="section" id="experimental-method">
 <h3><span class="section-number">2.2.2. </span>Experimental method<a class="headerlink" href="#experimental-method" title="Permalink to this headline">¶</a></h3>
@@ -571,7 +571,7 @@ error probability can be calculated based on the Q-score using
 an error of (<span class="math notranslate nohighlight">\(P_{error} = 100\%\)</span>) and ‘J’ an error of
 <span class="math notranslate nohighlight">\(P_{error} = 0.008\%\)</span>). Typically a Q-score higher than Q=20
 (ASCII symbol ‘5’, (<span class="math notranslate nohighlight">\(P_{error} = 1\%\)</span>)) is acceptable
-[<a class="reference external" href="https://drive5.com/usearch/manual/quality_score.html">https://drive5.com/usearch/manual/quality_score.html</a>]. This
+[https://drive5.com/usearch/manual/quality_score.html]. This
 line has the same length as the second line.</p></li>
 </ol>
 <p>A FASTQ file can be used as an input for sequence alignment using a reference genome.
@@ -689,8 +689,8 @@ Significant attention needs to be given to the postprocessing of the data.</p>
 <p>The bars indicate the absolute number of reads for all insertions located in the bars (bar width is 545bp).
 The colored background indicate the location of genes, where green are the annotated essential genes and red the non-essential genes.
 In general, the essential genes have no or little reads whereas the non-essential genes have many reads.
-Note that at location 564476 the ADE2 gene is located that has significant more reads than any other location in the genome, which has to do the way the plasmid is designed (see Michel <a class="reference external" href="http://et.al">et.al</a>. 2017).
-The examples used here are from a dataset discussed in the paper by Michel <a class="reference external" href="http://et.al">et.al</a>. 2017 which used centromeric plasmids where the transposons are excised from.
+Note that at location 564476 the ADE2 gene is located that has significant more reads than any other location in the genome, which has to do the way the plasmid is designed (see Michel et.al. 2017).
+The examples used here are from a dataset discussed in the paper by Michel et.al. 2017 which used centromeric plasmids where the transposons are excised from.
 The transposons tend to reinsert in the chromosome near the chromosomal pericentromeric region causing those regions to have about 20% more insertions compared to other chromosomal regions.</p>
 <p>This figure gives a rough overview that allows for identifying how well the data fits the expectation.
 Also an alternative version of this plot is made (<code class="docutils literal notranslate"><span class="pre">TransposonRead_Profile_Compare.py</span></code>) that makes a similar plot for two datasets at the same time, allowing the comparison of the two datasets with each other and with the expectation.</p>

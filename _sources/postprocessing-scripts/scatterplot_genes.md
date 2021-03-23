@@ -1,7 +1,7 @@
 
 ## Create a scatterplot for all genes and all essential genes.
 
-
+:::{admonition} Click here!
 ```python
 
 import os, sys
@@ -135,8 +135,9 @@ def scatterplot(pergenefile):
 
 
 ```
-```{code-cell} ipython3
-:tags: ["margin"]
+:::
+
+```python
 
 #%%
 if __name__ == '__main__':
