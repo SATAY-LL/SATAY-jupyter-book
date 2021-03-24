@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>&lt;no title&gt; &#8212; SATAY DATA ANALYSIS LAAN-LAB TU DELFT</title>
+    <title>1. Main steps of the BASH GUI &#8212; SATAY DATA ANALYSIS LAAN-LAB TU DELFT</title>
     
   <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -44,14 +44,11 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -62,7 +59,7 @@
     <link rel="shortcut icon" href="../_static/Greg.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1. Python Translation of the Matlab code from Kornmann Lab" href="../data-stats/transposonmapping_satay.html" />
+    <link rel="next" title="2. Code for the bash GUI" href="processing_workflow.html" />
     <link rel="prev" title="4. Software installation guide for whole genome sequencing and transposon mapping" href="../Intro/Installation_Guide_SATAY_Analysis_Software.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -129,40 +126,60 @@
 </ul>
 <p class="caption collapsible-parent">
  <span class="caption-text">
-  Data Stats
+  Bash GUI - Data Preprocessing
  </span>
 </p>
-<ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="../data-stats/transposonmapping_satay.html">
-   1. Python Translation of the Matlab code from Kornmann Lab
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   1. Main steps of the BASH GUI
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../data-stats/statistics_pergene.html">
-   2. Statistics per gene
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../data-stats/statistics_perchromosome_Compare.html">
-   3. Comparison of the statistics per chromosome
+  <a class="reference internal" href="processing_workflow.html">
+   2. Code for the bash GUI
   </a>
  </li>
 </ul>
 <p class="caption collapsible-parent">
  <span class="caption-text">
-  Postprocessing scripts
+  Postprocessing python scripts
  </span>
 </p>
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="../postprocessing-scripts/gene_reads.html">
-   1. Gene reads script
+  <a class="reference internal" href="../postprocessing-scripts/Introduction.html">
+   1. Python scripts
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../postprocessing-scripts/from-reads-to-essential-genes.html">
-   2. From reads and insertions to essentiality prediction using a Regression Model
+  <a class="reference internal" href="../postprocessing-scripts/clean_bedwigfiles.html">
+   2. Cleaning bed and wig files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../postprocessing-scripts/transposonread_profileplot_genome.html">
+   3. Transposon profile for the whole genome
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../postprocessing-scripts/transposonread_profileplot.html">
+   4. Transposon profile for a chromosome of interest
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../postprocessing-scripts/genomicfeatures_dataframe.html">
+   5. Searching for genomic features  of transposition events
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../postprocessing-scripts/scatterplot_genes.html">
+   6. Create a scatterplot for all genes and all essential genes.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../postprocessing-scripts/volcanoplot.html">
+   7. Volcano plots to two different libraries
   </a>
  </li>
 </ul>
@@ -246,15 +263,6 @@
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
         
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
-        </div>
-        <nav id="bd-toc-nav">
-            <ul class="simple nav section-nav flex-column">
-</ul>
-
-        </nav>
-        
     </div>
 </div>
     <div id="main-content" class="row">
@@ -262,7 +270,10 @@
         
               <div>
                 
-  
+  <div class="section" id="main-steps-of-the-bash-gui">
+<h1><span class="section-number">1. </span>Main steps of the BASH GUI<a class="headerlink" href="#main-steps-of-the-bash-gui" title="Permalink to this headline">¶</a></h1>
+</div>
+
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
@@ -292,16 +303,16 @@
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="../Intro/Installation_Guide_SATAY_Analysis_Software.html" title="previous page"><span class="section-number">4. </span>Software installation guide for whole genome sequencing and transposon mapping</a>
-    <a class='right-next' id="next-link" href="../data-stats/transposonmapping_satay.html" title="next page"><span class="section-number">1. </span>Python Translation of the Matlab code from Kornmann Lab</a>
+    <a class='right-next' id="next-link" href="processing_workflow.html" title="next page"><span class="section-number">2. </span>Code for the bash GUI</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
         
-          By Gregory van Beek<br/>
+          By Gregory van Beek , Leila Iñigo de la Cruz<br/>
         
-            &copy; Copyright GPL License 3.0.<br/>
+            &copy; Copyright Apache 2.0.<br/>
       </p>
     </div>
   </footer>

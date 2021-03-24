@@ -44,14 +44,11 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -59,6 +56,8 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="shortcut icon" href="../_static/Greg.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -129,40 +128,60 @@
 </ul>
 <p class="caption collapsible-parent">
  <span class="caption-text">
-  Data Stats
+  Bash GUI - Data Preprocessing
  </span>
 </p>
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="../data-stats/transposonmapping_satay.html">
-   1. Python Translation of the Matlab code from Kornmann Lab
+  <a class="reference internal" href="../bash-GUI/how-to-use-the-bash-gui.html">
+   1. Main steps of the BASH GUI
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../data-stats/statistics_pergene.html">
-   2. Statistics per gene
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../data-stats/statistics_perchromosome_Compare.html">
-   3. Comparison of the statistics per chromosome
+  <a class="reference internal" href="../bash-GUI/processing_workflow.html">
+   2. Code for the bash GUI
   </a>
  </li>
 </ul>
 <p class="caption collapsible-parent">
  <span class="caption-text">
-  Postprocessing scripts
+  Postprocessing python scripts
  </span>
 </p>
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="../postprocessing-scripts/gene_reads.html">
-   1. Gene reads script
+  <a class="reference internal" href="../postprocessing-scripts/Introduction.html">
+   1. Python scripts
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../postprocessing-scripts/from-reads-to-essential-genes.html">
-   2. From reads and insertions to essentiality prediction using a Regression Model
+  <a class="reference internal" href="../postprocessing-scripts/clean_bedwigfiles.html">
+   2. Cleaning bed and wig files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../postprocessing-scripts/transposonread_profileplot_genome.html">
+   3. Transposon profile for the whole genome
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../postprocessing-scripts/transposonread_profileplot.html">
+   4. Transposon profile for a chromosome of interest
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../postprocessing-scripts/genomicfeatures_dataframe.html">
+   5. Searching for genomic features  of transposition events
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../postprocessing-scripts/scatterplot_genes.html">
+   6. Create a scatterplot for all genes and all essential genes.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../postprocessing-scripts/volcanoplot.html">
+   7. Volcano plots to two different libraries
   </a>
  </li>
 </ul>
@@ -333,7 +352,7 @@
 </ul>
 </li>
 <li><p>Obtain the interactions of the different genes to create an
-interaction map (use <a class="reference external" href="http://thecellmap.org">thecellmap.org</a>)</p></li>
+interaction map (use thecellmap.org)</p></li>
 <li><p>Look for possible relations between the genes and their
 interactions.</p></li>
 <li><p>Use these relations to obtain training for machine learning.</p></li>
@@ -346,7 +365,7 @@ The sequence reads from this file needs to be aligned to create a SAM file (and/
 Using the BAM file, the number of transposons can be determined for each insertion location.</p>
 <p>For guides and manuals of the software discussed below, see the folder</p>
 <p><code class="docutils literal notranslate"><span class="pre">M:\\tnw\\bn\\ll\\Shared\\Gregory\\Software\\Guides</span> <span class="pre">&amp;</span> <span class="pre">Manuals</span></code>.</p>
-<p>Raw data (.FASTQ file) discussed in the paper of Michel <a class="reference external" href="http://et.al">et.al</a>. 2017 can be found at [<a class="reference external" href="https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-4885/samples/">https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-4885/samples/</a>].</p>
+<p>Raw data (.FASTQ file) discussed in the paper of Michel et.al. 2017 can be found at [<a class="reference external" href="https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-4885/samples/">https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-4885/samples/</a>].</p>
 </div>
 <div class="section" id="workflow">
 <h2><span class="section-number">3.2. </span>Workflow<a class="headerlink" href="#workflow" title="Permalink to this headline">¶</a></h2>
@@ -473,7 +492,7 @@ The advantage of using 123FASTQ is that it can also do trimming (using Trimmomat
 In the output directory, a .html file and a (zipped) folder is created, both with the same name as the input file.
 The .html file can be used to quickly see the graphs using a browser.
 Also, a zipped folder is created where the raw data of the quality check is stored.
-For explanation about the different graphs, see the fastqc_manual pdf or [<a class="reference external" href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/">https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3 Analysis Modules/</a>] (or the paper ‘Preprocessing and Quality Control for Whole-Genome’ from Wright <a class="reference external" href="http://et.al">et.al</a>. or the ‘Assessing Read Quality’ workshop from the Datacarpentry Genomics workshop).</p>
+For explanation about the different graphs, see the fastqc_manual pdf or [https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/] (or the paper ‘Preprocessing and Quality Control for Whole-Genome’ from Wright et.al. or the ‘Assessing Read Quality’ workshop from the Datacarpentry Genomics workshop).</p>
 <p>For more commands, type <code class="docutils literal notranslate"><span class="pre">fastqc</span> <span class="pre">--help</span></code>.
 Some useful commands might be:</p>
 <ul class="simple">
@@ -960,7 +979,7 @@ averaging the reads corresponding to the indices in ‘xx’ are summed (the
 value stored in the variable ‘readnumb’). This is repeated for all genes
 and the essential genes using a for-loop. The maximum value is
 subtracted as a feature to suppress noise or unmeaningful data (see a
-more detailed explanation the discussion by Galih in the forum of Benoit [<a class="reference external" href="https://groups.google.com/forum/#%21category-topic/satayusers/bioinformatics/uaTpKsmgU6Q">https://groups.google.com/forum/#!category-topic/satayusers/bioinformatics/uaTpKsmgU6Q</a>]).</p>
+more detailed explanation the discussion by Galih in the forum of Benoit [https://groups.google.com/forum/#!category-topic/satayusers/bioinformatics/uaTpKsmgU6Q]).</p>
 <p>[line226-227] Next all variables in the Matlab workspace are saved
 using the same name as the .bam file, but now with the .mat extension.
 The program so far does not need to be ran all over again but loading
@@ -1062,9 +1081,9 @@ read count is the actual count (and thus not used the equation
     <div class="container">
       <p>
         
-          By Gregory van Beek<br/>
+          By Gregory van Beek , Leila Iñigo de la Cruz<br/>
         
-            &copy; Copyright GPL License 3.0.<br/>
+            &copy; Copyright Apache 2.0.<br/>
       </p>
     </div>
   </footer>

@@ -8,18 +8,20 @@
   - file: Intro/satay_analysis_notes
   - file: Intro/data-analysis-workflow
   - file: Intro/Installation_Guide_SATAY_Analysis_Software
-- part: Bash GUI
+- part: Bash GUI - Data Preprocessing
   chapters:
   - file: bash-GUI/how-to-use-the-bash-gui
-- part: Data Stats 
+  - file: bash-GUI/processing_workflow
+- part: Postprocessing python scripts
   chapters:
-  - file: data-stats/transposonmapping_satay
-  - file: data-stats/statistics_pergene
-  - file: data-stats/statistics_perchromosome_Compare
-- part: Postprocessing scripts
-  chapters:
-  - file: postprocessing-scripts/gene_reads
-  - file: postprocessing-scripts/from-reads-to-essential-genes
+  - file: postprocessing-scripts/Introduction
+  - file: postprocessing-scripts/clean_bedwigfiles
+  - file: postprocessing-scripts/transposonread_profileplot_genome
+  - file: postprocessing-scripts/transposonread_profileplot
+  - file: postprocessing-scripts/genomicfeatures_dataframe
+  - file: postprocessing-scripts/scatterplot_genes
+  - file: postprocessing-scripts/volcanoplot
+  
 
 
 

@@ -1,8 +1,8 @@
 #######################################################################################
 # Book settings
 title : SATAY DATA ANALYSIS LAAN-LAB TU DELFT 
-author: Gregory van Beek  
-copyright : GPL License 3.0
+author: Gregory van Beek , Leila Iñigo de la Cruz
+copyright : Apache 2.0 
 logo: 'Greg.png'
 
 # Information about where the book exists on the web
@@ -99,4 +99,9 @@ sphinx:
     - sphinx_click.ext
     - sphinx_tabs.tabs
     - sphinxext.rediraffe
+parse:
+  myst_enable_extensions:
+    - colon_fence
+    - dollarmath
+    - substitution
  
