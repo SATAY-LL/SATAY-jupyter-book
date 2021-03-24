@@ -344,11 +344,11 @@ The full list of genomic features that is regarded in the dataframe is mentioned
 </ul>
 <p>The truncated feature columns ignores basepairs at the beginning and end of a gene.
 This can be useful as it is mentioned that insertions located at the beginning or end of a gene results in a protein that is still functional (although truncated) (e.g. see Michel et.al. 2017) (see Notes for a further discussion about how this is defined).</p>
-<img src="../media/genomicfeatures_dataframe_dnadf2.png" alt="genomicfeature_dataframe_dnadf2" width=700>
+<p><img alt="" src="../_images/genomicfeatures_dataframe_dnadf2.png" /></p>
 <p>When plotting is set to True, a barplot is created where the width of the bars correspond to the width of the feature the bar is representing.
 This can be automatically saved at the location where the python script is stored.
 The plot is created for an entire chromosome, or it can be created for a specific region, for example when a list is provided in the <code class="docutils literal notranslate"><span class="pre">region</span></code> argument or when a gene name is given.</p>
-<img src="../media/genomicfeatures_dataframe_barplot.png" alt="genomicfeature_dataframe_dnadf2" width=700>
+<p><img alt="" src="../_images/genomicfeatures_dataframe_barplot.png" /></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <ul class="simple">
@@ -357,7 +357,7 @@ The plot is created for an entire chromosome, or it can be created for a specifi
 <li><p>Sometimes it can happen that two genomic regions can overlap. When this happens, the dataframe shows a feature, in the next row another feature and then the next row from that it continues with the first feature (e.g. row1; geneA, row2; overlapping feature, row3; geneA). This issue is not automatically solved yet, but best is to, whenever you find a feature, to search if that feature also exists a couple of rows further on. If yes, sum all rows between the first and last occurance of your gene (e.g. in the example above for geneA, sum the values from row1, row2 and row3).</p></li>
 </ul>
 </div>
-<div class="admonition-click-here-to-see-the-code admonition">
+<div class="tip dropdown admonition">
 <p class="admonition-title">Click here to see the code!</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -986,7 +986,7 @@ The plot is created for an entire chromosome, or it can be created for a specifi
     <div class="container">
       <p>
         
-          By Gregory van Beek<br/>
+          By Gregory van Beek , Leila Iñigo de la Cruz<br/>
         
             &copy; Copyright Apache 2.0.<br/>
       </p>

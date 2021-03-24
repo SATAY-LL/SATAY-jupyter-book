@@ -68,13 +68,13 @@ The main output is the `dna_df2` dataframe in which each row represents a genomi
 The truncated feature columns ignores basepairs at the beginning and end of a gene.
 This can be useful as it is mentioned that insertions located at the beginning or end of a gene results in a protein that is still functional (although truncated) (e.g. see Michel et.al. 2017) (see Notes for a further discussion about how this is defined).
 
-<img src="../media/genomicfeatures_dataframe_dnadf2.png" alt="genomicfeature_dataframe_dnadf2" width=700>
+![](../media/genomicfeatures_dataframe_dnadf2.png)
 
 When plotting is set to True, a barplot is created where the width of the bars correspond to the width of the feature the bar is representing.
 This can be automatically saved at the location where the python script is stored.
 The plot is created for an entire chromosome, or it can be created for a specific region, for example when a list is provided in the `region` argument or when a gene name is given.
 
-<img src="../media/genomicfeatures_dataframe_barplot.png" alt="genomicfeature_dataframe_dnadf2" width=700>
+![](../media/genomicfeatures_dataframe_barplot.png)
 
 ```{note}
 
@@ -84,6 +84,7 @@ The plot is created for an entire chromosome, or it can be created for a specifi
 ```
 
 :::{admonition} Click here to see the code!
+:class: tip, dropdown
 ```python
 import os, sys
 import pandas as pd
