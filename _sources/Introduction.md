@@ -3,7 +3,8 @@
 Hello there 😄 Welcome to this Jupyter Book instance to document mainly a data analysis workflow for analysing data from the technique : **S**aturated **T**ransposition **A**nalysis in **Y**east. 
 
 ## Status of the project
-- In progress (03/2021)
+- Beta release on Zenodo 
+- Lacking automated tests
   
 ### Next steps
 
@@ -63,3 +64,7 @@ Note to pay attention that the paths to the datasets are all correct in the for-
 - This work is licensed under Apache 2.0 . 
 The 2.0 version of the Apache License, approved by the ASF in 2004, helps us achieve our goal of providing reliable and long-lived software products through collaborative open source software development. 
 
+## Current Contact 
+
+- Leila Inigo de la Cruz
+    - email: L.M.InigoDeLaCruz@tudelft.nl
