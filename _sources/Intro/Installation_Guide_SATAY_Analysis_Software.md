@@ -3,7 +3,10 @@
 
 ## Introduction
 
-This file discusses the installation procedures for the programs required for whole genome sequencing analysis and transposon mapping. The numbering corresponds with the order in which this software is used.
+This section discusses the main pipeline for processing satay datasets, from the raw fastq files of the sequencing output to the bed, wig and pergene text files which can be directly used for analysis.
+See the image below for a schematic overview of the pipeline with the used software tools between brackets and the file type after each processing step on the left.
+
+<!-- This file discusses the installation procedures for the programs required for whole genome sequencing analysis and transposon mapping. The numbering corresponds with the order in which this software is used.
 Note that a part of the software is for windows and Linux, and a part is for Linux only. Therefore a virtual machine is included to run Ubuntu (or another unix based operating system to your liking).
 For a more detailed workflow and the commands of all the individual commands, see [satay_analysis_notes.md](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/dev_Gregory/docs/satay_analysis_notes.md).
 
@@ -19,9 +22,9 @@ To check if the program is added to the path, use
 `echo $PATH$`.
 
 Some programs requires java to be installed. To check if java is installed, run the command 'java -version' in the command line.
-If it is not installed, download and install it from [https://www.java.com/nl/download/](url)
+If it is not installed, download and install it from [https://www.java.com/nl/download/](url) -->
 
-## Using the already existing virtual machine
+<!-- ## Using the already existing virtual machine
 
 ### 0. Setting up already existing virtual machine
 
@@ -121,7 +124,7 @@ There are several ways of installing Java, but one of the simplest ways is using
 
 1. Enter `sudo -s` (enter password if requisted)
 2. Enter `apt-get install openjdf-11-jre`. (If this version of java is not found, check which versions are available by entering `apt-get install openjdf` followed by a double tab. This should give a list of all available installations. It also gives you the opportunity to install the jdk (Java Developer Kit) instead of the jre (Java Runtime Environment), but if you don't plan to develop software in Java, the jre, what is used here, is good enough).
-3. Restart the terminal. Check the installation by entering `java -version`
+3. Restart the terminal. Check the installation by entering `java -version` -->
 
 ### 2. Fastqc (Windows or Linux)
 
