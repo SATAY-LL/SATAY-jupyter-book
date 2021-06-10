@@ -44,12 +44,24 @@
   - [Other tools](#other-tools)
     - [IGV](#igv)
     - [genome browser](#genome-browser)
-For the processing a pipeline is created using Bash and Python.
-The workflow and the python codes can be found at [github.com/Gregory94/LaanLab-SATAY-DataAnalysis](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/tree/satay_processing).
+- [Summary](#summary)
+- [Links](#links)
+- [Appendices](#appendices)
+  - [PHRED table (base33)](#phred-table-base33)
+  - [PHRED table (base64)](#phred-table-base64)
 
-> Date last update: 10-03-2021
+This documentation gives a complete overview for the processing of the data from SAturated Transposon Analysis in Yeast (SATAY).
+It includes a short introduction to SATAY and a detailed discussion on to perform the processing from the raw sequencing data to the postprocessing and checking of the results.
+
+For the processing a pipeline is created using Bash and Python.
+The workflow and the python codes can be found at [github.com/leilaicruz/LaanLab-SATAY-DataAnalysis](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis).
+More information about satay analysis and experimental protocols can be found at the [satayusers website from the Kornmann lab](https://sites.google.com/site/satayusers/ "satayusers website") or, for more questions, visit the [satayusers forum](https://groups.google.com/g/satayusers "satayusers forum").
+
+> Date last update: 25-03-2021
 >
-> Contact: Gregory van Beek (G.M.vanBeek@tudelft.nl)
+> Author: Gregory van Beek
+>
+> Contact: Leila Inigo De la Cruz (email to: L.M.InigoDeLaCruz@tudelft.nl)
 >  
 > [Laanlab, Delft University of Technology](https://www.tudelft.nl/en/faculty-of-applied-sciences/about-faculty/departments/bionanoscience/research/research-labs/liedewij-laan-lab/research-projects/evolvability-and-modularity-of-essential-functions-in-budding-yeast "LaanLab TUDelft")
 
@@ -164,7 +176,7 @@ To determine the flag integer, a 12-bit binary number is created with zeros for 
 This 12-bit binary number is then converted to a decimal integer.
 Note that the binary number should be read from right to left.
 For example, FLAG=81 corresponds to the 12-bit binary 000001010001 which indicates the properties: 'read paired', 'read reverse strand' and 'first in pair'.
-Decoding of sam flags can be done using [this website](http://broadinstitute.github.io/picard/explain-flags.html) or using [samflag.py](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/master/python_modules/samflag.py "LaanLab-SATAY_DataAnalysis.samflag.py").
+Decoding of sam flags can be done using [this website](http://broadinstitute.github.io/picard/explain-flags.html) or using [samflag.py](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_scripts/python_modules/samflag.py "LaanLab-SATAY_DataAnalysis.samflag.py").
 
 Example sam file (note that the last read was not mapped):
 
@@ -250,9 +262,9 @@ Example wig file:
 A pergene.txt and peressential.txt file are yet another outputs from the transposon mapping pipeline.
 Where bed and wig files store *all* insertions throughout the genome, these files only store the insertions in each gene or each essential gene, respectively.
 Essential genes are the annotated essential genes as stated by SGD for wild type cells.
-The genes are taken from the [Yeast_Protein_Names.txt](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/master/Data_Files/Yeast_Protein_Names.txt) file, which is downloaded from [uniprot](https://www.uniprot.org/docs/yeast).
-The positions of each gene are determined by a [gff3 file](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/master/Data_Files/Saccharomyces_cerevisiae.R64-1-1.99.gff3) downloaded from SGD.
-Essential genes are defined in [Cerevisiae_AllEssentialGenes.txt](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/master/Data_Files/Cerevisiae_AllEssentialGenes_List.txt).
+The genes are taken from the [Yeast_Protein_Names.txt](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/data_files/Yeast_Protein_Names.txt) file, which is downloaded from [uniprot](https://www.uniprot.org/docs/yeast).
+The positions of each gene are determined by a [gff3 file](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/data_files/Saccharomyces_cerevisiae.R64-1-1.99.gff3) downloaded from SGD.
+Essential genes are defined in [Cerevisiae_AllEssentialGenes.txt](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/data_files/Cerevisiae_AllEssentialGenes_List.txt).
 
 The pergene.txt and the peressential.txt have the same format.
 This consists of a header and then each row contains three tab delimited columns:
@@ -268,7 +280,7 @@ Therefore, it might occur that a gene has 1 insertion, but 0 reads.
 Note that when comparing files that include gene names there might be differences in the gene naming.
 Genes have multiple names, e.g. systematic names like 'YBR200W' or standard names like 'BEM1' which can have aliases such as 'SRO1'.
 The above three names all refer to the same gene.
-The [Yeast_Protein_Names.txt](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/master/Data_Files/Yeast_Protein_Names.txt) file can be used to search for aliases when comparing gene names in different files, or the [genomicfeatures_dataframe.py](#genomicfeatures_dataframepy) python script can be used which creates a pandas dataframe that includes the different gene names (this python script itself makes also use of the Yeast_Protein_Names.txt file).
+The [Yeast_Protein_Names.txt](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/data_files/Yeast_Protein_Names.txt) file can be used to search for aliases when comparing gene names in different files, or the [genomicfeatures_dataframe.py](#genomicfeatures_dataframepy) python script can be used which creates a pandas dataframe that includes the different gene names (this python script itself makes also use of the Yeast_Protein_Names.txt file).
 
 Example of pergene.txt file:
 
@@ -282,7 +294,7 @@ Example of pergene.txt file:
 
 The final two files that are created by the transposon mapping pipeline are the pergene_insertions.txt and the peressential_insertions.txt.
 The files have a similar format as the pergene.txt file, but are more extensive in terms of the information per gene.
-The information is taken from [Yeast_Protein_Names.txt](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/master/Data_Files/Yeast_Protein_Names.txt), the [gff3 file](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/master/Data_Files/Saccharomyces_cerevisiae.R64-1-1.99.gff3) and [Cerevisiae_AllEssentialGenes.txt](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/master/Data_Files/Cerevisiae_AllEssentialGenes_List.txt), similar as the pergene.txt files.
+The information is taken from [Yeast_Protein_Names.txt](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/data_files/Yeast_Protein_Names.txt), the [gff3 file](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/data_files/Saccharomyces_cerevisiae.R64-1-1.99.gff3) and [Cerevisiae_AllEssentialGenes.txt](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/data_files/Cerevisiae_AllEssentialGenes_List.txt), similar as the pergene.txt files.
 
 Both the pergene_insertions.txt and the peressential_insertions.txt files have a header and then each row contains six tab delimited columns:
 
@@ -297,19 +309,18 @@ This file can be useful when not only the number of insertions is important, but
 Similarily as the [pergene.txt and peresential.txt file](#pergenetxt-peressentialtxt), to suppress noise the insertion with the highest read count in a gene is removed from that gene.
 
 This file is uniquely created in the processing workflow described below.
-To create this file from a dataset processed in another workflow, store the bam file and the corresponding .bam.bai index file on the Linux desktop (see [How to use the Linux desktop](#how-to-use-the-linux-desktop)).
-Go to the python folder in the Terminal with the following command: `cd /home/laanlab/satay/Documents/software/python_codes/`.
+To create this file from a dataset processed in another workflow, store the bam file and the corresponding .bam.bai index file at the same location.
 Run the transposonmapping_satay.py script with the bam file using the command `python3 transposonmapping_satay.py [path]/[filename.bam]` (see [How does it work](#how-does-it-work) for more explanation about the python script).
 If the index file .bam.bai is not present, create this before running the python script.
 The index file can be created using the command `sambamba-0.7.1.-linux-static sort -m 1GB [path]/[filename.bam]`.
 This creates a sorted.bam file and a sorted.bam.bai index file.
 Run the sorted.bam file in the python script using the command `python3 transposonmapping_satay.py [path]/[filename.sorted.bam]`.
 
-
-Example of pergene_insertions.txt file:
-
 Example of peressential_insertions.txt file:
+
+> `Essential gene name chromosome Start location End location Insertion locations Reads per insertion location`  
 > `EFB1 I 142174 143160 [142325, 142886] [1, 1]`  
+> `MAK16 I 100225 101145 100229, 100407, 100422, 100791, 101022, 101129] [4, 1, 5, 1, 1, 1]`  
 > `PRE7 II 141247 141972 [141262, 141736, 141742, 141895] [1, 1, 1, 1]`  
 > `RPL32 II 45978 46370 [46011, 46142, 46240] [1, 3, 1]`
 
@@ -325,7 +336,7 @@ Everything that is shown in green can be automatically performed in a single wor
 
 *Note that the workflow only runs in Linux (or Mac, but this is untested) as some of its dependencies are specifically designed for Unix machines.*
 
-The main program for the data processing is called [satay.sh](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/satay.sh) and is a bash script which automatically calls all required software tools.
+The main program for the data processing is called [satay.sh](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/satay.sh) and is a bash script which automatically calls all required software tools.
 
 #### Dependencies
 
@@ -344,13 +355,13 @@ Note the folder structure for the python scripts and modules and the data files.
    1. numpy
    2. [pysam](https://pysam.readthedocs.io/en/latest/index.html)
    3. timeit
-   4. python_scripts/[transposonmapping_satay.py](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/python_transposonmapping/transposonmapping_satay.py)
-   5. python_scripts/python_modules/[chromosome_and_gene_positions.py](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/python_transposonmapping/python_modules/chromosome_and_gene_positions.py)
-   6. python_scripts/python_modules/[gene_names.py](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/python_transposonmapping/python_modules/gene_names.py)
-   7. python_scripts/python_modules/[samflag.py](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/python_transposonmapping/python_modules/samflag.py)
-10. data_files/[Saccharomyces_cerevisiae.R64-1-1.99.gff3](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/data_files/Saccharomyces_cerevisiae.R64-1-1.99.gff3)
-11. data_files/[Cerevisiae_AllEssentialGenes_List.txt](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/data_files/Cerevisiae_AllEssentialGenes_List.txt)
-12. data_files/[Yeast_Protein_Names.txt](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/data_files/Yeast_Protein_Names.txt)
+   4. python_scripts/[transposonmapping_satay.py](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_transposonmapping/transposonmapping_satay.py)
+   5. python_scripts/python_modules/[chromosome_and_gene_positions.py](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_transposonmapping/python_modules/chromosome_and_gene_positions.py)
+   6. python_scripts/python_modules/[gene_names.py](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_transposonmapping/python_modules/gene_names.py)
+   7. python_scripts/python_modules/[samflag.py](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_transposonmapping/python_modules/samflag.py)
+10. data_files/[Saccharomyces_cerevisiae.R64-1-1.99.gff3](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/data_files/Saccharomyces_cerevisiae.R64-1-1.99.gff3)
+11. data_files/[Cerevisiae_AllEssentialGenes_List.txt](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/data_files/Cerevisiae_AllEssentialGenes_List.txt)
+12. data_files/[Yeast_Protein_Names.txt](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/data_files/Yeast_Protein_Names.txt)
 
 #### Input, Output
 
@@ -383,10 +394,10 @@ The output may include the following folders and files:
 
 #### How to use
 
-The workflow satay.sh only runs in Linux and is designed to be used as a commandline tool (see [How to use the Linux desktop](#how-to-use-the-linux-desktop)).
+The workflow satay.sh only runs in Linux and is designed to be used as a commandline tool.
 For a step-by-step guide, see the [Tutorial](#tutorial).
 
-In the commandline, navigate to the software folder (`cd /home/laanlab/Documents/satay/software/`).
+In the commandline, navigate to the software folder.
 The workflow can be started either using commandline arguments or by using a graphical user interface (GUI).
 Using the GUI is the most userfriendly approach.
 Access the help text using `bash satay.sh --help` or `bash satay.sh -h` and check the current version with `bash satay.sh -v`.
@@ -482,42 +493,29 @@ After checking the quality report, the program can be restarted by typing `bash 
 Changes can be made for the trimming (including the adapters file) and alignment tools and press `OK` to continue.
 This time the raw quality report will be skipped.
 
-The next options determine if the sam file needs to be deleted after processing, whether the bam file needs to be sorted and indexed, if the [transposon mapping](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/python_transposonmapping/transposonmapping_satay.py) needs to be performed and if a flagstat report needs to be created (the quality report of the alignment).
+The next options determine if the sam file needs to be deleted after processing, whether the bam file needs to be sorted and indexed, if the [transposon mapping](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_transposonmapping/transposonmapping_satay.py) needs to be performed and if a flagstat report needs to be created (the quality report of the alignment).
 Check if all the output files that are expected based on the settings are created (see the [Input, Output](#input-output) section).
 See the section [Summary and additional tips](#summary-and-additional-tips) about how to check if the output makes sense based on the input data and the applied settings.
 
 <img src="media\satay_settingswindow.png" alt="satay.sh_settings_window" width=700>
 
+The whole pipeline might take several hours to run, depending on the size of the dataset.
+
 #### Tutorial
 
-**Note before use**: When down-/uploading files to the N-drive or M-drive on the Linux Desktop, the drives will disconnect automatically after 10 minutes of inactivity.
-Since the files are typically large the down-/uploading can therefore take more then 10 minutes to complete.
-To prevent disconnection while down-/uploading you should click back and forth to some folders once every few minutes in the drives to reset the timer.
-See also [How to use the Linux desktop](#how-to-use-the-linux-desktop).
-
-- [ ] Log in to the Linux desktop (log in credentials can be found at `N:\tnw\BN\LL\Shared\LinuxMachines\LinuxDesktop_LoginCredentials.txt`).
-  - [ ] When using remote access, install the free version of [Teamviewer](https://www.teamviewer.com/nl/) on your computer and connect with the computer using the credentials found in the file mentioned above.
-- [ ] If your data file is on the N-drive, it should be copied to the Linux desktop for the processing to work smoothly (if you have no data set, there is a test fastq file already on the Linux desktop, so you can skip the following steps):
-  - [ ] For this, go to `Files` (located in the left bar) and click `Other Locations` on the left menu in Files.
-  - [ ] On the bottom at `Connect to Server` enter: `sftp://sftp.tudelft.nl/` and click `Connect`.
-  - [ ] If requested, log in with your personal tudelft credentials.
-  - [ ] Navigate to your data file (staff-bulk is the N-drive and staff-groups is the M-drive).
-  - [ ] Copy the data set to the desktop, for example to `Documents/satay/datasets/`.
-  - [ ] Close `Files`.
-- [ ] Open the `Terminal` (located in the left bar) and enter `cd ~/Documents/satay/software/`.
+- [ ] Open the `Terminal` and navigate to the location of the satay.sh script.
 - [ ] To start the workflow, enter `bash satay.sh`. This should open a window to select a fastq file.
-- [ ] At the bottom right, select the right extension to be able to find your file, navigate to the location of your data set and select the fastq file and press `OK`. (For the test fastq, navigate to `Documents/satay/datasets/singleendtestfolder/SRR062634.fastq.gz`).
+- [ ] At the bottom right, select the right extension to be able to find your file, navigate to the location of your data set and select the fastq file and press `OK`.
 - [ ] In the next window (options window) enter the parameters and options. Click `Open adapters file` to change the sequences that need to be trimmed (if any) (this file should always be in fasta format, see [How to use](#how-to-use) section) and save and close the adapters file. Press `OK` to start processing.
 - [ ] If the option `quality check interrupt` was selected:
   - [ ] Wait for the processing to finish the quality checking of the raw data.
   - [ ] The workflow will ask if you want to continue. Enter `y` to continue with the parameters you have set and enter `n` to stop the workflow to check the quality report of the raw data.
   - [ ] Navigate to the folder where your data file is stored and open the .html file (in the `fastqc_out` folder) and the check the quality report.
-  - [ ] When finished, restart the workflow by typing `bash satay.sh` at `~/Documents/satay/software/`.
+  - [ ] When finished, restart the workflow by typing `bash satay.sh`.
   - [ ] The workflow should skip the file selection window and immediately start with the processing options window where the parameters you have previously entered are set by default. Change the parameters if needed and press `OK` to continue processing.
   - [ ] The workflow should skip over the raw quality checking and continue with the processing.
 - [ ] When processing is finished, navigate to folder where your dataset is located and check if all expected files are present (depending on what options yout have set, but at least the `align_out` folder and a log file should be present, see the [Input, Output](#input-output) section).
-- [ ] Copy the results to the N-drive following the same procedure as described in step 2. (Be aware to prevent the sftp connection to automatically disconnect, see the note at the beginning of this section).
-- [ ] After the processing is finished, most information is stored in the [bed](#bed) and [wig](#wig) files. But there can be some artifacts present in these files which can be removed using [clean_bedwigfiles.py](#clean_bedwigfilespy). This is only necessary for specific downstream analysis tools like the [genome browser](#genome-browser).
+- [ ] Most information is stored in the [bed](#bed) and [wig](#wig) files. But there can be some artifacts present in these files which can be removed using [clean_bedwigfiles.py](#clean_bedwigfilespy). This is only necessary for specific downstream analysis tools like the [genome browser](#genome-browser).
 
 #### How does it work
 
@@ -549,7 +547,7 @@ The sam file is then converted to a bam file and it is checked whether the gener
 Both tasks are done using SAMTools.
 Next the bam file is sorted and an index file is created using [Sambamba](https://lomereiter.github.io/sambamba/).
 All the steps so far after the the alignment should not take more than a few minutes and all the results are stored in the `align_out` folder.  
-As a final step the python script [transposonmapping_satay.py](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/python_transposonmapping/transposonmapping_satay.py) is started (see below for more details).
+As a final step the python script [transposonmapping_satay.py](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_transposonmapping/transposonmapping_satay.py) is started (see below for more details).
 This creates all the files that store the information about the insertions and reads in the `align_out` folder (i.e. bed, wig, pergene.txt, peressential.txt, pergene_insertions.txt and peressential_insertions.txt).
 This python script can take well over an hour to complete.  
 After the transposon mapping the sam file is deleted and a log file is created that stores information about which file(s) has been processed, a time stamp and all the options and adapter sequences set by the user.
@@ -609,8 +607,8 @@ These are all python scripts that are not depended on Linux (they run and are te
 The python version used for creating and testing is Python v3.8.5.
 
 The order in which to run the programs shouldn't matter as these scripts are all independed of each other except for genomicfeatures_dataframe.py which is sometimes called by other scripts.
-However, most scripts are depending on one or more [python modules](#python-modules), which are all expected to be located in a python_modules folder inside the folder where the python scripts are located (see [github](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/tree/satay_processing/python_scripts) for an example how this is organized).
-Also many python scripts and modules are depending on [data files](#data-files) stored in a folder called data_files located in the same folder of the python_scripts folder.
+However, most scripts are depending on one or more [python modules](#python-modules), which are all expected to be located in a python_modules folder inside the folder where the python scripts are located (see [github](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/tree/master/python_scripts) for an example how this is organized).
+Also, many python scripts and modules are depending on [data files](#data-files) stored in a folder called data_files located in the same folder of the python_scripts folder.
 The input for most scripts and modules are the output files of the processing, see the [Input, Output](#input-output) section.
 
 This is a typical order which can be used of the scripts described below:
@@ -618,7 +616,7 @@ This is a typical order which can be used of the scripts described below:
 1. clean_bedwigfiles.py (to clean the bed and wig files).
 2. transposonread_profileplot_genome.py (to check the insertion and read distribution throughout the genome).
 3. transposonread_profileplot.py (to check the insertions and read distribution per chromosome in more detail).
-4. scatterplot_genes.py (to check the distribution for the number of insertions per gene and per essential gene).
+4. scatterplot_genes.py (to compare the distribution for the number of insertions per gene and per essential gene).
 5. volcanoplot.py (only when comparing multiple datasets with different genetic backgrounds to see which genes have a significant change in insertion and read counts).
 
 Most of the python scripts consists of one or more functions.
@@ -640,7 +638,7 @@ Remove reads mapped outside chromosomes in .bed and .wig files, clean up those f
 
 - **How and when to use**
 
-[This script](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/python_scripts/clean_bedwigfiles.py) consists of a single function called `strip_redundant_ins` with the following arguments:
+[This script](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_scripts/clean_bedwigfiles.py) consists of a single function called `strip_redundant_ins` with the following arguments:
 
 `filepath=[path]` (required)  
 `custom_header=[text]`  
@@ -679,7 +677,7 @@ A dedicated folder can be created where multiple files are stored, each containi
 
 - **Main tasks**
 
-Create a pandas dataframe that stores information for a specific chromosome including all genomic features, positions of those features and the number of insertions and reads within those features for an entire chromosome or specific genomic region.
+Create a pandas dataframe that stores information for a specific chromosome including all genomic features, positions and the number of insertions and reads within those features for an entire chromosome or specific genomic region.
 Optionally it can create a barplot with the number of insertions or reads within each feature.
 
 - **Dependencies**
@@ -698,7 +696,7 @@ matplotlib
 
 - **How and when to use**
 
-[This script](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/python_scripts/genomicfeatures_dataframe.py) consists of two functions, `dna_features` and `feature_position`.
+[This script](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_scripts/genomicfeatures_dataframe.py) consists of two functions, `dna_features` and `feature_position`.
 The function `dna_features` is the main function that takes user inputs and this function calls the function `feature_position` which is not intended to be used directly.
 The function `dna_features` takes the following arguments:
 
@@ -721,14 +719,14 @@ The `plotting` argument (True or False) defines whether to create a barplot.
 The `variable` argument determines what to plot, either reads or insertions and the `savefigure` whether to automatically save the figure at the same location as where this script is stored.
 Finally the `verbose` determines if any printing output should be given (this is mostly useful for when calling this script from other python scripts).
 
-This scripts does not only look at genes, but also at other genomic regions like telomere, centromeres, rna genes etc.
+This scripts does not only look at genes, but also at other genomic regions like telomeres, centromeres, rna genes etc.
 All these features are stored in one dataframe called `dna_df2` that includes naming and positional information about the features and the insertion and read counts (see output).
 The dataframe will always be created for one entire chromosome (regardless if a basepair region or gene name was entered in the `region` argument).
 When the plotting is set to the True, it will also create a barplot for the same chromosome within the region that is defined in the `region` variable.
 The plot distinguishes between nonessential genes, essential genes, other genomic features (e.g. telomeres, centromeres etc.) and noncoding dna.
 The width of the bars is determined by the length of the genomic feature and the height represents either the number of reads or insertions (depending what is defined in `variable`).
 
-This function can be useful for other python functions as well when information is required about the positions, insertions and read counts of various genomic features.
+This function can be useful for other python functions when information is required about the positions, insertions and read counts of various genomic features.
 The full list of genomic features that is regarded in the dataframe is mentioned in [read_sgdfeatures.py](#read_sgdfeaturespy).
 
 - **Output**
@@ -750,7 +748,7 @@ The main output is the `dna_df2` dataframe in which each row represents a genomi
 - Number of reads per insertion (only for genes, where the insertions and reads in the first and last 100bp are ignored)
 
 The truncated feature columns ignores basepairs at the beginning and end of a gene.
-This can be useful as it is mentioned that insertions located at the beginning or end of a gene results in a protein that is still functional (although truncated) (e.g. see Michel et.al. 2017) (see Notes for a further discussion about how this is defined).
+This can be useful as it is mentioned that insertions located at the beginning or end of a gene can result in a protein that is still functional (although truncated) (e.g. see Michel et.al. 2017) (see Notes for a further discussion about how this is defined).
 
 <img src="media\genomicfeatures_dataframe_dnadf2.png" alt="genomicfeature_dataframe_dnadf2" width=700>
 
@@ -783,7 +781,7 @@ matplotlib
 
 - **How and when to use**
 
-[This code](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/python_scripts/transposonread_profileplot.py) consists of a single function `profile_plot` which takes the following arguments:
+[This code](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_scripts/transposonread_profileplot.py) consists of a single function `profile_plot` which takes the following arguments:
 
 `bed_file=[path]` (required)  
 `variable="transposons"||"reads"`  
@@ -794,7 +792,7 @@ matplotlib
 The `variable` arguments determines whether to plot the number of transposons or the number of reads for a chromosome defined in `chrom`.
 The `bar_width` argument defines the width of the bars (in basepairs).
 All insertions or reads within a bar are added up.
-Wider bars makes the script significantly faster, but this might regions with low abundance less visible where the smaller bars provide more detailed information.
+Wider bars makes the script significantly faster, but this might cause regions with low abundance less visible where the smaller bars provide more detailed information.
 By default the width of the bars are chosen as the length of the chromosome divided by 800.
 
 Optionally, the figure can be automatically saved at the same location where the bed file is stored with the `savefig` argument.
@@ -814,16 +812,6 @@ A barplot is created which shows the transposon or read count throughout the gen
 
 - **Main tasks**
 
-<<<<<<< HEAD
-- **Dependencies**
-
-- **How and when to use**
-
-- **Output**
-
-- **Notes**
-
-=======
 Create a barplot to show the read or insertion count for the whole genome and indicate the location of the genes which are colorcoded based on their essentiality.
 
 - **Dependencies**
@@ -836,7 +824,7 @@ matplotlib
 
 - **How and when to use**
 
-[This code](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/python_scripts/transposonread_profileplot_genome.py) consists of a single function `profile_genome` which takes the following arguments:
+[This code](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_scripts/transposonread_profileplot_genome.py) consists of a single function `profile_genome` which takes the following arguments:
 
 `bed_file=[path]` (required)  
 `variable="transposons"||"reads"`  
@@ -860,7 +848,7 @@ A barplot is created that shows the tranposon or read abundance for the genome t
 
 - **Notes**
 
-- [ ]
+- [ ] Sometimes the colorcoding of the strip below the figure changes when the figure is saved. This is not due to the code (which always loads the same gene positions from the same files), but this likely due to how the figure was saved by the used editor (tested with Spyder4). Probably the resolution is not high enough to show the fine details in the strip.
 
 #### TransposonRead_Profile_Compare.py
 
@@ -883,7 +871,7 @@ matplotlib
 
 - **How and when to use**
 
-[This code](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/python_scripts/transposonread_profile_compare.py) consists of a single function called `compareplot`.
+[This code](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_scripts/transposonread_profile_compare.py) consists of a single function called `compareplot`.
 This function takes the following inputs:
 
 `bed_files=list of 2 paths` (required)  
@@ -902,7 +890,7 @@ This creates a number of figures equal to the number of chromosomes entered in t
 The `bar_width` can be set to determine the width of the bars in basepairs (default is length of the chromosome divided by 500).
 The differences between datasets can be small relative to the number of counts, especially when comparing reads.
 To make the differences better visible, the y axis can be set in log scale using the `set_logscale` argument to `True`.
-This visually enhances the differences, but can give a distorded view where the differences look much bigger than they actually are.
+This visually enhances the differences, but can give a distorded view as the differences appear much bigger than they actually are.
 Finally, the `savefig` argument determines whether the figure needs to be saved.
 If a figure is saved, it won't be shown and it will be stored at the location of the bed file that occurs first in the `bed_files` list.
 The name that is given to the saved figures is the name of the first occuring bed file with the extension `_compareplot_chrom[romannumeral].png` where [romannumeral] is replaced by the chromosome number.
@@ -924,17 +912,12 @@ On top the graph the names of the essential genes are plotted.
 
 - [ ] When automatically saving the figure the names of the compared files are not stored, so it is good to (manually) create a file stating what is compared.
 
->>>>>>> d42ad0bbfb0fa2d3fb652e4d6e08433187386bff
 #### scatterplot_genes.py
 
 - **Main tasks**
 
 Create a sorted scatterplot that shows the number of reads per insertion per gene for both annotated essential and non-essential genes.
-<<<<<<< HEAD
-This is plotted together with a histogram showing the distribution of the reads per insertion per gene to indicate potential differences in the distribution between essential and non-essential genes.
-=======
 This is plotted together with a histogram of the reads per insertion per gene to indicate potential differences in the distribution between essential and non-essential genes.
->>>>>>> d42ad0bbfb0fa2d3fb652e4d6e08433187386bff
 
 - **Dependencies**
 
@@ -948,29 +931,18 @@ pandas
 
 - **How and when to use**
 
-[This code](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/python_scripts/scatterplot_genes.py) consists of a single function called `scatterplot` that takes a single argument for the path of the pergene.txt file.
-<<<<<<< HEAD
-From this file it takes, for each gene, the number of insertions and the number of reads and with this it determines the number of reads per insertion.
-This is stored in a dataframe together with the essentiality (True or False) for each gene which is returned as output.
-
-The genes are sorted based on their reads per insertion value and therefore the scatterplot is turned into a hockeystick plot where the genes with the lowest reads per insertion are at the left of the graph and the genes with the highest values are always on the right of the graph.
-=======
+[This code](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_scripts/scatterplot_genes.py) consists of a single function called `scatterplot` that takes a single argument for the path of the pergene.txt file.
 From this file it takes, for each gene, the number of insertions and the number of reads and with this it calculates the number of reads per insertion.
 This is stored in a dataframe together with the essentiality (True or False) for each gene which is returned as output.
 
 The genes are sorted based on their reads per insertion value and therefore the genes with the lowest reads per insertion are on the left of the graph and the genes with the highest values are always on the right of the graph.
->>>>>>> d42ad0bbfb0fa2d3fb652e4d6e08433187386bff
 The genes are colorcoded based on their essentiality.
 
 Next to the sorted scatterplot a histogram is shown for the y-axis of the scatterplot that shows the distribution of the reads per insertion for the essential genes and the non-essential genes in two overlapping histograms.
 
 - **Output**
 
-<<<<<<< HEAD
-The main output is a sorted scatterplot (hockeystickplot) together with a histogram showing the distribution of the reads per insertion for essential and non-essential genes.
-=======
 The main output is a sorted scatterplot (i.e. a hockeystickplot) together with a histogram showing the distribution of the reads per insertion for essential and non-essential genes.
->>>>>>> d42ad0bbfb0fa2d3fb652e4d6e08433187386bff
 
 Next to the plots it returns a dataframe with data from the pergene.txt file together with the essentiality of each gene.
 
@@ -994,7 +966,7 @@ matplotlib
 
 - **How and when to use**
 
-This script consists of a single function called `volcano` which takes the following inputs:
+[This script](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_scripts/volcanoplot.py) consists of a single function called `volcano` which takes the following inputs:
 
 `path_a=[path]` (required)  
 `filelist_a=[list of pergene.txt filenames in path_a]` (required)  
@@ -1006,10 +978,10 @@ This script consists of a single function called `volcano` which takes the follo
 `trackgene_list=[list of gene names]`  
 `figure_title=[str]`
 
-A volcanoplot is useful to create to compare to strains with each other that each has multiple datasets (e.g. 2 wt strains and 4 mutant strains).
-Therefore, the paths of the two datasets (`path_a` and `path_b`) are separated from the pergene.txt  filenames, which should be given in a list (`filelist_a` and `filelist_b`).
+A volcanoplot is useful to create to compare two strains with each other that each has multiple datasets (e.g. 2 wt strains and 4 mutant strains).
+Therefore, the paths of the two datasets (`path_a` and `path_b`) are separated from the pergene.txt filenames, which should be given in a list (`filelist_a` and `filelist_b`).
 
-It plots the fold change per gene vs the significance as determined by a independent t-test.
+It plots the fold change per gene vs the significance as determined by an independent t-test.
 The fold change can be determined for the reads per gene (`variable=reads_per_gene`), insertions per gene (`variable=tn_per_gene`) or reads per inserions per gene (`variable=Nreadsperinsrt`).
 The fold change is calculated by the log base 2 of the mean per gene for the experimental strain divided by the mean per gene for the reference strain (e.g. mean reads per gene mutant strain / mean reads per gene wt strain).
 
@@ -1023,14 +995,14 @@ When the significance of a gene is higher then the threshold set by `threshold`,
 
 Optionally, a list of genes can be given which are shown with a fixed label in the graph.
 For this enter the gene names as a list in the `trackgene_list` variable and use the same names as they occur in the files.
-The other genes can be found in the graph by hovering the cursor over each datapoint and then a label will appear that show the name of the gene that datapoint is representing.
+The other genes can be found in the graph by hovering the cursor over each datapoint and then a label will appear that show the name of the gene that the datapoint is representing.
 The title of the graph can be changed using the `figure_title` by entering a string that will be printed with the figure.
 Next to the custom title, the title indicates what variable is plotted in the graph (i.e. reads per gene, insertions per gene or reads per insertion).
 
 - **Output**
 
 The main output of the script is the interactive volcano plot of fold change vs significance.
-Also it return the variable `volcano_df` that includes the information used for plotting.
+Also it returns the variable `volcano_df` that includes the information used for plotting.
 In the dataframe each row consists of a gene and the following columns are used:
 
 - gene names
@@ -1043,58 +1015,12 @@ In the dataframe each row consists of a gene and the following columns are used:
 
 - **Notes**
 
-- [ ] The fold change is calculated as the ratio between the means of the datasets. But this is an issue when either of the dataset is 0. To prevent this issue, for each gene in each dataset, 5 insertions and 25 reads are added. This ensures that there is never a 0 in the division. This chosen because the processing of the Kornmann-lab also does this and by integrating the same method in this script allows for direct comparison of the figures. However, this is not completely fair as it changes the data. For example, if the initial number of insertions were 1 and 2 it yields a fold change of 0.5. By adding 5 insertions to it it becomes 6 and 7, respectively, yielding a fold change of 0.85.
+- [ ] The fold change is calculated as the ratio between the means of the datasets. But this is an issue when either of the dataset is 0. To prevent this issue, for each gene in each dataset, 5 insertions and 25 reads are added. This ensures there is never a 0 in the division. This chosen because the processing of the Kornmann-lab also does this and by integrating the same method in this script allows for direct comparison of the figures. However, this is not completely fair as it changes the data. For example, if the initial number of insertions were 1 and 2 it yields a fold change of 0.5. By adding 5 insertions to it it becomes 6 and 7, respectively, yielding a fold change of 0.85.
 
 #### create_essentialgenes_list.py
 
 - **Main tasks**
 
-<<<<<<< HEAD
-- **Dependencies**
-
-- **How and when to use**
-
-- **Output**
-
-- **Notes**
-
-#### split_wigfiles.py
-
-- **Main tasks**
-
-- **Dependencies**
-
-- **How and when to use**
-
-- **Output**
-
-- **Notes**
-
-### python modules
-
-#### chromosome_and_gene_positions.py
-
-#### chromosome_names_in_files.py
-
-#### dataframe_from_pergene.py
-
-#### essential_genes_names.py
-
-#### gene_length.py
-
-#### gene_names.py
-
-#### gene_tn_insertions.py
-
-#### insertions_count.py
-
-#### mapped_reads.py
-
-#### read_sgdfeatures.py
-
-This [python module](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/python_scripts/python_modules/read_sgdfeatures.py) reads the [SGD_features.tab](#sgd_featurestab) file and creates dictionaries for type of genomic feature with all general information about these features.
-The following features are considered:
-=======
 Combine mulitple files with essential genes into one.
 
 - **Dependencies**
@@ -1103,11 +1029,11 @@ Combine mulitple files with essential genes into one.
 
 - **How and when to use**
 
-[This code](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/python_scripts/create_essentialgenes_list.py) was initially created because there were multiple text files with essential genes for Cerevisiae.
+[This code](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_scripts/create_essentialgenes_list.py) was initially created because there were multiple text files with essential genes for Cerevisiae.
 However, none of the lists was complete and thus there were genes in one file that were not in the other and vice versa.
 Also the files used different naming conventions.
 This code takes a list of paths to multiple text files containing gene names.
-It assumed there are three header lines in each text file (which can be empty) and after that each line contains a single name of a gene.
+It assumes there are three header lines in each text file (which can be empty) and after that each line contains a single name of a gene.
 
 This code iterates over all files given in the input list and creates a new text file at the same location as the first occuring path in the input list and gives this new file the name `Cerevisiae_AllEssentialGenes_List.txt`.
 
@@ -1127,7 +1053,7 @@ A text file is created that contains all known essential genes with the names `C
 
 ### python modules
 
-The python modules always contain function that perform a certain task that is often required in multiple python scripts.
+The python modules always contain functions that perform a certain task that is often required in multiple python scripts.
 To use these python modules in a python script a path needs to be defined to the module.
 This can be done best using relative paths stated at the very beginning of a script with the following lines:
 
@@ -1139,16 +1065,16 @@ Then an import can be done as usual in the form
 
 >`from module_name import function`
 
-For example to import the `chromosome_position` from the `chromosome_and_gene_positions.py` module:
+For example to import the `chromosome_position` function from the `chromosome_and_gene_positions.py` module:
 
 > `from chromosome_and_gene_positions import chromosome_position`
 
 The output of these functions are given in the `return` statement.
-If there are multiple outputs in the return statement, the function also expects multiple variables to assigned when calling this function in a python scripts (e.g. if function `f` has two outputs, call this the function as `var1, var2 = f([inputs])` or `var1 = f([inputs])[0]` if only `var1` is needed, where `[inputs]` are to be replaced with the input variable (if any)).
+If there are multiple outputs in the return statement, the function also expects multiple variables to assigned when calling this function in a python scripts (e.g. if function `f` has two outputs, call this the function as `var1, var2 = f([inputs])` or `var1 = f([inputs])[0]` if only `var1` is needed, where `[inputs]` are to be replaced with the input variable(s) (if any)).
 
 #### chromosome_and_gene_positions.py
 
-[This module](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/python_scripts/python_modules/chromosome_and_gene_positions.py) can be used for obtaining information regarding gene and chromosome positions, lengths and converting roman to arabic numerals for chromosomes.
+[This module](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_scripts/python_modules/chromosome_and_gene_positions.py) can be used for obtaining information regarding gene and chromosome positions and lengths and converting roman to arabic numerals for chromosomes.
 It contains 3 functions:
 
 - `chromosome_position`
@@ -1176,7 +1102,7 @@ This function outputs 1 dictionary:
 
 `gene_pos_dict`
 
-The keys in this dictionary are all gene names and the values is a list with the following information:
+The keys in this dictionary are all gene names and each value is a list with the following information:
 
 1. Chromosome where the gene is positioned
 2. Start basepair for the gene
@@ -1189,7 +1115,7 @@ This module is also present as a python module in the python_transposonmapping f
 
 #### chromosome_names_in_files.py
 
-[This module](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/python_scripts/python_modules/chromosome_names_in_files.py) extracts information about where the chromosomes start and end in a bed or wig file and gets the names of the chromosomes as used in these files.
+[This module](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_scripts/python_modules/chromosome_names_in_files.py) extracts information about where the chromosomes start and end in a bed or wig file and gets the names of the chromosomes as used in these files.
 It consists of 2 functions:
 
 - `chromosome_name_bedfile`
@@ -1199,6 +1125,8 @@ This function outputs 3 dictionaries:
 `chrom_names_dict` which contains as keys roman numerals for the chromosome and the values are the chromosome names as are present in the bed file  
 `chrom_start_line_dict` containing the lines where the chromosomes start in the bed file as values and the keys are roman numerals representing the chromosomes  
 `chrom_end_line_dict` containing the lines where the chromosomes end in the bed file as values and the keys are roman numerals representing the chromosomes
+
+This can be useful when only a specific chromosome is required, that not the entire file needs to be searched, but rather a range of lines in the bed and wig files can be read where the specified chromosome occurs.
 
 The input of this function is a required path to a bed file.
 
@@ -1214,7 +1142,7 @@ The input of this function is a required path to a wig file.
 
 #### dataframe_from_pergene.py
 
-[This module](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/python_scripts/python_modules/dataframe_from_pergene.py) creates a dataframe with the number of insertions and reads per gene and can be seen as a stripped down version of the python script [genomicfeatures_dataframe.py](#genomicfeatures_dataframepy).
+[This module](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_scripts/python_modules/dataframe_from_pergene.py) creates a dataframe with the number of insertions and reads per gene and can be seen as a stripped down version of the python script [genomicfeatures_dataframe.py](#genomicfeatures_dataframepy).
 It contains a single function:
 
 - `dataframe_from_pergenefile`
@@ -1238,7 +1166,7 @@ re
 
 #### essential_genes_names.py
 
-[This module](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/python_scripts/python_modules/essential_genes_names.py) creates a list with all known essential genes in different naming conventions.
+[This module](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_scripts/python_modules/essential_genes_names.py) creates a list with all known essential genes in different naming conventions.
 It contains a single function:
 
 - `list_known_essentials`
@@ -1247,11 +1175,11 @@ This inputs a lists of files with essential gene names.
 If no input is given, the files are collected from the data_files folder.
 It simply takes all genes from all input files and put those in one list.
 This list is therefore likely to contain redundant genes with different naming conventions.
-This list is stored in the variable `known_essential_gene_list`.
+This list is stored in the variable `known_essential_gene_list` and is useful to check whether a gene is annotated as essential without having to worry about naming conventions.
 
 #### gene_names.py
 
-[This module](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/python_scripts/python_modules/gene_names.py) can be used for getting all gene names and their aliases.
+[This module](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_scripts/python_modules/gene_names.py) can be used for getting all gene names and their aliases.
 It consists of two functions:
 
 - `list_gene_names`
@@ -1276,7 +1204,7 @@ This module is also present as a python module in the python_transposonmapping f
 
 #### mapped_reads.py
 
-[This module](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/python_scripts/python_modules/mapped_reads.py) can be used for counting the number of insertions and number of reads in a bed or wig file.
+[This module](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_scripts/python_modules/mapped_reads.py) can be used for counting the number of insertions and number of reads in a bed or wig file.
 It consists of a single function:
 
 - `total_mapped_reads`
@@ -1299,13 +1227,12 @@ This module has the following dependencies: numpy
 
 #### read_sgdfeatures.py
 
-[This module](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/python_scripts/python_modules/read_sgdfeatures.py) creates dictionaries for many types of genomic feature containing general information about these features.
+[This module](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_scripts/python_modules/read_sgdfeatures.py) creates dictionaries for many types of genomic features containing general information about these features.
 It consists of a single function:
 
 - `sgd_features`
 
 This function reads the [SGD_features.tab](#sgd_featurestab) file and extracts the following information:
->>>>>>> d42ad0bbfb0fa2d3fb652e4d6e08433187386bff
 
 - ORF (genes)
 - ARS
@@ -1334,28 +1261,22 @@ In each dictionary the keys are the names of the features and the values consist
 - feature type
 - feature qualifier (`Verified` or `Dubious`)
 - standard name
-- aliases (separated by `|`)
+- aliases (when more than one, separated by `|`)
 - parent feature name (typically 'chromosome ...')
 - chromosome
 - start coordinate (starting at 0 for each chromosome)
 - end coordinate (starting at 0 for each chromosome)
 
-<<<<<<< HEAD
-#### statistics_perchromosome.py
+The input of the function is a path to the SGD_features.tab file and in case of no input, this file is taken from the data_files folder.
 
 #### samflag.py
 
-=======
-The input of teh function is a path to the SGD_features.tab file and in case of no input, this file is taken from the data_files folder.
-
-#### samflag.py
-
-[This module](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/python_scripts/python_modules/samflag.py) determines the parameters based on the alignment flag found in sam files.
+[This module](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_scripts/python_modules/samflag.py) determines the parameters based on the alignment flag found in sam files.
 It consists of single function:
 
 -`samflag`
 
-This takes an integer as input a outputs a list of parameters corresponding to that integer.
+This takes an integer as input and outputs a list of parameters corresponding to that integer.
 This function executes the method described in the [sam, bam](#sam-bam) section.
 It converts the integer to a 12-bit binary number and each of the 12 bits correspond to an entry in a list of parameters.
 The location of the ones (read from right to left) in the binary number determine which parameters are true given the input integer.
@@ -1365,34 +1286,32 @@ There are 2 outputs:
 `flag_binary` which returns the 12-bit binary sequence of the input integer  
 `flagprop_list` which is a list containing all the parameters corresponding to the input integer.
 
-This script is mainly used during the processing pipeline in the [transposonmapping_satay.py](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/python_transposonmapping/transposonmapping_satay.py) and therefore this module is also present as a python module in the python_transposonmapping folder.
+This script is mainly used during the processing pipeline in the [transposonmapping_satay.py](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_transposonmapping/transposonmapping_satay.py) and therefore this module is also present as a python module in the python_transposonmapping folder.
 
->>>>>>> d42ad0bbfb0fa2d3fb652e4d6e08433187386bff
 ### Data files
 
 #### Cerevisiae_AllEssentialGenes_List.txt
 
-[This text file](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/data_files/Cerevisiae_AllEssentialGenes_List.txt) contains all known annotated essential genes in wild type according to SGD.
-It is created using [create_essentialgenes_list.py](#create_essentialgenes_listpy) where the genes are taken from both [Cerevisiae_EssentialGenes_List_1.txt](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/data_files/Cerevisiae_EssentialGenes_List_1.txt) and [Cerevisiae_EssentialGenes_List_2.txt](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/data_files/Cerevisiae_EssentialGenes_List_2.txt).
+[This text file](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/data_files/Cerevisiae_AllEssentialGenes_List.txt) contains all known annotated essential genes in wild type according to SGD.
+It is created using [create_essentialgenes_list.py](#create_essentialgenes_listpy) where the genes are taken from both [Cerevisiae_EssentialGenes_List_1.txt](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/data_files/Cerevisiae_EssentialGenes_List_1.txt) and [Cerevisiae_EssentialGenes_List_2.txt](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/data_files/Cerevisiae_EssentialGenes_List_2.txt).
 Both latter two files contain essential genes, but in different naming format and both contain genes not found in the other file.
-The Cerevisiae_AllEssentialGenes_List.txt file is a combination of the two files with all genes from both files.
+The Cerevisiae_AllEssentialGenes_List.txt file is a combination of the two files with all genes from both files and is therefore the most complete version.
 Each file contains a header with the source where the information is downloaded from.
 
 #### S288C_reference_sequence_R64-2-1_20150113.fsa
 
-[This fasta file](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/data_files/S288C_reference_sequence_R64-2-1_20150113.fsa) is the reference genome from yeast used for alignment and downloaded from [yeastgenome.org](http://sgd-archive.yeastgenome.org/sequence/S288C_reference/genome_releases/).
-It is used during alignment.
+[This fasta file](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/data_files/S288C_reference_sequence_R64-2-1_20150113.fsa) is the reference genome for yeast used for alignment and downloaded from [yeastgenome.org](http://sgd-archive.yeastgenome.org/sequence/S288C_reference/genome_releases/).
 Note that before using a fasta file for alignment, the file has to be indexed.
 This can be done in Linux using the command `bwa index [path]/S288C_reference_sequence_R64-2-1_20150113.fsa` where `[path]` is replaced with the path to the reference fasta file.
 
 #### SGD_features.tab
 
-[This file](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/data_files/SGD_features.tab) contains information for each genomic feature (e.g. genes, telomeres, centromers etc.) and was downloaded from [SGD](http://sgd-archive.yeastgenome.org/?prefix=curation/chromosomal_feature/).
-It comes with a [readme](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/data_files/SGD_features.README) explaining the contents.
+[This file](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/data_files/SGD_features.tab) contains information for each genomic feature (e.g. genes, telomeres, centromers etc.) and was downloaded from [SGD](http://sgd-archive.yeastgenome.org/?prefix=curation/chromosomal_feature/).
+It comes with a [readme](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/data_files/SGD_features.README) explaining the contents.
 
 #### Saccharomyces_cerevisiae.R64-1-1.99.gff3
 
-[This file](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/data_files/Saccharomyces_cerevisiae.R64-1-1.99.gff3) contains all information about the genes.
+[This file](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/data_files/Saccharomyces_cerevisiae.R64-1-1.99.gff3) contains all information about the genes.
 The saccharomyces_cereivisae.gff.gz can be downloaded from [SGD](http://sgd-archive.yeastgenome.org/?prefix=curation/chromosomal_feature/).
 
 Note, the current downloadable file is a newer version with a slightly updated format.
@@ -1400,92 +1319,54 @@ This is not integrated in the current python scripts, hence the old version is s
 
 #### Yeast_Protein_Names.txt
 
-[This file](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/data_files/Yeast_Protein_Names.txt) is downloaded from [uniprot](https://www.uniprot.org/docs/yeast) and contains all known genes with all aliases and different naming conventions (i.e. designation, oln, swiss-prot and SGD cross-reference names).
-This file can be used for searching different namings for genes, for example using [gene_names.py](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/python_scripts/python_modules/gene_names.py) or [genomicfeatures_dataframe.py](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/python_scripts/genomicfeatures_dataframe.py).
+[This file](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/data_files/Yeast_Protein_Names.txt) is downloaded from [uniprot](https://www.uniprot.org/docs/yeast) and contains all known genes with all aliases and different naming conventions (i.e. designation, oln, swiss-prot and SGD cross-reference names).
+This file can be used for searching different namings for genes, for example using [gene_names.py](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_scripts/python_modules/gene_names.py) or [genomicfeatures_dataframe.py](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_scripts/genomicfeatures_dataframe.py).
 This file is still regularly updated on [uniprot](https://www.uniprot.org/docs/yeast).
 
-From this file, the files [S_Cerevisiae_protein_designation_name_full_genome.txt](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/data_files/S_Cerevisiae_protein_designation_name_full_genome.txt) and [S_Cerevisiae_protein_oln_name_full_genome.txt](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/data_files/S_Cerevisiae_protein_oln_name_full_genome.txt) are created using [gene_names.py](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/satay_processing/python_scripts/python_modules/gene_names.py), each containing all genes in a consistent naming convention.
+From this file, the files [S_Cerevisiae_protein_designation_name_full_genome.txt](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/data_files/S_Cerevisiae_protein_designation_name_full_genome.txt) and [S_Cerevisiae_protein_oln_name_full_genome.txt](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/data_files/S_Cerevisiae_protein_oln_name_full_genome.txt) are created using [gene_names.py](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_scripts/python_modules/gene_names.py), each containing all genes in a consistent naming convention.
 
 ### Other tools
 
 #### IGV
 
+The [integrative Genomics Viewer](https://software.broadinstitute.org/software/igv/) is a tool to visualize the mapped reads and can be used for manually checking the output.
+When opening the tool for the first time, load a [reference genome](#s288c_reference_sequence_r64-2-1_20150113fsa) by going to `Genomes` in the task bar, click `Load genome from file` and select the reference fasta.
+Alternatively in the top bar, in the left most drop-down menu click `More...` and select the S. cerevisiae (sacCer3) genome (which comes standard with IGV).
+Next, select `File` from the task bar and click `Load from file`.
+Select a bam file which should have an index (.bam.bai) file stored at the same location.
+In the top of the window check if the right reference genome is loaded and select a chromosome to view (in the drop-down menu that says 'All' or a chromosome name).
+Zoom in to a region of interest which should then show all the reads present.
+Hovering the cursor over a read should give more information about that read.
+For example, this can be used to check the mapping quality of reads (MAPQ) and to check if the location of the reads correspond to the insertion locations stored in the output files from the workflow.
+
 #### genome browser
 
-<<<<<<< HEAD
-## Outlook
+Another useful tool the [genome browser](http://genome-euro.ucsc.edu/index.html), which is an online tool for showing alignment data together with a reference genome.
+This also shows different features, for example where the genes are located.
+To use this tool, go to `My Data` in the top bar and select `My Sessions`.
+Here you should create an account if you haven't done this before.
+After this, go to the `Session Management` (on the same page) and at `Save Settings`, enter a name for your dataset at `Save current settings as named session`.
+Optionally you can set the checkbox `allow this session to be loaded by others` to give other people the possibility to see your data, but this is not required.
+Press `Submit`.
+While still on the same page, you should now see your dataset name in the section `My Sessions`.
+Click the name to open the browser.
+Here you should see an interactive figure with some default tracks.
+It may happen that not the right organism is selected (e.g. by default the Human genome is loaded), this will be resolved in the next step.
+Right below the browser, there are some functions for the browser.
+Click here the `add custom tracks` option.
+This should load a new page where you can select the right genome and add you own data.
+For loading the genome, select the `Other` in the drop-down menu next to `clade` on the top of the page.
+Then, select `S. cerevisiae` next to `genome` and then select the assembly `Apr. 2011`.
+On the same page, upload a bed or wig file next to `Paste URLs or data`.
+Note that for this the bed or wig files need to be cleaned using [clean_bedwigfiles.py](#clean_bedwigfilespy).
+Press `Submit` and after loading, press `Go` or add another track.
+This should now show you again the browser, but now with the right genome and your track(s) loaded.
+Note that by default the browser is zoomed in quite far, so you may want to zoom out somewhat or select a region or gene in the search bar.
 
-=======
->>>>>>> d42ad0bbfb0fa2d3fb652e4d6e08433187386bff
-## How to use the Linux desktop
+This now allows you to see the insertions against all genomic features in the genome.
+Your tracks are saved automatically and when the `allow this session to be loaded by others` was selected, it can be shared with others.
 
-For those who are not familiar with Linux, here is a brief summary of how to work with the Linux desktop and the basic tools that are necessary for using the workflow.
-
-When using the Linux desktop, log in with the credentials found at `N:\tnw\BN\LL\Shared\LinuxMachines\LinuxDesktop_LoginCredentials.txt`.
-For remote access, download [Teamviewer](https://www.teamviewer.com/nl/) on your computer and connect with the Linux desktop using the credentials found in the file mentioned above.
-Enter the ID number in the 'partner ID', click connect and enter the password.
-
-The workflow can be used via the commandline.
-For this, open the Terminal located in the left bar in Linux.
-This allows you to navigate through the different files and folders that are located on the desktop.
-These files and folders can also be accessed using Files (also located on the left bar) which gives a more Windows like experience with clicking on pictograms, but this is missing some useful features from the commandline including starting the workflow.
-The Terminal by default opens in the home directory (indicated either as `~/` or `/home/laanlab/`).
-For navigating through different directories (folders) use the change directory command `cd` (e.g. `cd ~/Documents/satay/` would bring you to the folder called satay which is located within the Documents folder).
-Everything needed for the satay analysis is located in `~/Documents/satay`, which contains the following folders (among others):
-
-- `software`; containing all the software packages and the workflow script `satay.sh`.
-- `datasets`; here the datasets are stored, including some test datasets.
-- `reference_sequences`; containing the reference genome sequences.
-
-While navigating through the folders, see what is inside a folder using `ls` (e.g. just typing `ls` shows the contents of the current directory and `ls ~/Documents/satay` would show the contents of the satay folder regardless in which folder you currently are).
-There are several extensions of this command, like `ls -a` which shows also all hidden folders (starting with `.`) and `ls -l` shows some basic information about each file and folder.
-
-To show the contents of a file use `less` or `head`.
-The `head` command shows the first 10 lines of the file (e.g. `head ~/Documents/satay/datasets/satay.sh` shows the first 10 lines of the satay.sh script) and `less` also shows the contents of a file, but allows you to scroll through the file using the arrow keys.
-The advantage of these commands are that they only load the lines that are being shown, so this is a nice tool for checking large files without using a lot of memory (what would normally happen when opening a file completely).
-Also, the `less` command in Linux allows for seeing the contents of gzipped files without fully unzipping them (the `head` command only works with unzipped files).
-
-To normally open a file with the default program for that filetype, use the command `xdg-open` (e.g. `xdg-open ~/Documents/satay/software/satay.sh` opens a text editor with satay.sh).
-
-To access the webdrives, open the Files program and go to `Other Locations` (in the left menu bar in Files).
-On the bottom of the window it should say `Connect to server`.
-Enter here the following adress: `sftp://sftp.tudelft.nl/ `
-Press `Connect` and, if requested, log in with your TUDelft credentials.
-This should show a number of folders, among of which is `staff-bulk` which is the N-drive and `staff-groups` which is the M-drive.
-Here you can down-/upload any files to and from the desktop, but after about 10 minutes of inactivity, the connection to the drives is automatically broken.
-This means that all the down-/uploads will be aborted.
-To prevent this, switch back and forth to some folders within the drives every few minutes to reset the timer.
-
-The workflow can be accessed by going to the following path: `~/Documents/satay/software/`
-Start the workflow by stating the tool to which to run the script with (i.e. bash) and then the name of the script (satay.sh), thus entering `bash satay.sh`.
-Any commands you want to put in come right after this statement, e.g. `bash satay.sh -h` to open the help text.
-Datafiles can be stored at the following location: `~/Documents/satay/datasets/`.
-To keep things organized, create a new folder for each dataset using the command `mkdir ~/Documents/satay/datasets/[foldername]` (where `[foldername]` is to be replaced with any name you want).
-Prevent spaces in namegiving, but rather use underscores.
-(Alternatively, when using the Files program, right mouse click and select `New Folder` at the location where the new folder has to be located).
-
-Note that this desktop has no backup system, thus make sure to always put any files directly on the drives and remove the files you do not need from the desktop to prevent filling up the memory.
-Removing files can be done using the command `rm` (e.g. `rm [pathtofile]/[filename]`).
-Note that this command does not have an undo and also the removed files are not moved to a trash folder.
-This command works immediately and is permanent, so use with caution and double check before you enter it.
-To remove folders including the contents, use `rm -r`.
-Alternatively, you can use the Files program to delete files, which does first move the files to a trash folder where you then can remove them permanently.
-
-Once in a while, the desktop may require an update.
-Sometimes the desktop will ask for this and you can follow the instructions of the pop up window.
-To update manually enter the following commands in the commandline:
-
-- `sudo apt-get update`; This checks for the latest versions of different system software tools and files. This command only updates the list of things to update, but doesn't do any downloading or installing itself. This requires a user password (required by the `sudo` command) which is the same password as for logging in. (Note that when typing a password in the commandline, it doesn't show any signs that you're typing, but just type the password and press enter).
-
-- `sudo apt-get upgrade`; This does the actual downloading and installation of the updates that are found by the previous command. It may ask for a confirmation before it starts the installation and may restart the desktop.
-
-For a more thorough tutorial of the linux commandline and many other useful commands, see for example this course from [datacarpentry.org/shell-genomics](https://datacarpentry.org/shell-genomics/).
-To have commandline like tool on windows (e.g. to access large datafiles on windows as well using the `less` and `head` commands), try [git bash](https://gitforwindows.org/).
-For Mac users, the terminal that is by default installed in MacOS works very similar as the one in Linux, so there is no real need for downloading any special tools.
-
-<<<<<<< HEAD
-=======
-## Summary and additional tips
+## Summary
 
 The workflow discussed in this documentation processes the data from raw sequencing data to a list of insertions sites and read counts.
 Here a summary is given of the most important steps to take starting after retrieving the sequencing data.
@@ -1493,15 +1374,34 @@ Here a summary is given of the most important steps to take starting after retri
 1. Manually check the fastq files to see if the reads appear to be ok and if you can recognise adapter, primer or transposon sequences (if any) that need to be trimmed.
 2. If needed, preprocess the data. For example demultiplexing when multiple samples were sequenced simultaneously. Store the data for each sample in individual fastq files, preferably as single-end reads.
 3. Input the (preprocessed) fastq files in the workflow. For this, store the fastq files on the Linux desktop and run the workflow using the command `bash satay.sh` (located in the software folder).
-4. When it is the first time processing the data, it is advised to set the `Quality checking raw data` and `Quality check interrupt` to `True`. This allows you to check the raw fastq files before the processing starts for any artefacts or unwanted (overrepresented) sequences.
-5. Run the processing workflow with trimming settings and alignment settings that suits the data. Determining the right settings is not always straightforward and often require some trial and error. It is advised to always trim away the unwanted sequences (e.g. adapter, primer and transposon sequences) by copying those sequences to the adapters file. It is good to do some quality trimming for the last basepairs of each read as well (see quality report how many basepairs would be required, if any). For the alignment it is advised to set the settings a little more stringent compared with the default values (see [the BWA MEM manual](http://bio-bwa.sourceforge.net/bwa.shtml)), but not too stringent as this can have a negative impact on the alignment.
+4. When it is the first time processing the data, it is advised to set the `Quality checking raw data` and `Quality check interrupt` to `True`. This allows you to check the quality of the raw fastq files before the actual processing starts and to spot any artefacts or unwanted (overrepresented) sequences.
+5. Run the processing workflow with trimming settings and alignment settings that suits the data. Determining the right settings is not always straightforward and often require some trial and error. It is advised to always trim away the unwanted sequences (e.g. adapter, primer and transposon sequences or overrepresented sequences found by the raw quality check) by copying those sequences to the adapters file. It is good to do some quality trimming for the last basepairs of each read as well (see quality report of the raw data how many basepairs would be needed, if any). For the alignment it is advised to set the settings a little more stringent compared with the default values (see [the BWA MEM manual](http://bio-bwa.sourceforge.net/bwa.shtml)), but not too stringent as this can have a negative impact on the alignment.
 6. After processing, check the output of each function to see how many reads were trimmed and aligned. If many cells were removed after trimming or when many reads were not aligned, you may have set some options too stringent. Also check the quality report of the trimmed reads and compare this with the quality report for the raw reads. Any overrepresented sequences that were entered in the adapters file are expected to be gone and the overall quality should have improved when trimming low quality basepairs was set.
-7. When the processing is finished and the quality report and outputs all seem reasonable, check the resulting output files (i.e. bed, wig and multiple text files, see the [Input, Output](#input-output) section). Preferably, run the bed and wig files in the [clean_bedwigfiles.py](#clean_bedwigfilespy) to remove any unwanted insertions. Run the [transposonread_profileplot_genome.py](#transposonread_profileplot_genomepy) script to check if the overall coverage of the insertions in the genome is good. There should be no large empty regions or large peaks, except for those around the centromeres of each chromosome, one large peak near the middle of chromosome 12 and a peak at the Ade2 gene in chromosome 15.
+7. When the processing is finished and the quality report and outputs all seem reasonable, check the resulting output files (i.e. bed, wig and multiple text files, see the [Input, Output](#input-output) section). Preferably, run the bed and wig files in the [clean_bedwigfiles.py](#clean_bedwigfilespy) to remove any insertions mapped outside the chromosomes. Run the [transposonread_profileplot_genome.py](#transposonread_profileplot_genomepy) script to check if the overall coverage of the insertions in the genome is good. There should be no large empty regions or large peaks, except for those around the centromeres of each chromosome, one large peak near the middle of chromosome 12 and a peak at the Ade2 gene in chromosome 15.
 8. Next check the individual chromosomes using [transposonread_profileplot.py](#transposonread_profileplotpy). This generates similar figures as transposonread_profileplot.py, but this is on chromosome level and allows to check if the annotated essential gene have significant less insertions compared to the other regions. To check the distribution of reads per gene and compare this between essential and non-essential genes, the [scatterplot_genes.py](#scatterplot_genespy) script can be used.
-9. When processing a mutant strain, also check if the deleted gene(s) are devoid of insertions as well. For this the pergene.txt file can be used or the gene can be checked in [IGV](#igv) of the [genome browser](#genome-browser).
+9. When processing a mutant strain, also check if the deleted gene(s) are devoid of insertions as well. For this the pergene.txt file can be used or the gene can be checked in [IGV](#igv) or the [genome browser](#genome-browser).
 10. For further analysis, the [genomicfeatures_dataframe.py](#genomicfeatures_dataframepy) function can be used that contains the most important information from the processing files. This function can be integrated in other python scripts.
 
->>>>>>> d42ad0bbfb0fa2d3fb652e4d6e08433187386bff
+## Links
+
+Github page: [github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/tree/satay_processing](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis)
+
+Jupyter notebook about this project: [leilaicruz.github.io/SATAY-jupyter-book/Introduction.html](https://leilaicruz.github.io/SATAY-jupyter-book/Introduction.html)
+
+Laanlab: [tudelft.nl/laanlab](https://www.tudelft.nl/en/faculty-of-applied-sciences/about-faculty/departments/bionanoscience/research/research-labs/liedewij-laan-lab/research-projects/evolvability-and-modularity-of-essential-functions-in-budding-yeast)
+
+Satay website: [sites.google.com/site/satayusers/](https://sites.google.com/site/satayusers/)
+
+Satay forum: [groups.google.com/g/satayusers](https://groups.google.com/g/satayusers)
+
+eLife paper satay: [elifesciences.org/articles/23570#content](https://elifesciences.org/articles/23570#content)
+
+Yeast genome: [yeastgenome.org/](https://www.yeastgenome.org/)
+
+Yeast mine: [yeastmine.yeastgenome.org/yeastmine/begin.do](https://yeastmine.yeastgenome.org/yeastmine/begin.do)
+
+Datacarpentry course about genomics (also contains a course in using the Linux bash and command line tools): [datacarpentry.org/lessons/#genomics-workshop](https://datacarpentry.org/lessons/#genomics-workshop)
+
 ## Appendices
 
 ### PHRED table (base33)

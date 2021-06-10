@@ -113,13 +113,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Intro/data-analysis-workflow.html">
-   3. Data analysis steps
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="Intro/Installation_Guide_SATAY_Analysis_Software.html">
-   4. Software installation guide for whole genome sequencing and transposon mapping
+   3. Software installation guide for whole genome sequencing and transposon mapping
   </a>
  </li>
 </ul>
@@ -130,13 +125,8 @@
 </p>
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="bash-GUI/how-to-use-the-bash-gui.html">
-   1. Main steps of the BASH GUI
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="bash-GUI/processing_workflow.html">
-   2. Code for the bash GUI
+   1. Code for the bash GUI
   </a>
  </li>
 </ul>
@@ -285,13 +275,13 @@
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#how-can-you-used-now">
-   How can you used now?
+  <a class="reference internal nav-link" href="#software-license">
+   Software License
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#software-license">
-   Software License
+  <a class="reference internal nav-link" href="#current-contact">
+   Current Contact
   </a>
   <ul class="nav section-nav flex-column">
   </ul>
@@ -311,7 +301,8 @@
 <div class="section" id="status-of-the-project">
 <h1>Status of the project<a class="headerlink" href="#status-of-the-project" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
-<li><p>In progress (03/2021)</p></li>
+<li><p>Beta release on Zenodo</p></li>
+<li><p>Lacking automated tests</p></li>
 </ul>
 <div class="section" id="next-steps">
 <h2>Next steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
@@ -323,18 +314,43 @@
 <li><p>GitFlow implementation for contributors to the software</p></li>
 </ul>
 </li>
-<li><p>Including <a class="reference external" href="http://bowtie-bio.sourceforge.net/index.shtml">bowtie</a> as other alignment tool as part of the pipeline. (This is the tool the Kornmann Lab uses for alignment)</p></li>
+<li><p>Make a plan how to define trimming and alignment settings.
+Currently the trimming and processing options are chosen by trial-and-error.
+Each dataset requires unique processing and therefore no fixed settings for the trimming and alignment can be determined, but potentially some guidelines can be created that helps for the processing.</p></li>
+<li><p>The code is relying on software third party software tools (e.g. for the trimming, alignment and quality checking).
+This currently requires to be installed manually and in the <a class="reference external" href="https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/satay.sh">workflow</a> paths need to be set to some these tools (in satay.sh, the paths are all defined in the beginning of the script in the <code class="docutils literal notranslate"><span class="pre">DEFINE</span> <span class="pre">PATHS</span></code> section). This is not convenient for other users and is prone to errors.
+Therefore a package need to be created that installs the third party software tools at a fixed location relative to the workflow.
+Then the paths doesn’t have to set manually by the user and makes it easier to set up and use.</p></li>
+<li><p>Implementing unit testing in the Github repository. This allows for automatic testing of the codes after changes have been made in the repository and should ensure the outcome is still correct.
+Most importantly this needs to be implemented in the <a class="reference external" href="https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_transposonmapping/transposonmapping_satay.py">transposonmapping_satay.py</a> code (the final step of the processing pipeline) and the depending <a class="reference external" href="https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/tree/master/python_transposonmapping/python_modules">python modules</a>.
+The other processing steps are all relying on third party software that probably already some testing implemented.</p></li>
+<li><p>For the transposon mapping in the pipeline <a class="reference external" href="https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_transposonmapping/transposonmapping_satay.py">a custom python script</a> is created that inputs a bam file and outputs lists of insertion locations and the corresponding number of reads. This script is based on the <a class="reference external" href="https://sites.google.com/site/satayusers/complete-protocol/bioinformatics-analysis/matlab-script">matlab code</a> from the Kornmann lab.
+The matlab code contained some bugs that were solved in the python script (see the <a class="reference external" href="https://groups.google.com/g/satayusers/search?q=matlab">satay forum</a>). Therefore some small differences may be present between the matlab processing and the python processing. But recently, some more differences were found that could not be explained by the matlab bugs.
+The exact cause is yet unclear, but has maybe to do with reading the samflag in the python script (line 183 in the original <span class="xref myst">transposonmapping_satay.py</span> code which uses the <a class="reference external" href="https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_transposonmapping/python_modules/samflag.py">samflag.py</a> module).
+The insertions found by the transposon mapping python scripts can be compared with IGV that loads the corresponding bam file.
+This shows the read locations so the output of the transposon mappping script can be manually checked.</p></li>
+<li><p>Currently <a class="reference external" href="http://bio-bwa.sourceforge.net/bwa.shtml">BWA</a> is used for the alignment of the reads.
+This tools work fine, but the Kornmann lab (and many other labs) use <a class="reference external" href="http://bowtie-bio.sourceforge.net/index.shtml">Bowtie</a>.
+This is already installed on the Linux machine, but needs to be implemented in the <a class="reference external" href="https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/satay.sh">workflow</a>.
+The current aligner is implemented in the section <code class="docutils literal notranslate"><span class="pre">SEQUENCE</span> <span class="pre">ALIGNMENT</span></code>.
+Note to set the option for paired-end and single-end alignment for bowtie (defined in the variable <code class="docutils literal notranslate"><span class="pre">${paired}</span></code>).</p></li>
+<li><p>Allow mulitple files to be processed at once using a for-loop in the <a class="reference external" href="https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/satay.sh">bash script</a>.
+Currently only one dataset at the time can be processed, but this can be extended to allow a series of datasets to be processed in a for-loop.
+To allow for this, the bash script satay.sh should be altered where the code between line 285 and line 680 (of the original code) should be placed in a loop over all file paths.
+Ideally each dataset is located in a separate folder where the output folders and files are stored for that particular dataset.
+If multiple datasets are located in the same folder, it might happen that things are being overwritten.
+It is possible to put all datasets to be processed in the same folder, but then in the code all these datasets should be automatically be moved to individual folders.
+Note to pay attention that the paths to the datasets are all correct in the for-loop.</p></li>
+<li><p>Automated documentation based on the help texts from the python scripts.</p></li>
 </ol>
 </div>
 </div>
 <div class="section" id="what-do-we-have-currently">
 <h1>What do we have currently?<a class="headerlink" href="#what-do-we-have-currently" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
-<li><p>[ ] Release 1.0.0</p></li>
+<li><p><a class="reference external" href="https://zenodo.org/badge/latestdoi/248577762"><img alt="DOI" src="https://zenodo.org/badge/248577762.svg" /></a></p></li>
+<li><p><a class="reference external" href="https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/archive/refs/tags/v1.0-beta.1.zip">Download here the Public release v1.0.beta-1</a></p></li>
 </ul>
-</div>
-<div class="section" id="how-can-you-used-now">
-<h1>How can you used now?<a class="headerlink" href="#how-can-you-used-now" title="Permalink to this headline">¶</a></h1>
 </div>
 <div class="section" id="software-license">
 <h1>Software License<a class="headerlink" href="#software-license" title="Permalink to this headline">¶</a></h1>
@@ -342,6 +358,16 @@
 <li><p><a class="reference external" href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a></p></li>
 <li><p>This work is licensed under Apache 2.0 .
 The 2.0 version of the Apache License, approved by the ASF in 2004, helps us achieve our goal of providing reliable and long-lived software products through collaborative open source software development.</p></li>
+</ul>
+</div>
+<div class="section" id="current-contact">
+<h1>Current Contact<a class="headerlink" href="#current-contact" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Leila Inigo de la Cruz</p>
+<ul>
+<li><p>email: L.M.InigoDeLaCruz&#64;tudelft.nl</p></li>
+</ul>
+</li>
 </ul>
 <div class="toctree-wrapper compound">
 </div>

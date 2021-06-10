@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>4. Software installation guide for whole genome sequencing and transposon mapping &#8212; SATAY DATA ANALYSIS LAAN-LAB TU DELFT</title>
+    <title>3. Software installation guide for whole genome sequencing and transposon mapping &#8212; SATAY DATA ANALYSIS LAAN-LAB TU DELFT</title>
     
   <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -59,8 +59,8 @@
     <link rel="shortcut icon" href="../_static/Greg.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1. Main steps of the BASH GUI" href="../bash-GUI/how-to-use-the-bash-gui.html" />
-    <link rel="prev" title="3. Data analysis steps" href="data-analysis-workflow.html" />
+    <link rel="next" title="1. Code for the bash GUI" href="../bash-GUI/processing_workflow.html" />
+    <link rel="prev" title="2. All what you need to know from SATAY" href="satay_analysis_notes.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -113,14 +113,9 @@
    2. All what you need to know from SATAY
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="data-analysis-workflow.html">
-   3. Data analysis steps
-  </a>
- </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   4. Software installation guide for whole genome sequencing and transposon mapping
+   3. Software installation guide for whole genome sequencing and transposon mapping
   </a>
  </li>
 </ul>
@@ -131,13 +126,8 @@
 </p>
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="../bash-GUI/how-to-use-the-bash-gui.html">
-   1. Main steps of the BASH GUI
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../bash-GUI/processing_workflow.html">
-   2. Code for the bash GUI
+   1. Code for the bash GUI
   </a>
  </li>
 </ul>
@@ -270,76 +260,54 @@
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
-   4.1. Introduction
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#using-the-already-existing-virtual-machine">
-   4.2. Using the already existing virtual machine
+   3.1. Introduction
   </a>
   <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#setting-up-already-existing-virtual-machine">
-     4.2.1. 0. Setting up already existing virtual machine
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#creating-a-virtual-machine-from-scratch">
-   4.3. Creating a virtual machine from scratch
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#virtualbox-6-1-4">
-     4.3.1. 1. VirtualBox-6.1.4
-    </a>
-   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#fastqc-windows-or-linux">
-     4.3.2. 2. Fastqc (Windows or Linux)
+     3.1.1. 2. Fastqc (Windows or Linux)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#a-trimmomatic-0-39-windows-or-linux">
-     4.3.3. 3a. Trimmomatic-0.39 (Windows or Linux)
+     3.1.2. 3a. Trimmomatic-0.39 (Windows or Linux)
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#fastq-v1-1-windows-optional">
-       4.3.3.1. 123Fastq-v1.1 (Windows) (optional)
+       3.1.2.1. 123Fastq-v1.1 (Windows) (optional)
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#b-bbduk-38-84-windows-or-linux">
-     4.3.4. 3b. BBDuk-38.84 (Windows or Linux)
+     3.1.3. 3b. BBDuk-38.84 (Windows or Linux)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#bwa-linux">
-     4.3.5. 4. BWA (Linux)
+     3.1.4. 4. BWA (Linux)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#samtools-and-bcftools-linux">
-     4.3.6. 5. SAMTools and bcftools (Linux)
+     3.1.5. 5. SAMTools and bcftools (Linux)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#sambamba-linux">
-     4.3.7. 6. Sambamba (Linux)
+     3.1.6. 6. Sambamba (Linux)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#igv-windows-optional">
-     4.3.8. 7. IGV (Windows) (optional)
+     3.1.7. 7. IGV (Windows) (optional)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#matlab-transposon-count-windows">
-     4.3.9. 8. Matlab Transposon count (Windows)
+     3.1.8. 8. Matlab Transposon count (Windows)
     </a>
    </li>
   </ul>
@@ -356,123 +324,131 @@
               <div>
                 
   <div class="section" id="software-installation-guide-for-whole-genome-sequencing-and-transposon-mapping">
-<h1><span class="section-number">4. </span>Software installation guide for whole genome sequencing and transposon mapping<a class="headerlink" href="#software-installation-guide-for-whole-genome-sequencing-and-transposon-mapping" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">3. </span>Software installation guide for whole genome sequencing and transposon mapping<a class="headerlink" href="#software-installation-guide-for-whole-genome-sequencing-and-transposon-mapping" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
-<h2><span class="section-number">4.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p>This file discusses the installation procedures for the programs required for whole genome sequencing analysis and transposon mapping. The numbering corresponds with the order in which this software is used.
+<h2><span class="section-number">3.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This section discusses the main pipeline for processing satay datasets, from the raw fastq files of the sequencing output to the bed, wig and pergene text files which can be directly used for analysis.
+See the image below for a schematic overview of the pipeline with the used software tools between brackets and the file type after each processing step on the left.</p>
+<!-- This file discusses the installation procedures for the programs required for whole genome sequencing analysis and transposon mapping. The numbering corresponds with the order in which this software is used.
 Note that a part of the software is for windows and Linux, and a part is for Linux only. Therefore a virtual machine is included to run Ubuntu (or another unix based operating system to your liking).
-For a more detailed workflow and the commands of all the individual commands, see <a class="reference external" href="https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/dev_Gregory/docs/satay_analysis_notes.md">satay_analysis_notes.md</a>.</p>
-<p>A Linux virtual machine is already created that is completely set up and includes all the software discussed below.
-This is located on the N-drive in the ‘VirtualMachines’ folder.
+For a more detailed workflow and the commands of all the individual commands, see [satay_analysis_notes.md](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/dev_Gregory/docs/satay_analysis_notes.md).
+
+A Linux virtual machine is already created that is completely set up and includes all the software discussed below.
+This is located on the N-drive in the 'VirtualMachines' folder.
 Step 0 below discusses how this virtual machine can be installed on your computer and how to use it.
-The following steps are only important when you want to create a virtual machine from scratch so you can set it up completely to your liking or using another operating system than Ubuntu that is used existing virtual machine on the N-drive.</p>
-<p>To run a program in the command line, you need to specify the entire path to the location where the program is installed.
+The following steps are only important when you want to create a virtual machine from scratch so you can set it up completely to your liking or using another operating system than Ubuntu that is used existing virtual machine on the N-drive.
+
+To run a program in the command line, you need to specify the entire path to the location where the program is installed.
 An easier way is to add the program to the system path. This can be done with the command
-<code class="docutils literal notranslate"><span class="pre">setx</span> <span class="pre">PATH</span> <span class="pre">'/path/to/program'</span></code>.
+`setx PATH '/path/to/program'`.
 To check if the program is added to the path, use
-<code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">$PATH$</span></code>.</p>
-<p>Some programs requires java to be installed. To check if java is installed, run the command ‘java -version’ in the command line.
-If it is not installed, download and install it from <span class="xref myst">https://www.java.com/nl/download/</span></p>
-</div>
-<div class="section" id="using-the-already-existing-virtual-machine">
-<h2><span class="section-number">4.2. </span>Using the already existing virtual machine<a class="headerlink" href="#using-the-already-existing-virtual-machine" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="setting-up-already-existing-virtual-machine">
-<h3><span class="section-number">4.2.1. </span>0. Setting up already existing virtual machine<a class="headerlink" href="#setting-up-already-existing-virtual-machine" title="Permalink to this headline">¶</a></h3>
-<p><span class="xref myst">https://www.virtualbox.org/</span></p>
-<p>Running a virtual machine requires VirtualBox (VB), which can be downloaded from the above link and installed using the normal procedure for installing software on Windows machines.
+`echo $PATH$`.
+
+Some programs requires java to be installed. To check if java is installed, run the command 'java -version' in the command line.
+If it is not installed, download and install it from [https://www.java.com/nl/download/](url) -->
+<!-- ## Using the already existing virtual machine
+
+### 0. Setting up already existing virtual machine
+
+[https://www.virtualbox.org/](url)
+
+Running a virtual machine requires VirtualBox (VB), which can be downloaded from the above link and installed using the normal procedure for installing software on Windows machines.
 The memory of the virtual machine (called the virtual hard drive (vhd)) is stored on the N-drive in the VirtualMachines folder with the name VM_Ubuntu64_1.vhd.
-<strong>Before using this virtual machine, make sure you make a copy of the virtual hard drive</strong> either to your local machine or, when there is not enough memory on your computer, somewhere on the drives in your personal folder.
+**Before using this virtual machine, make sure you make a copy of the virtual hard drive** either to your local machine or, when there is not enough memory on your computer, somewhere on the drives in your personal folder.
 The file is over 50Gb in size, so it might be troublesome to store it locally.
-When storing it on the drives, make sure it has a stable internet connection when you use it since when the connection is lost, the virtual machine crashes as it cannot access its memory anymore.</p>
-<p>To use the existing vhd, a new virtual machine has to be created within VirtualBox.
-To do this, apply the following steps.</p>
-<ol class="simple">
-<li><p>Open VB -&gt; click ‘New’ (blue icon)</p></li>
-<li><p>Choose a name for the virtual machine and set ‘type’: Linux, ‘Version’: Ubuntu 64-bit.</p></li>
-<li><p>Allocate RAM memory (adviced is to use the recommended amount to prevent problems or not more than 1/4 of the total memory available in your computer)</p></li>
-<li><p>Select ‘Use an existing virtual hard disk file’ and use the yellow folder icon to search for your copied virtual hard drive.</p></li>
-</ol>
-<p>The Virtual machine should now be working.
-Run the virtual machine by selecting ‘Start’.
+When storing it on the drives, make sure it has a stable internet connection when you use it since when the connection is lost, the virtual machine crashes as it cannot access its memory anymore.
+
+To use the existing vhd, a new virtual machine has to be created within VirtualBox.
+To do this, apply the following steps.
+
+1. Open VB -> click 'New' (blue icon)
+2. Choose a name for the virtual machine and set 'type': Linux, 'Version': Ubuntu 64-bit.
+3. Allocate RAM memory (adviced is to use the recommended amount to prevent problems or not more than 1/4 of the total memory available in your computer)
+4. Select 'Use an existing virtual hard disk file' and use the yellow folder icon to search for your copied virtual hard drive.
+
+The Virtual machine should now be working.
+Run the virtual machine by selecting 'Start'.
 It should start up and work like a normal Linux machine.
-For some things a password and username might be required, which can be found in the text file located in the same drive as the vhd file.</p>
-<p>It might be good to make sure the system is updated.
-For this, apply the following steps:</p>
-<ol class="simple">
-<li><p>Open the terminal app</p></li>
-<li><p>Enter <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">update</span></code> (requires password)</p></li>
-<li><p>Enter <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">upgrade</span></code>. Type ‘Y’ if the terminal asks if software needs to be installed.</p></li>
-<li><p>Restart the system.</p></li>
-</ol>
-<p>Things that might not be working yet are the guest additions.
-These are needed for optimizing the virtual machines performance and are needed for allowing the virtual machine to communicate with some of the hardware of the physical machine like screen size and shared folders (for example, if you use VirtualBox for first time, the screen of the virtual machine might be tiny, but this is because it can not yet communicate the screen size of your physical computer).</p>
-<p>To set up the guest additions use the following commands and options</p>
-<ol class="simple">
-<li><p>Enter <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">build-essential</span> <span class="pre">dkms</span> <span class="pre">linux-headers-$(uname</span> <span class="pre">-r)</span></code></p></li>
-<li><p>Click  the ‘devices’ tab in the top of the window. Click ‘Insert Guest Additions CD Image’ and run the installer. Power off the VM when done.</p></li>
-<li><p>In VB click ‘settings’ (yellow gear symbol) and go to the ‘General’ tab; ‘Advanced’. Set both ‘shared clipboard’ and ‘drag n drop’ to bidirectional and click ‘ok’</p></li>
-<li><p>In VB click ‘settings’ again (yellow gear symbol) and go to the ‘Shared Folders’. Add path to a folder that is going to be used as shared folder. Set ‘Auto Mount’ and click ‘Ok’</p></li>
-<li><p>Start the VM and check if the shared folder is present (either on the desktop, the files folder or in the media folder).</p></li>
-<li><p>To automatically resize the screen of the virtual machine, go to the ‘view’ tab in the top of the screen and select ‘Auto-resize guest display’.</p></li>
-</ol>
-<p>The desktop of the virtual machine include the shared folder and a text file with the commands for the preprocessing pipeline.
-In the files app, the documents folder includes three subfolders:</p>
-<ul class="simple">
-<li><p>data_processing: This location can be used to temporarily store the sequencing data.</p></li>
-<li><p>Reference_Sequences: This includes by default the reference sequences for the S288c and the W303 strain in .fasta format including some additional files that are needed for the alignment software.</p></li>
-<li><p>Software: This includes all the software packages required for the preprocessing and also includes the java download.</p></li>
-</ul>
-<p>The adapters.fasta file in which the adapter sequences are stored that are used during trimming is located in ~/Documents/Software/BBMap/bbmap/resources/adapters.fa.
-Documents that are placed in the shared folder can be seen in both the virtual machine and the host computer.</p>
-</div>
-</div>
-<div class="section" id="creating-a-virtual-machine-from-scratch">
-<h2><span class="section-number">4.3. </span>Creating a virtual machine from scratch<a class="headerlink" href="#creating-a-virtual-machine-from-scratch" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="virtualbox-6-1-4">
-<h3><span class="section-number">4.3.1. </span>1. VirtualBox-6.1.4<a class="headerlink" href="#virtualbox-6-1-4" title="Permalink to this headline">¶</a></h3>
-<p><span class="xref myst">https://www.virtualbox.org/</span>, <span class="xref myst">https://ubuntu.com/download/desktop</span></p>
-<p>VirtualBox is used for running Linux based sofware on a Windows machine.
-For the operating system, recommended is to download Ubuntu 18.04 LTS 64-bit from <span class="xref myst">https://ubuntu.com/#download</span>, but any other Linux OS should be fine.
+For some things a password and username might be required, which can be found in the text file located in the same drive as the vhd file.
+
+It might be good to make sure the system is updated.
+For this, apply the following steps:
+
+1. Open the terminal app
+2. Enter `sudo apt update` (requires password)
+3. Enter `sudo apt upgrade`. Type 'Y' if the terminal asks if software needs to be installed.
+4. Restart the system.
+
+Things that might not be working yet are the guest additions.
+These are needed for optimizing the virtual machines performance and are needed for allowing the virtual machine to communicate with some of the hardware of the physical machine like screen size and shared folders (for example, if you use VirtualBox for first time, the screen of the virtual machine might be tiny, but this is because it can not yet communicate the screen size of your physical computer).
+
+To set up the guest additions use the following commands and options
+
+1. Enter `sudo apt install build-essential dkms linux-headers-$(uname -r)`
+2. Click  the 'devices' tab in the top of the window. Click 'Insert Guest Additions CD Image' and run the installer. Power off the VM when done.
+3. In VB click 'settings' (yellow gear symbol) and go to the 'General' tab; 'Advanced'. Set both 'shared clipboard' and 'drag n drop' to bidirectional and click 'ok'
+4. In VB click 'settings' again (yellow gear symbol) and go to the 'Shared Folders'. Add path to a folder that is going to be used as shared folder. Set 'Auto Mount' and click 'Ok'
+5. Start the VM and check if the shared folder is present (either on the desktop, the files folder or in the media folder).
+6. To automatically resize the screen of the virtual machine, go to the 'view' tab in the top of the screen and select 'Auto-resize guest display'.
+
+The desktop of the virtual machine include the shared folder and a text file with the commands for the preprocessing pipeline.
+In the files app, the documents folder includes three subfolders:
+
+- data_processing: This location can be used to temporarily store the sequencing data.
+
+- Reference_Sequences: This includes by default the reference sequences for the S288c and the W303 strain in .fasta format including some additional files that are needed for the alignment software.
+
+- Software: This includes all the software packages required for the preprocessing and also includes the java download.
+
+The adapters.fasta file in which the adapter sequences are stored that are used during trimming is located in ~/Documents/Software/BBMap/bbmap/resources/adapters.fa.
+Documents that are placed in the shared folder can be seen in both the virtual machine and the host computer.
+
+## Creating a virtual machine from scratch
+
+### 1. VirtualBox-6.1.4
+
+[https://www.virtualbox.org/](url), [https://ubuntu.com/download/desktop](url)
+
+VirtualBox is used for running Linux based sofware on a Windows machine.
+For the operating system, recommended is to download Ubuntu 18.04 LTS 64-bit from [https://ubuntu.com/#download](url), but any other Linux OS should be fine.
 Save the downloaded document at a convenient location on your computer.
-To install:</p>
-<ol class="simple">
-<li><p>Run the VirtualBox-6.1.4-136177-Win application to install Virtualbox (VB) on your computer</p></li>
-<li><p>Open VB -&gt; click ‘New’ (blue icon)</p></li>
-<li><p>Choose a name for the virtual machine, type Linux, and Version Ubuntu 64-bit.</p></li>
-<li><p>Allocate RAM memory (adviced is to use the recommended amount to prevent problems or not more than 1/4 of the total memory available in your computer)</p></li>
-<li><p>Make new virtual hard drive (choose VHD)</p></li>
-<li><p>Choose size of VHD (recommended is a minimal amount 50GB)</p></li>
-<li><p>Go to settings of your new virtual machine (VM) (yellow gear symbol) and go to the storage tab.</p></li>
-<li><p>Click ‘empty’ under ‘Controller IDE’. Next to ‘IDE Secondary master’ click the blue CD icon and select ‘choose/create a virtual optical disk’. Click ‘Add’ and choose your downloaded Linux OS.</p></li>
-<li><p>Start the VM and run the Linux install process with the recommended settings. Note that this might freeze sometimes, so it might be necessary to reinstall it a few times)</p></li>
-</ol>
-<p>The following steps are to add a shared folder between the Windows machine and the VM that allows for easier sharing of data (this is not obligatory). This requires to install ‘guest additions’ in the VM.
-If a folder is already shared and a new folder is wanted to be shared as well, perform only step 16, 17 and 18.</p>
-<ol class="simple">
-<li><p>Open the terminal app</p></li>
-<li><p>Enter <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">update</span></code></p></li>
-<li><p>Enter <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">upgrade</span></code>. Type ‘Y’ if the terminal asks if software needs to be installed. Restart the system.</p></li>
-<li><p>Enter <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">build-essential</span> <span class="pre">dkms</span> <span class="pre">linux-headers-$(uname</span> <span class="pre">-r)</span></code></p></li>
-<li><p>Click  the ‘devices’ tab in the top of the window. Click ‘Insert Guest Additions CD Image’ and run the installer. Power off the VM when done.</p></li>
-<li><p>In VB click ‘settings’ (yellow gear symbol) and go to the ‘General’ tab; ‘Advanced’. Set both ‘shared clipboard’ and ‘drag n drop’ to bidirectional and click ‘ok’</p></li>
-<li><p>In VB click ‘settings’ again (yellow gear symbol) and go to the ‘Shared Folders’. Add path to a folder that is going to be used as shared folder. Set ‘Auto Mount’ and click ‘Ok’</p></li>
-<li><p>Start the VM and check if the shared folder is present (either on the desktop, the files folder or in the media folder).</p></li>
-<li><p>To be able to access the folder, special permission needs to be given. For this open the Terminal app.</p></li>
-<li><p>Enter <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">adduser</span> <span class="pre">[username]</span> <span class="pre">vboxsf</span></code> (where [username] should be replaced with your actual username of the VM).</p></li>
-<li><p>To check, enter <code class="docutils literal notranslate"><span class="pre">id</span> <span class="pre">[username]</span></code>. This should give a list that needs to include ‘vboxsf’</p></li>
-<li><p>Restart the VM.</p></li>
-<li><p>To automatically resize the screen of the virtual machine, go to the ‘view’ tab in the top of the screen and select ‘Auto-resize guest display’.</p></li>
-</ol>
-<p>In order to run java based programs in Linux, Java needs to be installed.
-There are several ways of installing Java, but one of the simplest ways is using the command line with the following commands:</p>
-<ol class="simple">
-<li><p>Enter <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">-s</span></code> (enter password if requisted)</p></li>
-<li><p>Enter <code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">openjdf-11-jre</span></code>. (If this version of java is not found, check which versions are available by entering <code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">openjdf</span></code> followed by a double tab. This should give a list of all available installations. It also gives you the opportunity to install the jdk (Java Developer Kit) instead of the jre (Java Runtime Environment), but if you don’t plan to develop software in Java, the jre, what is used here, is good enough).</p></li>
-<li><p>Restart the terminal. Check the installation by entering <code class="docutils literal notranslate"><span class="pre">java</span> <span class="pre">-version</span></code></p></li>
-</ol>
-</div>
+To install:
+
+1. Run the VirtualBox-6.1.4-136177-Win application to install Virtualbox (VB) on your computer
+2. Open VB -> click 'New' (blue icon)
+3. Choose a name for the virtual machine, type Linux, and Version Ubuntu 64-bit.
+4. Allocate RAM memory (adviced is to use the recommended amount to prevent problems or not more than 1/4 of the total memory available in your computer)
+5. Make new virtual hard drive (choose VHD)
+6. Choose size of VHD (recommended is a minimal amount 50GB)
+7. Go to settings of your new virtual machine (VM) (yellow gear symbol) and go to the storage tab.
+8. Click 'empty' under 'Controller IDE'. Next to 'IDE Secondary master' click the blue CD icon and select 'choose/create a virtual optical disk'. Click 'Add' and choose your downloaded Linux OS.
+9. Start the VM and run the Linux install process with the recommended settings. Note that this might freeze sometimes, so it might be necessary to reinstall it a few times)
+
+The following steps are to add a shared folder between the Windows machine and the VM that allows for easier sharing of data (this is not obligatory). This requires to install 'guest additions' in the VM.
+If a folder is already shared and a new folder is wanted to be shared as well, perform only step 16, 17 and 18.
+
+10. Open the terminal app
+11. Enter `sudo apt update`
+12. Enter `sudo apt upgrade`. Type 'Y' if the terminal asks if software needs to be installed. Restart the system.
+13. Enter `sudo apt install build-essential dkms linux-headers-$(uname -r)`
+14. Click  the 'devices' tab in the top of the window. Click 'Insert Guest Additions CD Image' and run the installer. Power off the VM when done.
+15. In VB click 'settings' (yellow gear symbol) and go to the 'General' tab; 'Advanced'. Set both 'shared clipboard' and 'drag n drop' to bidirectional and click 'ok'
+16. In VB click 'settings' again (yellow gear symbol) and go to the 'Shared Folders'. Add path to a folder that is going to be used as shared folder. Set 'Auto Mount' and click 'Ok'
+17. Start the VM and check if the shared folder is present (either on the desktop, the files folder or in the media folder).
+18. To be able to access the folder, special permission needs to be given. For this open the Terminal app.
+19. Enter `sudo adduser [username] vboxsf` (where [username] should be replaced with your actual username of the VM).
+20. To check, enter `id [username]`. This should give a list that needs to include 'vboxsf'
+21. Restart the VM.
+22. To automatically resize the screen of the virtual machine, go to the 'view' tab in the top of the screen and select 'Auto-resize guest display'.
+
+In order to run java based programs in Linux, Java needs to be installed.
+There are several ways of installing Java, but one of the simplest ways is using the command line with the following commands:
+
+1. Enter `sudo -s` (enter password if requisted)
+2. Enter `apt-get install openjdf-11-jre`. (If this version of java is not found, check which versions are available by entering `apt-get install openjdf` followed by a double tab. This should give a list of all available installations. It also gives you the opportunity to install the jdk (Java Developer Kit) instead of the jre (Java Runtime Environment), but if you don't plan to develop software in Java, the jre, what is used here, is good enough).
+3. Restart the terminal. Check the installation by entering `java -version` -->
 <div class="section" id="fastqc-windows-or-linux">
-<h3><span class="section-number">4.3.2. </span>2. Fastqc (Windows or Linux)<a class="headerlink" href="#fastqc-windows-or-linux" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.1.1. </span>2. Fastqc (Windows or Linux)<a class="headerlink" href="#fastqc-windows-or-linux" title="Permalink to this headline">¶</a></h3>
 <p><span class="xref myst">https://www.bioinformatics.babraham.ac.uk/projects/fastqc/</span></p>
 <p>Fastqc is used for quality checking.
 To install Fastqc in Linux, open the bash and go to the fastqc folder in the bash.
@@ -481,14 +457,14 @@ To run interactively, click the ‘run-fastqc’ batch file.
 To run non-interactively, enter in ‘fastqc’ in the command line.</p>
 </div>
 <div class="section" id="a-trimmomatic-0-39-windows-or-linux">
-<h3><span class="section-number">4.3.3. </span>3a. Trimmomatic-0.39 (Windows or Linux)<a class="headerlink" href="#a-trimmomatic-0-39-windows-or-linux" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.1.2. </span>3a. Trimmomatic-0.39 (Windows or Linux)<a class="headerlink" href="#a-trimmomatic-0-39-windows-or-linux" title="Permalink to this headline">¶</a></h3>
 <p><span class="xref myst">http://www.usadellab.org/cms/?page=trimmomatic</span></p>
 <p>Trimmomatic is used for trimming fastq files.
 It is java based and therefore does not need to be installed.
 To run, enter ‘trimmomatic-0.39’ in the command line.
 The adapters folder contains some adapters that can be used during trimming if desired.</p>
 <div class="section" id="fastq-v1-1-windows-optional">
-<h4><span class="section-number">4.3.3.1. </span>123Fastq-v1.1 (Windows) (optional)<a class="headerlink" href="#fastq-v1-1-windows-optional" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">3.1.2.1. </span>123Fastq-v1.1 (Windows) (optional)<a class="headerlink" href="#fastq-v1-1-windows-optional" title="Permalink to this headline">¶</a></h4>
 <p><span class="xref myst">https://sourceforge.net/projects/project-123ngs/</span></p>
 <p>123Fastq is Fastqc and Trimmomatic combined in one interactive program.
 It is java based and therefore does not need to be installed.
@@ -496,7 +472,7 @@ Click the 123fastq executable jar file to run the program.</p>
 </div>
 </div>
 <div class="section" id="b-bbduk-38-84-windows-or-linux">
-<h3><span class="section-number">4.3.4. </span>3b. BBDuk-38.84 (Windows or Linux)<a class="headerlink" href="#b-bbduk-38-84-windows-or-linux" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.1.3. </span>3b. BBDuk-38.84 (Windows or Linux)<a class="headerlink" href="#b-bbduk-38-84-windows-or-linux" title="Permalink to this headline">¶</a></h3>
 <p><span class="xref myst">https://jgi.doe.gov/data-and-tools/bbtools/</span></p>
 <p>BBDuk is an alternative for Trimmomatic for trimming of fastq files.
 It java based and therefore does not need to be installed.
@@ -506,7 +482,7 @@ Run the bbduk.sh executable in the bbmap directory.
 The adapter.fa file is included and located in the /resources directory.</p>
 </div>
 <div class="section" id="bwa-linux">
-<h3><span class="section-number">4.3.5. </span>4. BWA (Linux)<a class="headerlink" href="#bwa-linux" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.1.4. </span>4. BWA (Linux)<a class="headerlink" href="#bwa-linux" title="Permalink to this headline">¶</a></h3>
 <p><span class="xref myst">http://bio-bwa.sourceforge.net/</span></p>
 <p>BWA is used for aligning the reads to a reference genome and to index the reference sequence.
 After downloading the software in the VM, install it by entering the following commands in the terminal:</p>
@@ -520,7 +496,7 @@ sudo apt-get install bwa
 <p>To run, enter <code class="docutils literal notranslate"><span class="pre">bwa</span></code> in the terminal.</p>
 </div>
 <div class="section" id="samtools-and-bcftools-linux">
-<h3><span class="section-number">4.3.6. </span>5. SAMTools and bcftools (Linux)<a class="headerlink" href="#samtools-and-bcftools-linux" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.1.5. </span>5. SAMTools and bcftools (Linux)<a class="headerlink" href="#samtools-and-bcftools-linux" title="Permalink to this headline">¶</a></h3>
 <p><span class="xref myst">http://www.htslib.org/</span></p>
 <p>Samtools is used for processing after alignment, for example for converting SAM files to BAM files.
 After downloading the software in the VM, install it by entering the following commands in the terminal:</p>
@@ -535,7 +511,7 @@ sudo apt-get install samtools
 Do the same protocol for bcftools.</p>
 </div>
 <div class="section" id="sambamba-linux">
-<h3><span class="section-number">4.3.7. </span>6. Sambamba (Linux)<a class="headerlink" href="#sambamba-linux" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.1.6. </span>6. Sambamba (Linux)<a class="headerlink" href="#sambamba-linux" title="Permalink to this headline">¶</a></h3>
 <p><span class="xref myst">https://lomereiter.github.io/sambamba/</span></p>
 <p>Sambamba is used for processing after alignment, for example for sorting and indexing the BAM files.
 After downloading the software in the VM, install it by entering the following commands in the terminal:</p>
@@ -548,13 +524,13 @@ sudo ln -s /path/to/sambamba-0.7.1-linux-static /usr/local/bin
 To run, enter <code class="docutils literal notranslate"><span class="pre">sambamba</span></code> in the terminal.</p>
 </div>
 <div class="section" id="igv-windows-optional">
-<h3><span class="section-number">4.3.8. </span>7. IGV (Windows) (optional)<a class="headerlink" href="#igv-windows-optional" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.1.7. </span>7. IGV (Windows) (optional)<a class="headerlink" href="#igv-windows-optional" title="Permalink to this headline">¶</a></h3>
 <p><span class="xref myst">https://software.broadinstitute.org/software/igv/</span></p>
 <p>IGV (Integrative Genomic Viewer) is used for visually check the results.
 Click the IGV_Win_2.8.0-installer and run the install process.</p>
 </div>
 <div class="section" id="matlab-transposon-count-windows">
-<h3><span class="section-number">4.3.9. </span>8. Matlab Transposon count (Windows)<a class="headerlink" href="#matlab-transposon-count-windows" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.1.8. </span>8. Matlab Transposon count (Windows)<a class="headerlink" href="#matlab-transposon-count-windows" title="Permalink to this headline">¶</a></h3>
 <p><span class="xref myst">https://sites.google.com/site/satayusers/complete-protocol/bioinformatics-analysis</span></p>
 <p>This code relates the number of reads and transposon counts to the genes.
 This code is provided from the Kornmann-Lab.</p>
@@ -590,8 +566,8 @@ This code is provided from the Kornmann-Lab.</p>
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="data-analysis-workflow.html" title="previous page"><span class="section-number">3. </span>Data analysis steps</a>
-    <a class='right-next' id="next-link" href="../bash-GUI/how-to-use-the-bash-gui.html" title="next page"><span class="section-number">1. </span>Main steps of the BASH GUI</a>
+    <a class='left-prev' id="prev-link" href="satay_analysis_notes.html" title="previous page"><span class="section-number">2. </span>All what you need to know from SATAY</a>
+    <a class='right-next' id="next-link" href="../bash-GUI/processing_workflow.html" title="next page"><span class="section-number">1. </span>Code for the bash GUI</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

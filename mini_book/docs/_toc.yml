@@ -6,12 +6,10 @@
   chapters:
   - file: Intro/flowchart
   - file: Intro/satay_analysis_notes
-  - file: Intro/data-analysis-workflow
   - file: Intro/Installation_Guide_SATAY_Analysis_Software
 - part: Bash GUI - Data Preprocessing
   chapters:
-  - file: bash-GUI/how-to-use-the-bash-gui
-  - file: bash-GUI/processing_workflow
+   - file: bash-GUI/processing_workflow
 - part: Postprocessing python scripts
   chapters:
   - file: postprocessing-scripts/Introduction

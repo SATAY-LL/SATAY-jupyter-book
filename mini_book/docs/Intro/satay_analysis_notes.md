@@ -1,13 +1,27 @@
 
 # All what you need to know from SATAY
 
-This file discusses the general outline of the experiments and interpretation of experiments using SAturated Transposon Analysis in Yeast (SATAY).
-The introduction explains the purpose of the experiments and what kind of results we expect and how to interpret these results.
-The Methods and File types section explains the different kind of files used during processing and analysis and how to read and use them.
-It also explains some custom made software for analyzing the data.
-This software is stored in the [Github page](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis) of the this research.
-The steps needed for the processing and initial analysis of the data is explained in the Data Analysis section.
-This includes a detailed step-by-step tutorial on how to use the different software packages and what steps need to be taken for the processing to go from the raw sequencing reads to the location of all the transposon insertion and the number of reads at each location.
+SAturated Transposon Analysis in Yeast (SATAY) is method of transposon analysis optimised for usage in Saccharomyces Cerevisiae.
+This method uses transposons (short DNA sequences, also known as jumping genes) which can integrate in the native yeast DNA at random locations.
+A transposon insertion in a gene inhibits this gene to be translated into a functional protein, thereby inhibiting this gene function.
+The advantage of this method is that it can be applied in many cells at the same time.
+Because of the random nature of the transposons the insertion coverage will be more or less equal over the genome.
+When enough cells are used it is expected that, considering the entire pool of cells, all genes will be inhibited by at least a few transposons.
+After a transposon insertion, the cells are given the opportunity to grow and proliferate.
+Cells that have a transposon inserted in an essential genomic region (and thus blocking this essential function), will proliferate only very little or not at all (i.e. these cells have a low fitness) whilst cells that have an insertion in a non-essential genomic region will generate significantly more daughter cells (i.e. these cells have a relative high fitness).
+The inserted transposon DNA is then sequenced together with a part of the native yeast DNA right next to the transposon.
+This allows for finding the genomic locations where the transposon is inserted by mapping the sequenced native DNA to a reference genome.
+Non-essential genomic regions are expected to be sequenced more often compared to the essential regions as the cells with a non-essential insertion will have proliferated more.
+Therefore, counting how often certain insertion sites are sequenced is a method for probing the fitness of the cells and therefore the essentiality of genomic regions.
+For more details about the experimental approach, see the paper from Michel et.al. 2017 and this website from [the Kornmann-lab](https://sites.google.com/site/satayusers/).
+
+This method needs to be performed on many cells to ensure a high enough insertion coverage such that each gene is inhibited in at least a few different cells.
+After transposon insertion and proliferation, the DNA from each of these cells is extracted and this is sequenced to be able to count how often each genomic region occurs.
+This can yield tens of millions of sequencing reads per dataset that all need to be aligned to a reference genome.
+To do this efficiently, a processing workflow is generated which inputs the raw sequencing data and outputs lists of all insertion locations together with the corresponding number of reads.
+This workflow consists of quality checking, sequence trimming, alignment, indexing and transposon mapping.
+This documentation explains how each of these steps are performed, how to use the workflow and discusses some python scripts for checking the data and for postprocessing analysis.
+
 
 ```{toggle} To get the context of the technique, click the buttom to reveal :) 
 
@@ -53,7 +67,7 @@ In that case all regions of the DNA are checked for their essentiality.
 
 
 ```{margin} A SATAY FORUM 
-If you want to get started just join this [FORUM](https://groups.google.com/forum/#!forum/satayusers). 
+If you want to get started, just join this [FORUM](https://groups.google.com/forum/#!forum/satayusers). 
 And the website for the library generation can be found [HERE](https://sites.google.com/site/satayusers/complete-protocol/library-generation)
 ```
 
@@ -169,26 +183,15 @@ Because of the reasons mentioned before, not a simple binary conclusion can be m
 Instead, a gene with little reads *might* be essential, but to be sure the results from other experiments need to be implemented as well, for example where the cells were grown in a different growth conditions.
 Therefore, SATAY analysis only says something about the relative fitness of cells where a specific gene is inhibited in the current growth conditions.
 
-### Methods and File types
-
-Many essential genes in wild type cells are already known and published.
-The results from our SATAY experiments we can verify using the known essential genes and check how well they fit with the number of reads in each gene.
-Also, we can use a similar approach as was performed by the Kornmann lab [Michel et.al. 2017] using wild type cells. 
 
 
 
-### Experimental method
- 
-```{admonition} Goal
-Automatically converts the raw sequencing data to a list of the number of transposons and reads for each gene, and potentially list some of their properties (e.g. essentiality, GO-terms, interactions etc.).
-
-```
-
-```{admonition} Small quality check
-Comparison of our results with those obtained by the Kornmann lab might confirm the quality of our experimental and analysis methods.
+```{admonition} Quality check 
+Comparison of our results with those obtained by the Kornmann lab might confirm the quality of our experimental and analysis methods. PUT FIGURE
 
 ```
 ### Experimental Process 
+
 - The process of SATAY starts with inserting a plasmid in the cells that contains a transposase (TPase) and the transposon (MiniDs) flanked on both sides by adenine (ADE).
 The transposon has a specific, known, sequence that codes for the transposase that cuts the transposon from the plasmid (or DNA) to (another part of) the DNA.
 
@@ -259,144 +262,247 @@ But, by the end of the read, only two out of five copies have the correct bp (i.
 (It can either be a C or a T with equal likelyhood or potentially a G, so determining which nucleotide is correct is ambiguous without knowing which reads are lagging, which you don't know).
 (See for example [this question on seqanswers](http://seqanswers.com/forums/showthread.php?t=61198) or the paper by [Pfeifer, 2016])
 
-## FASTQ files and FASTA files
+## File Types 
 
-The output of sequencing is typically a FASTQ file.
-This file contains the sequences of all reads (typically 75 to 100 bp long).
-Each read is represented by four lines:
+### fastq
 
-1. Starts with ‘@’ followed by a sequences identifier and can include
-    some descriptions.
+This is the standard output format for sequencing data.
+It contains all (raw) sequencing reads in random order including a quality string per basepair.
+Each read has four lines:
 
-2. Raw sequence letters representing the nucleotides.
+1. Header: Contains some basic information from the sequencing machine and a unique identifier number.
+2. Sequence: The actual nucleotide sequence.
+3. Dummy: Typically a '+' and is there to separate the sequence line from the quality line.
+4. Quality score: Indicates the quality of each basepair in the sequence line (each symbol in this line belongs to the nucleotide at the same position in the sequence line). The sequence and this quality line should always have the same length.
 
-3. Starts with ‘+’ for separating the second and third line.
+The quality line is given as a phred score.
+There are two versions, base33 and base64, but the base64 is outdated and hardly used anymore.
+In both versions the quality score is determined by Q = -10*log10(P) where P is the error probability determined during sequencing (0 < P < 1).
+A Q-score of 0 (i.e. an error probability of P=1) is defined by ascii symbol 33 ('!') for base33 and by ascii symbol 64 ('@') for base64.
+A Q-score of 1 (p=0.79) is then given by ascii 34 (' " ') (for base33) etcetera.
+For a full table of ascii symbols and probability scores, see the appendices of this document [PHRED table (base33)](#phred-table-base33) and [PHRED table (base64)](#phred-table-base64).
+Basically all fastq files that are being created on modern sequencing machines use the base33 system.
 
-4. Quality score of the sequence represented by ASCII symbols running
-    from ‘\!’ (lowest score) to ‘\~’ (highest score)
-    [<http://www.asciitable.com/>]. This is called ASCII-base 33 since
-    ‘\!’ has decimal ASCII number 33 and is defined as Q-score 0. This
-    typically runs towards ASCII symbol ‘J’ (number 74, Q-score 41). The
-    error probability can be calculated based on the Q-score using
-    $P_{error} = 10^{-\frac{Q}{10}}$. This means that ‘\!’ has
-    an error of ($P_{error} = 100\%$) and ‘J’ an error of
-    $P_{error} = 0.008\%$). Typically a Q-score higher than Q=20
-    (ASCII symbol ‘5’, ($P_{error} = 1\%$)) is acceptable
-    [https://drive5.com/usearch/manual/quality_score.html]. This
-    line has the same length as the second line.
+The nucleotide sequence typically only contains the four nucleotide letters (A, T, C and G), but when a nucleotide was not accurately determined (i.e. having a error probability higher than a certain threshold), the nucleotide is sometimes converted to the letter N, indicating that this nucleotide was not successfully sequenced.
 
-A FASTQ file can be used as an input for sequence alignment using a reference genome.
-The result of sequence alignment is a SAM file.
+Fastq files tend to be large in size (depending on how many reads are sequenced, but >10Gb is normal).
+Therefore these files are typically compressed in gzip format (.fastq.gz).
+The pipeline can handle gzipped files by itself, so there is no need to convert it manually.
 
-Besides FASTQ files, FASTA files are also used for alignment.
-These are similar to FASTQ files, but do not include the quality string and therefore FASTA files can be created from FASTQ files by removing line 3 and 4 from each read.
-Depending on the sequencing method, FASTA files may be directly given.
+Example fastq file:
 
-#### SAM and BAM files
+> `@NB501605:544:HLHLMBGXF:1:11101:9938:1050 1:N:0:TGCAGCTA`  
+> `TGTCAACGGTTTAGTGTTTTCTTACCCAATTGTAGAGACTATCCACAAGGACAATATTTGTGACTTATGTTATGCG`  
+> `+`  
+> `AAAAAEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE`  
+> `@NB501605:544:HLHLMBGXF:1:11101:2258:1051 1:N:0:TACAGCTA`  
+> `TGAGGCACCTATCTCAGCGATCGTATCGGTTTTCGATTACCGTATTTATCCCGTTCGTTTTCGTTGCCGCTATTT`  
+> `+`  
+> `AAAAAEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE6EEEEEEEE<EEEAEEEEEEE/E/E/EA///`  
+> `@NB501605:544:HLHLMBGXF:1:11101:26723:1052 1:N:0:TGCAGCTA`  
+> `TGTCAACGGTTTAGTGTTTTCTTACCCAATTGTAGAGACTATCCACAAGGACAATATTTGTGACTTATGTTATGCG`  
+> `+`  
+> `AAAAAEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE`
 
-The FASTQ (or FASTA) files contain all the reads in a random order.
-To determine where each belong relative to a reference sequence, the reads
-need to be aligned.
-After alignment of the reads, the results are typically represented in a Sequencing Alignment Mapping (SAM) file.
-For processing purposes this is typically translated to a Binary Alignment Mapping (BAM) file.
-This is a compressed, binary version of the SAM file.
+### sam, bam
 
-The SAM files contain all the short reads from the FASTQ file together with information where and how well the read mapped to a reference
-sequence.
-The reads are represented by a header and a body.
-The header consists of four fields (note that the headers can be different depending which program made the alignment, see for example [cpwardell.com](http://www.cpwardell.com/2015/02/24/understanding-bam-files-part-1/)):
+When the reads are aligned to a reference genome, the resulting file is a Sequence Alignment Mapping (sam) file.
+Every read is one line in the file and consists of at least 11 tab delimited fields that are always in the same order:
 
-1. @HD lines: version number of SAM specification and how the file is
-    sorted (e.g. sorting by genomic coordinates).
+1. Name of the read. This is unique for each read, but can occur multiple times in the file when a read is split up over multiple alignments at different locations.
+2. Flag. Indicating properties of the read about how it was mapped (see below for more information).
+3. Chromosome name to which the read was mapped.
+4. Leftmost position in the chromosome to which the read was mapped.
+5. Mapping quality in terms of Q-score as explained in the [fastq](#fastq) section.
+6. CIGAR string. Describing which nucleotides were mapped, where insertions and deletions are and where mismatches occurs. For example, `43M1I10M3D18M` means that the first 43 nucleotides match with the reference genome, the next 1 nucleotide exists in the read but not in the reference genome (insertion), then 10 matches, then 3 nucleotides that do not exist in the read but do exist in the reference genome (deletions) and finally 18 matches. For more information see [this website](https://www.drive5.com/usearch/manual/cigar.html).
+7. Reference name of the mate read (when using paired end datafiles). If no mate was mapped (e.g. in case of single end data or if it was not possible to map the mate read) this is typically set to `*`.
+8. Position of the mate read. If no mate was mapped this is typically set to `0`.
+9. Template length. Length of a group (i.e. mate reads or reads that are split up over multiple alignments) from the left most base position to the right most base position.
+10. Nucleotide sequence.
+11. Phred score of the sequence (see [fastq](#fastq) section).
 
-2. @SQ: Which reference sequence has been used to align the sequence.
-    There will be one line for every chromosome (contig). It also tells
-    the sequence name (SN) and length (LN).
+Depending on the software, the sam file typically starts with a few header lines containing information regarding the alignment.
+For example for BWA MEM (which is used in the pipeline), the sam file start with `@SQ` lines that shows information about the names and lengths for the different chromosome and `@PG` shows the user options that were set regarding the alignment software.
+Note that these lines might be different when using a different alignment software.
+Also, there is a whole list of optional fields that can be added to each read after the first 11 required fields.
+For more information, see [wikipedia](https://en.wikipedia.org/wiki/SAM_(file_format)).
 
-3. @RG: Read group line with the tags specifying the origins of the
-    input data.
+The flag in the sam files is a way of representing a list of properties for a read as a single integer.
+There is a defined list of properties in a fixed order:
 
-4. @PG: Which programs and commands were used to create the SAM file.
+1. read paired
+2. read mapped in proper pair
+3. read unmapped
+4. mate unmapped
+5. read reverse strand
+6. mate reverse strand
+7. first in pair
+8. second in pair
+9. not primary alignment
+10. read fails platform/vendor quality checks
+11. read is PCR or optical duplicate
+12. supplementary alignment
 
-### Readme for the SAM file 
+To determine the flag integer, a 12-bit binary number is created with zeros for the properties that are not true for a read and ones for those properties that are true for that read.
+This 12-bit binary number is then converted to a decimal integer.
+Note that the binary number should be read from right to left.
+For example, FLAG=81 corresponds to the 12-bit binary 000001010001 which indicates the properties: 'read paired', 'read reverse strand' and 'first in pair'.
+Decoding of sam flags can be done using [this website](http://broadinstitute.github.io/picard/explain-flags.html) or using [samflag.py](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/master/python_modules/samflag.py "LaanLab-SATAY_DataAnalysis.samflag.py").
 
-**The body of the SAM file contains the aligned data.**
-- Every row contains one read.
-- If there is paired data (i.e. a forward reading and a backward reading), then the pair is divided in two rows.
-- Every row consists of at least 11 columns:
+Example sam file (note that the last read was not mapped):
 
-1. `QNAME` Name of the query sequence.
+>`NB501605:544:HLHLMBGXF:1:11101:25386:1198     2064    ref|NC_001136|  362539  0       42H34M  *       0       0       GATCACTTCTTACGCTGGGTATATGAGTCGTAAT      EEEAEEEEEEAEEEAEEAEEEEEEEEEEEAAAAA      NM:i:0  MD:Z:34 AS:i:34 XS:i:0  SA:Z:ref|NC_001144|,461555,+,30S46M,0,0;`
+>
+>`NB501605:544:HLHLMBGXF:1:11101:20462:1198       16      ref|NC_001137|  576415  0       75M     *       0       0       CTGTACATGCTGATGGTAGCGGTTCACAAAGAGCTGGATAGTGATGATGTTCCAGACGGTAGATTTGATATATTA     EEEAEEEEEEEEEEEEEAEEAE/EEEEEEEEEEEAEEEEEE/EEEEEAEAEEEEEEEEEEEEEEEEEEEEAAAAA     NM:i:1  MD:Z:41C33      AS:i:41 XS:i:41`
+>
+>`NB501605:544:HLHLMBGXF:1:11101:15826:1199       4       *       0       0       *       *       0       0       ACAATATTTGTGACTTATGTTATGCG      EEEEEEEEEEE6EEEEEEEEEEEEEE      AS:i:0  XS:i:0`
 
-2. `FLAG` Bitwise flag.
- This consists of twelve binary properties.
- A read typically has multiple flags.
- These flags are all then translated to a decimal number, given by the third column, and these decimal numbers are added up.
- Typical values are 99, 147, 83 or 163.
- To get a proper translation, use [the SAM flag decoder](http://broadinstitute.github.io/picard/explain-flags.html).
- The following flags can be used:
+Sam files tend to be large in size (tens of Gb is normal).
+Therefore the sam files are typically stored as compressed binary files called bam files.
+Almost all downstream analysis tools (at least all tools discussed in this document) that need the alignment information accept bam files as input.
+Therefore the sam files are mostly deleted after the bam file is created.
+When a sam file is needed, it can always be recreated from the bam file, for example using `SAMTools` using the command `samtools view -h -o out.sam in.bam`.
+The bam file can be sorted (creating a .sorted.bam file) where the reads are typically ordered depending on their position in the genome.
+This usually also comes with an index file (a .sorted.bam.bai file) which stores some information where for example the different chromosomes start within the bam file and where specific often occuring sequences are.
+Many downstream analysis tools require this file to be able to efficiently search through the bam file.
 
-    1. 000000000001 : 1 : read paired
+### bed
 
-    2. 000000000010 : 2 : read mapped in proper pair
+A bed file is one of the outputs from the transposon mapping pipeline.
+It is a standard format for storing read insertion locations and the corresponding read counts.
+The file consists of a single header, typically something similar to `track name=[file_name] userscore=1`.
+Every row corresponds to one insertion and has (in case of the satay analysis) the following space delimited columns:
 
-    3. 000000000100 : 4 : read unmapped
+1. chromosome (e.g. `chrI` or `chrref|NC_001133|`)
+2. start position of insertion
+3. end position of insertion (in case of satay-analysis, this is always start position + 1)
+4. dummy column (this information is not present for satay analysis, but must be there to satisfy the bed format)
+5. number of reads at that insertion location
 
-    4. 000000001000 : 8 : mate unmapped
+In case of processing with `transposonmapping.py` (final step in processing pipeline) or [the matlab code from the kornmann-lab](https://sites.google.com/site/satayusers/complete-protocol/bioinformatics-analysis/matlab-script), the number of reads are given according to `(reads*20)+100`, for example 2 reads are stored as 140.
 
-    5. 000000010000 : 16 : read reverse strand
+The bed file can be used for many downstream analysis tools, for example [genome_browser](http://genome-euro.ucsc.edu/index.html).
 
-    6. 000000100000 : 32 : mate reverse strand
+Sometimes it might occur that insertions are stored outside the chromosome (i.e. the insertion position is bigger than the length of that chromosome).
+Also, reference genomes sometimes do not have the different chromosomes stored as roman numerals (for example `chrI`, `chrII`, etc.) but rather use different names (this originates from the chromosome names used in the reference genome).
+These things can confuse some analysis tools, for example the [genome_browser](http://genome-euro.ucsc.edu/index.html).
+To solve this, the python function [clean_bedwigfiles.py](#clean_bedwigfilespy) is created.
+This creates a _clean.bed file where the insertions outside the chromosome are removed and all the chromosome names are stored with their roman numerals.
+See [clean_bedwigfiles.py](#clean_bedwigfilespy) for more information.
 
-    7. 000001000000 : 64 : first in pair
+Example bed file:
 
-    8. 000010000000 : 128 : second in pair
+> `track name=leila_wt_techrep_ab useScore=1`  
+> `chrI 86 87 . 140`  
+> `chrI 89 90 . 140`  
+> `chrI 100 101 . 3820`  
+> `chrI 111 112 . 9480`
 
-    9. 000100000000 : 256 : not primary alignment
+### wig
 
-    10. 001000000000 : 512 : read fails platform/vendor quality checks
+A wiggle (wig) file is another output from the transposon mapping pipeline.
+It stores similar information as the bed file, but in a different format.
+This file has a header typically in the form of `track type=wiggle_0 maxheightPixels=60 name=[file_name]`.
+Each chromosome starts with the line `variablestep chrom=chr[chromosome]` where `[chromosome]` is replaced by a chromosome name, e.g. `I` or `ref|NC_001133|`.
+After a variablestep line, every row corresponds with an insertion in two space delimited columns:
 
-    11. 010000000000 : 1024 : read is PCR or optical duplicate
+1. insertion position
+2. number of reads
 
-    12. 100000000000 : 2048 : supplementary alignment
+In the wig file, the read count represent the actual count (unlike the bed file where an equation is used to transform the numbers).
 
-3. `RNAME` Name of the reference contig (chromosome) where the sequence is aligned to (i.e. which chromosome the read is aligned to).
+There is one difference between the bed and the wig file.
+In the bed file the insertions at the same position but with a different orientation are stored as individual insertions.
+In the wig file these insertions are represented as a single insertion and the corresponding read counts are added up.
 
-4. `POS` Position of the reference contig that the alignment starts at (given in terms of base pairs).
+Similar to the bed file, also in the wig insertions might occur that have an insertion position that is bigger then the length of the chromosome.
+This can be solved with the [same python script](#clean_bedwigfilespy) as the bed file.
+The insertions that have a position outside the chromosome are removed and the chromosome names are represented as a roman numeral.
 
-5. `MAPQ` Mapping quality.
-Number indicating the chances that the mapping is wrong, based on phred scaling.
-This is logarithmic scaled where 60 is typically the maximum score meaning that the chance of a wrong mapping is the smallest (so a high number is better).
-If a value of 255 is shown, that means that the quality is not determined.
+Example wig file:
 
-6. `CIGAR` Tells how to match the query sequence to the reference sequence using a ‘Compact Idiosyncratic Gapped Alignment Report’ (CIGAR) string.
-This contains a sequence of integers and letters.
-Possible letters are M (Match), N (Alignment gap), D (Deletion) or I (Insertion).
-Thus 76M means that 76 basepairs match the reference sequence (see [JEFworks](https://jef.works/blog/2017/03/28/CIGAR-strings-for-dummies/) for more information).
+> `track type=wiggle_0 maxheightPixels=60 name=WT_merged-techrep-a_techrep-b_trimmed.sorted.bam`  
+> `variablestep chrom=chrI`  
+> `86 2`  
+> `89 2`  
+> `100 186`  
+> `111 469`
 
-7. `RNEXT` The name of the reference contig (chromosome) that the other read in the pair (i.e. the next or previous line?) aligns to.
-If the two reads in the pair aligns to the same contig, an ‘=’ sign is used.
+### pergene.txt, peressential.txt
 
-8. `PNEXT` Position on the contig where the other read in the pair aligns to.
-Depending on the size of the DNA fragments in the sequencing library, this is typically a few hundred base pairs away from the current read (i.e. given by the POS column).
+A pergene.txt and peressential.txt file are yet another outputs from the transposon mapping pipeline.
+Where bed and wig files store *all* insertions throughout the genome, these files only store the insertions in each gene or each essential gene, respectively.
+Essential genes are the annotated essential genes as stated by SGD for wild type cells.
+The genes are taken from the [Yeast_Protein_Names.txt](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/master/Data_Files/Yeast_Protein_Names.txt) file, which is downloaded from [uniprot](https://www.uniprot.org/docs/yeast).
+The positions of each gene are determined by a [gff3 file](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/master/Data_Files/Saccharomyces_cerevisiae.R64-1-1.99.gff3) downloaded from SGD.
+Essential genes are defined in [Cerevisiae_AllEssentialGenes.txt](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/master/Data_Files/Cerevisiae_AllEssentialGenes_List.txt).
 
-9. `TLEN` Total length of the template fragment.
-This is the distance from the leftmost base of the first read to the rightmost base pair of the second read in the pair.
-This value is assigned a ‘+’ or ‘-‘ to indicate the reading orientation.
+The pergene.txt and the peressential.txt have the same format.
+This consists of a header and then each row contains three tab delimited columns:
 
-10. `SEQ` The DNA sequence of the query sequence.
-(Identical to the sequence in the FASTQ file that was aligned to the reference genome).
+1. gene name
+2. total number of insertions within the gene
+3. sum of all reads of those insertions
 
-11. `QUAL` Base quality score of the SEQ.
-(Identical to the scores in the FASTQ file).
-There are 42 scores, each of which are related to a specific error.
-See for example [phred score conversion table](https://drive5.com/usearch/manual/quality_score.html) for a conversion table.
+The reads are the actual read counts.
+To suppress noise, the insertion with the highest read count in a gene is removed from that gene.
+Therefore, it might occur that a gene has 1 insertion, but 0 reads.
 
+Note that when comparing files that include gene names there might be differences in the gene naming.
+Genes have multiple names, e.g. systematic names like 'YBR200W' or standard names like 'BEM1' which can have aliases such as 'SRO1'.
+The above three names all refer to the same gene.
+The [Yeast_Protein_Names.txt](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/master/Data_Files/Yeast_Protein_Names.txt) file can be used to search for aliases when comparing gene names in different files, or the [genomicfeatures_dataframe.py](#genomicfeatures_dataframepy) python script can be used which creates a pandas dataframe that includes the different gene names (this python script itself makes also use of the Yeast_Protein_Names.txt file).
+
+Example of pergene.txt file:
+
+> `Gene name Number of transposons per gene Number of reads per gene`  
+> `YAL069W 34 1819`  
+> `YAL068W-A 10 599`  
+> `PAU8 26 1133`  
+> `YAL067W-A 12 319`
+
+### pergene_insertions.txt, peressential_insertions.txt
+
+The final two files that are created by the transposon mapping pipeline are the pergene_insertions.txt and the peressential_insertions.txt.
+The files have a similar format as the pergene.txt file, but are more extensive in terms of the information per gene.
+The information is taken from [Yeast_Protein_Names.txt](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/master/Data_Files/Yeast_Protein_Names.txt), the [gff3 file](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/master/Data_Files/Saccharomyces_cerevisiae.R64-1-1.99.gff3) and [Cerevisiae_AllEssentialGenes.txt](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/master/Data_Files/Cerevisiae_AllEssentialGenes_List.txt), similar as the pergene.txt files.
+
+Both the pergene_insertions.txt and the peressential_insertions.txt files have a header and then each row contains six tab delimited columns:
+
+1. gene name
+2. chromosome where the gene is located
+3. start position of the gene
+4. end position of the gene
+5. list of all insertions within the gene
+6. list of all read counts in the same order as the insertion list
+
+This file can be useful when not only the number of insertions is important, but also the distribution of the insertions within the genes.
+Similarily as the [pergene.txt and peresential.txt file](#pergenetxt-peressentialtxt), to suppress noise the insertion with the highest read count in a gene is removed from that gene.
+
+This file is uniquely created in the processing workflow described below.
+To create this file from a dataset processed in another workflow, store the bam file and the corresponding .bam.bai index file on the Linux desktop (see [How to use the Linux desktop](#how-to-use-the-linux-desktop)).
+Go to the python folder in the Terminal with the following command: `cd /home/laanlab/satay/Documents/software/python_codes/`.
+Run the transposonmapping_satay.py script with the bam file using the command `python3 transposonmapping_satay.py [path]/[filename.bam]` (see [How does it work](#how-does-it-work) for more explanation about the python script).
+If the index file .bam.bai is not present, create this before running the python script.
+The index file can be created using the command `sambamba-0.7.1.-linux-static sort -m 1GB [path]/[filename.bam]`.
+This creates a sorted.bam file and a sorted.bam.bai index file.
+Run the sorted.bam file in the python script using the command `python3 transposonmapping_satay.py [path]/[filename.sorted.bam]`.
+
+
+Example of pergene_insertions.txt file:
+
+Example of peressential_insertions.txt file:
+> `EFB1 I 142174 143160 [142325, 142886] [1, 1]`  
+> `PRE7 II 141247 141972 [141262, 141736, 141742, 141895] [1, 1, 1, 1]`  
+> `RPL32 II 45978 46370 [46011, 46142, 46240] [1, 3, 1]`
 
 #### Determine essentiality based on transposon counts
 
-Using the number of transposons and reads, it can be determined which genes are potentially essential and which are not.
-To check this method, the transposon count for wild type cells are determined.
+- Using the number of transposons and reads, it can be determined which genes are potentially essential and which are not.
+- To check this method, the transposon count for wild type cells are determined.
 Currently, genes that are taken as essential are the annotated essentials based on previous research. 
+- We can use statitiscal learning methods to find what is the expected number of transposons per essential gene. See this [Matlab Code](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/tree/dev_Wessel/Matlab%20code) done by one of our Master students in our lab, Wessel Teunisse. 
+
 
 #### Distribution number of insertions and reads compared with essential and non-essential genes
 
@@ -441,23 +547,5 @@ Also an alternative version of this plot is made (`TransposonRead_Profile_Compar
 
 ![Comparison of the same datasets, but with different processing steps. Shown here is the transposon count for the two files including the absolute difference between the two datasets show in blue. Note also here that some regions has a higher likelihood of bearing transposons compared to the surrounding regions.](./media/Cerevisiae_Michel2017_WT2_Compare_chromIX.png)
 
-### Profile plot number of reads per individual genes
 
-See [this script to visualize the implementation](../gene_reads.md), which is {doc}`../gene_reads.md`
-
-Instead of plotting the number of reads for an entire chromosome, it is also useful to plot the read profile for individual genes to see how the insertion sites and reads are distributed within a gene.
-For this a bar plot is made where the number of reads per transposon are determined.
-This also shows the distribution of the distances between subsequent transposon insertions for both the gene and the chromosome the gene is located.
-It is expected that for essential genes, the median distance between subsequent insertions is larger compared to the distance in the entire chromosome (since important genes have few insertions and large parts will be free of insertions).
-For non-essential genes, the distribution for the distance between insertions is expected to follow the distribution of the chromomsome more closely.
-
-![Read per transposon insertion for BEM1. The violin plot gives the distribution for the distance between subsequent insertions for both BEM1 and chromosome II (where BEM1 is located). The small black bars indicate individual transposon insertions.](./media/Read_ProfilePlot_bem1.png)
-
- ![Read per transposon insertion for the HO-locus. Note that the distribution for the distance between insertions follows the distribution for the chromosome more closely compared to BEM1.](./media/Read_ProfilePlot_ho.png) 
-
-The minimum width of the bars are chosen such that each bar should contain 8 transposon insertions.
-The maximum width is set equal to the length such that the probabilty of finding at least one insertion is more than 99% in the whole chromosome.
-This is chosen because if now a bar is empty in a gene than this is not a coincidence, but this is an interesting region.
-
-These plots can be used for checking if a gene has transposon free regions which might indicate that this gene is essential.
 
