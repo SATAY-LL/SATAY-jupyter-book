@@ -1,4 +1,4 @@
-## Introduction
+# Build your own docker container with ours satay pipeline 
 
 Docker is an open platform for developing, shipping, and running applications. Docker provides the ability to package and run an application in a loosely isolated environment called a container. Containers are lightweight and contain everything needed to run the application, so you do not need to rely on what is currently installed on the host system. You can easily share containers while you work, and be sure that everyone you share with gets the same container that works in the same way.
 
@@ -12,7 +12,7 @@ Docker is an open platform for developing, shipping, and running applications. D
 
 Docker can be installed on Windows, macOS, and Linux. Please visit the [Docker website](https://docs.docker.com/get-docker/) for downloading and installation instructions. Note, you will need admin access to your system.
 
-### 
+
 
 ### Verify Docker installation
 Run the following commands in the terminal (see below) to verify your installation:
