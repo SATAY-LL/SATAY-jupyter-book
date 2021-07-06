@@ -64,7 +64,7 @@ Make the software package ready to be published in [Journal of Open Source Softw
     - GitFlow implementation for contributors to the software -->
 
 ---
-**Data sequencing processing gudelines** 🚀
+**Data sequencing processing guidelines** 🚀
 ^^^
 Each dataset requires unique processing and therefore no fixed settings for the trimming and alignment can be determined, but potentially some guidelines can be created that helps for the processing.
 
