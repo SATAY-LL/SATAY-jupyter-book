@@ -277,11 +277,6 @@
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#find-the-right-documentation-resources">
-   Find the right documentation resources
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#what-do-we-have-currently">
    What do we have currently?
   </a>
@@ -298,7 +293,7 @@
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#acknowledgements">
-   Acknowledgements
+   Acknowledgements 💙
   </a>
  </li>
 </ul>
@@ -321,153 +316,128 @@
 </ul>
 <div class="section" id="next-steps">
 <h2>Next steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
-<ol class="simple">
-<li><p>Make the software package ready to be published in <a class="reference external" href="https://joss.readthedocs.io/en/latest/index.html">Journal of Open Source Software</a></p>
-<ul class="simple">
-<li><p>Automated testing with continuous integration</p></li>
-<li><p>Comand line interface with a pip install mode</p></li>
-<li><p>GitFlow implementation for contributors to the software</p></li>
-</ul>
-</li>
-<li><p>Make a plan how to define trimming and alignment settings.
+<!-- 
+1. Make the software package ready to be published in [Journal of Open Source Software](https://joss.readthedocs.io/en/latest/index.html)
+
+    - Automated testing with continuous integration
+    - Comand line interface with a pip install mode
+    - GitFlow implementation for contributors to the software -->
+<!-- 3.  Make a plan how to define trimming and alignment settings.
 Currently the trimming and processing options are chosen by trial-and-error.
-Each dataset requires unique processing and therefore no fixed settings for the trimming and alignment can be determined, but potentially some guidelines can be created that helps for the processing.</p></li>
-<li><p>The code is relying on software third party software tools (e.g. for the trimming, alignment and quality checking).
-This currently requires to be installed manually and in the <a class="reference external" href="https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/satay.sh">workflow</a> paths need to be set to some these tools (in <a class="reference external" href="http://satay.sh">satay.sh</a>, the paths are all defined in the beginning of the script in the <code class="docutils literal notranslate"><span class="pre">DEFINE</span> <span class="pre">PATHS</span></code> section). This is not convenient for other users and is prone to errors.
+Each dataset requires unique processing and therefore no fixed settings for the trimming and alignment can be determined, but potentially some guidelines can be created that helps for the processing. -->
+<!-- 4. The code is relying on software third party software tools (e.g. for the trimming, alignment and quality checking).
+This currently requires to be installed manually and in the [workflow](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/satay.sh) paths need to be set to some these tools (in satay.sh, the paths are all defined in the beginning of the script in the `DEFINE PATHS` section). This is not convenient for other users and is prone to errors.
 Therefore a package need to be created that installs the third party software tools at a fixed location relative to the workflow.
-Then the paths doesn’t have to set manually by the user and makes it easier to set up and use.</p></li>
-<li><p>Implementing unit testing in the Github repository. This allows for automatic testing of the codes after changes have been made in the repository and should ensure the outcome is still correct.
-Most importantly this needs to be implemented in the <a class="reference external" href="https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_transposonmapping/transposonmapping_satay.py">transposonmapping_satay.py</a> code (the final step of the processing pipeline) and the depending <a class="reference external" href="https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/tree/master/python_transposonmapping/python_modules">python modules</a>.
-The other processing steps are all relying on third party software that probably already some testing implemented.</p></li>
-<li><p>For the transposon mapping in the pipeline <a class="reference external" href="https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_transposonmapping/transposonmapping_satay.py">a custom python script</a> is created that inputs a bam file and outputs lists of insertion locations and the corresponding number of reads. This script is based on the <a class="reference external" href="https://sites.google.com/site/satayusers/complete-protocol/bioinformatics-analysis/matlab-script">matlab code</a> from the Kornmann lab.
-The matlab code contained some bugs that were solved in the python script (see the <a class="reference external" href="https://groups.google.com/g/satayusers/search?q=matlab">satay forum</a>). Therefore some small differences may be present between the matlab processing and the python processing. But recently, some more differences were found that could not be explained by the matlab bugs.
-The exact cause is yet unclear, but has maybe to do with reading the samflag in the python script (line 183 in the original <span class="xref myst">transposonmapping_satay.py</span> code which uses the <a class="reference external" href="https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_transposonmapping/python_modules/samflag.py">samflag.py</a> module).
+Then the paths doesn't have to set manually by the user and makes it easier to set up and use. -->
+<!-- 
+5. Implementing unit testing in the Github repository. This allows for automatic testing of the codes after changes have been made in the repository and should ensure the outcome is still correct.
+Most importantly this needs to be implemented in the [transposonmapping_satay.py](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_transposonmapping/transposonmapping_satay.py) code (the final step of the processing pipeline) and the depending [python modules](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/tree/master/python_transposonmapping/python_modules).
+The other processing steps are all relying on third party software that probably already some testing implemented. -->
+<!-- 6. For the transposon mapping in the pipeline [a custom python script](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_transposonmapping/transposonmapping_satay.py) is created that inputs a bam file and outputs lists of insertion locations and the corresponding number of reads. This script is based on the [matlab code](https://sites.google.com/site/satayusers/complete-protocol/bioinformatics-analysis/matlab-script) from the Kornmann lab.
+The matlab code contained some bugs that were solved in the python script (see the [satay forum](https://groups.google.com/g/satayusers/search?q=matlab)). Therefore some small differences may be present between the matlab processing and the python processing. But recently, some more differences were found that could not be explained by the matlab bugs.
+The exact cause is yet unclear, but has maybe to do with reading the samflag in the python script (line 183 in the original [transposonmapping_satay.py]((https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_transposonmapping/transposonmapping_satay.py)) code which uses the [samflag.py](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/python_transposonmapping/python_modules/samflag.py) module).
 The insertions found by the transposon mapping python scripts can be compared with IGV that loads the corresponding bam file.
-This shows the read locations so the output of the transposon mappping script can be manually checked.</p></li>
-<li><p>Currently <a class="reference external" href="http://bio-bwa.sourceforge.net/bwa.shtml">BWA</a> is used for the alignment of the reads.
-This tools work fine, but the Kornmann lab (and many other labs) use <a class="reference external" href="http://bowtie-bio.sourceforge.net/index.shtml">Bowtie</a>.
-This is already installed on the Linux machine, but needs to be implemented in the <a class="reference external" href="https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/satay.sh">workflow</a>.
-The current aligner is implemented in the section <code class="docutils literal notranslate"><span class="pre">SEQUENCE</span> <span class="pre">ALIGNMENT</span></code>.
-Note to set the option for paired-end and single-end alignment for bowtie (defined in the variable <code class="docutils literal notranslate"><span class="pre">${paired}</span></code>).</p></li>
-<li><p>Allow mulitple files to be processed at once using a for-loop in the <a class="reference external" href="https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/satay.sh">bash script</a>.
+This shows the read locations so the output of the transposon mappping script can be manually checked. -->
+<!-- 7.  Currently [BWA](http://bio-bwa.sourceforge.net/bwa.shtml) is used for the alignment of the reads.
+This tools work fine, but the Kornmann lab (and many other labs) use [Bowtie](http://bowtie-bio.sourceforge.net/index.shtml).
+This is already installed on the Linux machine, but needs to be implemented in the [workflow](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/satay.sh).
+The current aligner is implemented in the section `SEQUENCE ALIGNMENT`.
+Note to set the option for paired-end and single-end alignment for bowtie (defined in the variable `${paired}`). -->
+<!-- 8. Allow mulitple files to be processed at once using a for-loop in the [bash script](https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/satay.sh).
 Currently only one dataset at the time can be processed, but this can be extended to allow a series of datasets to be processed in a for-loop.
-To allow for this, the bash script <a class="reference external" href="http://satay.sh">satay.sh</a> should be altered where the code between line 285 and line 680 (of the original code) should be placed in a loop over all file paths.
+To allow for this, the bash script satay.sh should be altered where the code between line 285 and line 680 (of the original code) should be placed in a loop over all file paths.
 Ideally each dataset is located in a separate folder where the output folders and files are stored for that particular dataset.
 If multiple datasets are located in the same folder, it might happen that things are being overwritten.
 It is possible to put all datasets to be processed in the same folder, but then in the code all these datasets should be automatically be moved to individual folders.
-Note to pay attention that the paths to the datasets are all correct in the for-loop.</p></li>
-<li><p>Automated documentation based on the help texts from the python scripts.</p></li>
-</ol>
+Note to pay attention that the paths to the datasets are all correct in the for-loop. -->
+<!-- 9. Automated documentation based on the help texts from the python scripts. -->
 <div class="sphinx-bs container pb-4 full-width text-center docutils">
 <div class="row docutils">
 <div class="d-flex col-lg-6 px-2 py-2 docutils">
 <div class="card w-100 docutils">
 <div class="card-header docutils">
-<p class="card-text"><strong><span class="xref myst">Publication-quality content</span></strong> ✍</p>
+<p class="card-text"><strong>Publication in JOSS</strong> ✍</p>
 </div>
 <div class="card-body docutils">
-<p class="card-text">Write in either Jupyter Markdown, MyST Markdown for more <span class="xref myst">publishing features</span>, <span class="xref myst">reStructuredText</span>, <span class="xref myst">Jupyter Notebooks</span>, or <span class="xref myst">any Jupytext format</span>.
-Includes support for rich syntax such as <span class="xref myst">citations and cross-references</span>, <span class="xref myst">math and equations</span>, and <span class="xref myst">figures</span>.</p>
+<p class="card-text">Make the software package ready to be published in <a class="reference external" href="https://joss.readthedocs.io/en/latest/index.html">Journal of Open Source Software</a></p>
+  <!-- - Automated testing with continuous integration
+    - Comand line interface with a pip install mode
+    - GitFlow implementation for contributors to the software -->
 </div>
 </div>
 </div>
 <div class="d-flex col-lg-6 px-2 py-2 docutils">
 <div class="card w-100 docutils">
 <div class="card-header docutils">
-<p class="card-text"><strong><span class="xref myst">Execute, cache, and insert computational content</span></strong> 🚀</p>
+<p class="card-text"><strong>Data sequencing processing gudelines</strong> 🚀</p>
 </div>
 <div class="card-body docutils">
-<p class="card-text">Execute notebook cells, then <span class="xref myst">format and insert the latest outputs</span> into your book.
-<a class="reference external" href="https://myst-nb.readthedocs.io/en/latest/use/execute.html#execute-cache" title="(in MyST-NB)"><span class="xref myst">Cache outputs to save time in re-building later</span></a>.
-Even <span class="xref myst">save notebook outputs and insert them into other pages</span>.</p>
+<p class="card-text">Each dataset requires unique processing and therefore no fixed settings for the trimming and alignment can be determined, but potentially some guidelines can be created that helps for the processing.</p>
 </div>
 </div>
 </div>
 <div class="d-flex col-lg-6 px-2 py-2 docutils">
 <div class="card w-100 docutils">
 <div class="card-header docutils">
-<p class="card-text"><strong><span class="xref myst">Add interactivity to content and outputs</span></strong> ✨</p>
+<p class="card-text"><strong>Unit testing continous integration</strong> ✨</p>
 </div>
 <div class="card-body docutils">
-<p class="card-text">Create interactive such as <span class="xref myst"></span>, <span class="xref myst"></span>. <span class="xref myst">Toggle cell visibility</span> and include <span class="xref myst">interactive cell outputs</span> with Jupyter notebooks. <span class="xref myst">Launch interactive sessions</span> with Binder or Colab, <span class="xref myst">make your code executable with Thebe</span>, or <span class="xref myst">connect with commenting services like Hypothes.is</span>.</p>
+<p class="card-text">Unit testing implemented in the main functions to make the pipeline more maintanable and prevent crashes when customizing it.</p>
 </div>
 </div>
 </div>
 <div class="d-flex col-lg-6 px-2 py-2 docutils">
 <div class="card w-100 docutils">
 <div class="card-header docutils">
-<p class="card-text"><strong><span class="xref myst">Build books and articles in many formats</span></strong> 🎁</p>
+<p class="card-text"><strong>Multiple files analysis</strong> 🎁</p>
 </div>
 <div class="card-body docutils">
-<p class="card-text">Build <span class="xref myst">multi-page books</span> or <span class="xref myst">single articles</span>, and generate many kinds of outputs from them, such as <span class="xref myst">HTML websites</span> or <span class="xref myst">PDF outputs</span>. Jupyter Book uses <a class="reference external" href="https://sphinx-doc.org">the Sphinx Documentation engine</a> which supports <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/builders/index.html">a variety of output types</a>.</p>
+<p class="card-text">Allow mulitple files to be processed at once using a for-loop in the bash script.
+Currently only one dataset at the time can be processed, but this can be extended to allow a series of datasets to be processed in a for-loop.</p>
+<!-- - To allow for this, the bash script satay.sh should be altered where the code between line 285 and line 680 (of the original code) should be placed in a loop over all file paths.
+Ideally each dataset is located in a separate folder where the output folders and files are stored for that particular dataset.
+If multiple datasets are located in the same folder, it might happen that things are being overwritten.
+It is possible to put all datasets to be processed in the same folder, but then in the code all these datasets should be automatically be moved to individual folders.
+Note to pay attention that the paths to the datasets are all correct in the for-loop. -->
+</div>
+</div>
+</div>
+<div class="d-flex col-lg-6 px-2 py-2 docutils">
+<div class="card w-100 docutils">
+<div class="card-header docutils">
+<p class="card-text"><strong>Python package</strong> 🛰</p>
+</div>
+<div class="card-body docutils">
+<p class="card-text">Build a python package that is pip installable for the ease of use for other researchers.</p>
+</div>
+</div>
+</div>
+<div class="d-flex col-lg-6 px-2 py-2 docutils">
+<div class="card w-100 docutils">
+<div class="card-header docutils">
+<p class="card-text"><strong>Tutorials</strong> 📝</p>
+</div>
+<div class="card-body docutils">
+<p class="card-text">Make tutorials of usage of the pipeline</p>
+</div>
+</div>
+</div>
+<div class="d-flex col-lg-6 px-2 py-2 docutils">
+<div class="card w-100 docutils">
+<div class="card-body docutils">
 </div>
 </div>
 </div>
 </div>
 </div>
-<p>This documentation is organized into a few major sections.</p>
-<ul class="simple">
-<li><p><strong>Tutorials</strong> are step-by-step introductory guides to Jupyter Book.</p></li>
-<li><p><strong>Topic Guides</strong> cover specific areas in more depth, and are organized as discrete “how-to” sections.</p></li>
-<li><p><strong>Reference</strong> sections describe the API/syntax/etc of Jupyter Book in detail.</p></li>
-</ul>
 <div class="tip full-width admonition">
 <p class="admonition-title">Learn more and get involved</p>
 <dl class="simple myst">
-<dt>💡 <a class="reference external" href="https://github.com/executablebooks/jupyter-book/issues/new/choose">Open an issue</a></dt><dd><p>We track enhancement requests, bug-reports, and to-do items via GitHub issues.</p>
+<dt>💡 <a class="reference external" href="https://github.com/SATAY-LL/LaanLab-SATAY-DataAnalysis/issues">Open an issue</a></dt><dd><p>We track enhancement requests, bug-reports, and to-do items via GitHub issues.</p>
 </dd>
-<dt>💬 <a class="reference external" href="https://github.com/executablebooks/meta/discussions">Join the discussion</a></dt><dd><p>We have community discussions, talk about ideas, and share general questions and feedback in our <a class="reference external" href="https://github.com/executablebooks/meta/discussions">community forum</a>.</p>
-</dd>
-<dt>👍 <a class="reference external" href="https://executablebooks.org/en/latest/feature-vote.html#feature-note" title="(in Executable Book Project)"><span class="xref myst">Vote for new features</span></a></dt><dd><p>The community provides feedback by adding a 👍 reaction to issues in our repositories.
-You can find a list of the top issues <a class="reference external" href="https://executablebooks.org/en/latest/feature-vote.html#feature-note" title="(in Executable Book Project)"><span class="xref myst">in the Executable Books issue leader board</span></a>.</p>
-</dd>
-<dt>🙌 <span class="xref myst">Join the community</span></dt><dd><p>Jupyter Book is developed by the <a class="reference external" href="https://executablebooks.org">Executable Books community</a>.
-We welcome anyone to join us in improving Jupyter Book and helping one another learn and create their books.
-To join, check out our <span class="xref myst">contributing guide</span>.</p>
+<dt>🙌 <a class="reference external" href="https://github.com/SATAY-LL/LaanLab-SATAY-DataAnalysis/pulls">Send a pull request</a></dt><dd><p>We appreciate that contributors send a pull request to improve the code base or introduce a new feature.</p>
 </dd>
 </dl>
-</div>
-</div>
-</div>
-<div class="section" id="find-the-right-documentation-resources">
-<h1>Find the right documentation resources<a class="headerlink" href="#find-the-right-documentation-resources" title="Permalink to this headline">¶</a></h1>
-<p>Here are a few pointers to help you get started.</p>
-<div class="sphinx-bs container pb-4 full-width docutils">
-<div class="row docutils">
-<div class="d-flex col-lg-4 px-2 py-2 docutils">
-<div class="card w-100 shadow docutils">
-<div class="card-header bg-jb-one docutils">
-<p class="card-text"><strong>Get started</strong></p>
-</div>
-<div class="card-body docutils">
-<p class="card-text"><strong><span class="xref myst"></span></strong>: a step-by-step tutorial to get started.</p>
-<p class="card-text"><strong><span class="xref myst"></span></strong>: get started with a simple template book.</p>
-</div>
-</div>
-</div>
-<div class="d-flex col-lg-4 px-2 py-2 docutils">
-<div class="card w-100 shadow docutils">
-<div class="card-header bg-jb-two docutils">
-<p class="card-text"><strong>Learn more</strong></p>
-</div>
-<div class="card-body docutils">
-<p class="card-text"><strong><span class="xref myst"></span></strong>: Learn how to structure and organize your content.</p>
-<p class="card-text"><strong><span class="xref myst"></span></strong>: Learn how to write rich narrative content.</p>
-<p class="card-text"><strong><span class="xref myst"></span></strong>: Write computational content.</p>
-</div>
-</div>
-</div>
-<div class="d-flex col-lg-4 px-2 py-2 docutils">
-<div class="card w-100 shadow docutils">
-<div class="card-header bg-jb-three docutils">
-<p class="card-text"><strong>Be inspired</strong></p>
-</div>
-<div class="card-body docutils">
-<p class="card-text"><a class="reference external" href="http://gallery.jupyterbook.org"><strong>The Jupyter Book Gallery</strong></a>: A gallery of community books that have been created with Jupyter Book.</p>
-<p class="card-text"><a class="reference external" href="https://python.quantecon.org/intro.html"><strong>The QuantEcon Python Lectures</strong></a>: A full mathematical textbook built with a customer Jupyter Book theme.</p>
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -497,8 +467,11 @@ The 2.0 version of the Apache License, approved by the ASF in 2004, helps us ach
 </ul>
 </div>
 <div class="section" id="acknowledgements">
-<h1>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this headline">¶</a></h1>
-<p>Many thanks to the group of <a class="reference external" href="https://www.bioch.ox.ac.uk/research/kornmann">Prof. Benoit Kornmann</a> , in particular to Prof. Agnes Michel , for all the nice discussions and colaboration with our team. Also thanks to them because of  the <a class="reference external" href="https://groups.google.com/forum/#%21forum/satayusers">SATAY forum</a>  they maintain running for all the community of satayers 🎉 .</p>
+<h1>Acknowledgements 💙<a class="headerlink" href="#acknowledgements" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Many thanks to the group of <a class="reference external" href="https://www.bioch.ox.ac.uk/research/kornmann">Prof. Benoit Kornmann</a> , in particular to <a class="reference external" href="https://www.kornmann.group/people/agn%C3%A8s">Prof. Agnes Michel</a> , for all the nice discussions and colaboration with our team. Also thanks to them due to the <a class="reference external" href="https://groups.google.com/forum/#%21forum/satayusers">SATAY forum</a>  they keep on running for all the community of satayers 🎉 .</p></li>
+<li><p>Many thanks to the <a class="reference external" href="https://tu-delft-dcc.github.io/01_Welcome.html">DCC department at TU Delft</a>, specially to <a class="reference external" href="https://github.com/mwakok">Maurits Kok</a> who in his role of Research Software Engineer has supported us in developing the software package to be distributed to the scientific community.</p></li>
+</ul>
 <!-- :::{image} https://pbs.twimg.com/profile_images/1226944724365447169/MzFpwY5P_400x400.png
 :class: float-left mr-2 rounded
 :width: 100px
