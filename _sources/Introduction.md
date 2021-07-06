@@ -1,6 +1,6 @@
 
 
-Hello there 😄 Welcome to this Jupyter Book instance to document mainly a data analysis workflow for analysing data from the technique : **S**aturated **T**ransposition **A**nalysis in **Y**east. 
+Hello there 😄 Welcome to this Jupyter Book instance to document our data processing pipeline to analyze data from the technique : **Sa**turated **T**ransposition **A**nalysis in **Y**east. 
 
 ## Status of the project
 - Beta release on Zenodo 
@@ -71,7 +71,7 @@ Each dataset requires unique processing and therefore no fixed settings for the 
 ---
 **Unit testing continous integration** ✨
 ^^^
-Unit testing implemented in the main functions to make the pipeline more maintanable and prevent crashes when customizing it. 
+Unit testing implemented in the main functions to make the pipeline more maintanable and to prevent crashes when customizing it. 
 
 ---
 **Multiple files analysis** 🎁
