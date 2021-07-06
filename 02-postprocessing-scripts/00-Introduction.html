@@ -53,8 +53,8 @@
     <link rel="shortcut icon" href="../_static/Greg.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Create a scatterplot for all genes and all essential genes." href="scatterplot_genes.html" />
-    <link rel="prev" title="Searching for genomic features of transposition events" href="genomicfeatures_dataframe.html" />
+    <link rel="next" title="Cleaning bed and wig files" href="01-clean_bedwigfiles.html" />
+    <link rel="prev" title="Code for the bash GUI" href="../01-bash-GUI/processing_workflow.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -98,14 +98,9 @@
    Status of the project
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../bash-GUI/processing_workflow.html">
-   Code for the bash GUI
-  </a>
- </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../data-stats/statistics_perchromosome_Compare.html">
-   Comparison of the statistics per chromosome
+  <a class="reference internal" href="../00-Intro/data-analysis-workflow.html">
+   Data analysis steps
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -114,90 +109,73 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../data-stats/statistics_pergene.html">
-     Statistics per gene
+    <a class="reference internal" href="../00-Intro/flowchart.html">
+     Flowchart of the pipeline
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../data-stats/transposonmapping_satay.html">
-     Python Translation of the Matlab code from Kornmann Lab
+    <a class="reference internal" href="../00-Intro/Installation_Guide_SATAY_Analysis_Software.html">
+     Software installation guide for whole genome sequencing and transposon mapping
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00-Intro/satay_analysis_notes.html">
+     All what you need to know from SATAY
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../docker-doc/Docker-Users.html">
-   Build your own docker container with ours satay pipeline
+  <a class="reference internal" href="../01-bash-GUI/processing_workflow.html">
+   Code for the bash GUI
   </a>
  </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Intro/data-analysis-workflow.html">
-   Data analysis steps
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   Python scripts
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../Intro/flowchart.html">
-     Flowchart of the pipeline
+    <a class="reference internal" href="01-clean_bedwigfiles.html">
+     Cleaning bed and wig files
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../Intro/Installation_Guide_SATAY_Analysis_Software.html">
-     Software installation guide for whole genome sequencing and transposon mapping
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Intro/satay_analysis_notes.html">
-     All what you need to know from SATAY
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="clean_bedwigfiles.html">
-   Cleaning bed and wig files
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="genomicfeatures_dataframe.html">
-     Searching for genomic features  of transposition events
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Python scripts
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="scatterplot_genes.html">
-     Create a scatterplot for all genes and all essential genes.
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="transposonread_profileplot.html">
-     Transposon profile for a chromosome of interest
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="transposonread_profileplot_genome.html">
+    <a class="reference internal" href="02-transposonread_profileplot_genome.html">
      Transposon profile for the whole genome
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="volcanoplot.html">
+    <a class="reference internal" href="03-transposonread_profileplot.html">
+     Transposon profile for a chromosome of interest
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-scatterplot_genes.html">
+     Create a scatterplot for all genes and all essential genes.
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05-volcanoplot.html">
      Volcano plots to two different libraries
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-genomicfeatures_dataframe.html">
+     Searching for genomic features  of transposition events
+    </a>
+   </li>
   </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-docker-doc/Docker-Users.html">
+   Build your own docker container with ours satay pipeline
+  </a>
  </li>
 </ul>
 
@@ -240,7 +218,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/postprocessing-scripts/Introduction.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/02-postprocessing-scripts/00-Introduction.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -260,7 +238,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/SATAY-LL/SATAY-jupyter-book/issues/new?title=Issue%20on%20page%20%2Fpostprocessing-scripts/Introduction.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/SATAY-LL/SATAY-jupyter-book/issues/new?title=Issue%20on%20page%20%2F02-postprocessing-scripts/00-Introduction.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -312,6 +290,8 @@ These functions are called at the end of each script after the line <code class=
 The user input for these functions are stated at the beginning of the script in the <code class="docutils literal notranslate"><span class="pre">#INPUT</span></code> section.
 All packages where the scripts are depending on are called at the beginning of the script.
 The scripts also contain a help text about how to use the functions.</p>
+<div class="toctree-wrapper compound">
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -327,7 +307,7 @@ The scripts also contain a help text about how to use the functions.</p>
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./postprocessing-scripts"
+            path: "./02-postprocessing-scripts"
         },
         predefinedOutput: true
     }
@@ -339,8 +319,8 @@ The scripts also contain a help text about how to use the functions.</p>
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="genomicfeatures_dataframe.html" title="previous page">Searching for genomic features  of transposition events</a>
-    <a class='right-next' id="next-link" href="scatterplot_genes.html" title="next page">Create a scatterplot for all genes and all essential genes.</a>
+    <a class='left-prev' id="prev-link" href="../01-bash-GUI/processing_workflow.html" title="previous page">Code for the bash GUI</a>
+    <a class='right-next' id="next-link" href="01-clean_bedwigfiles.html" title="next page">Cleaning bed and wig files</a>
 
         </div>
         

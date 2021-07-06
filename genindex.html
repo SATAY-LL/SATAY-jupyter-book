@@ -85,96 +85,95 @@
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="documentation_satay.html">
+   Documentation for processing SATAY
+   <!-- omit in toc -->
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
   <a class="reference internal" href="Introduction.html">
    Status of the project
   </a>
  </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Get started
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="Intro/flowchart.html">
-   1. Flowchart of the pipeline
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="00-Intro/data-analysis-workflow.html">
+   Data analysis steps
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="00-Intro/flowchart.html">
+     Flowchart of the pipeline
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="00-Intro/Installation_Guide_SATAY_Analysis_Software.html">
+     Software installation guide for whole genome sequencing and transposon mapping
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="00-Intro/satay_analysis_notes.html">
+     All what you need to know from SATAY
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Intro/satay_analysis_notes.html">
-   2. All what you need to know from SATAY
+  <a class="reference internal" href="01-bash-GUI/processing_workflow.html">
+   Code for the bash GUI
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Intro/Installation_Guide_SATAY_Analysis_Software.html">
-   3. Software installation guide for whole genome sequencing and transposon mapping
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="02-postprocessing-scripts/00-Introduction.html">
+   Python scripts
   </a>
- </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Bash GUI - Data Preprocessing
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="bash-GUI/processing_workflow.html">
-   1. Code for the bash GUI
-  </a>
- </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Postprocessing python scripts
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="postprocessing-scripts/Introduction.html">
-   1. Python scripts
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="postprocessing-scripts/clean_bedwigfiles.html">
-   2. Cleaning bed and wig files
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="postprocessing-scripts/transposonread_profileplot_genome.html">
-   3. Transposon profile for the whole genome
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="postprocessing-scripts/transposonread_profileplot.html">
-   4. Transposon profile for a chromosome of interest
-  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02-postprocessing-scripts/01-clean_bedwigfiles.html">
+     Cleaning bed and wig files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02-postprocessing-scripts/02-transposonread_profileplot_genome.html">
+     Transposon profile for the whole genome
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02-postprocessing-scripts/03-transposonread_profileplot.html">
+     Transposon profile for a chromosome of interest
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02-postprocessing-scripts/04-scatterplot_genes.html">
+     Create a scatterplot for all genes and all essential genes.
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02-postprocessing-scripts/05-volcanoplot.html">
+     Volcano plots to two different libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02-postprocessing-scripts/06-genomicfeatures_dataframe.html">
+     Searching for genomic features  of transposition events
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="postprocessing-scripts/genomicfeatures_dataframe.html">
-   5. Searching for genomic features  of transposition events
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="postprocessing-scripts/scatterplot_genes.html">
-   6. Create a scatterplot for all genes and all essential genes.
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="postprocessing-scripts/volcanoplot.html">
-   7. Volcano plots to two different libraries
-  </a>
- </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Docker Image
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="docker-doc/Docker-Users.html">
-   1. Build your own docker container with ours satay pipeline
+  <a class="reference internal" href="03-docker-doc/Docker-Users.html">
+   Build your own docker container with ours satay pipeline
   </a>
  </li>
 </ul>
