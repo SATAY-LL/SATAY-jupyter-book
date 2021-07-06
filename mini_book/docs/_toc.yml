@@ -15,5 +15,5 @@ entries:
   - file: 02-postprocessing-scripts/04-scatterplot_genes
   - file: 02-postprocessing-scripts/05-volcanoplot
   - file: 02-postprocessing-scripts/06-genomicfeatures_dataframe
-- file: 03-docker-doc/Docker-Users
+- file: 03-docker-doc/00-Docker-Users
 
