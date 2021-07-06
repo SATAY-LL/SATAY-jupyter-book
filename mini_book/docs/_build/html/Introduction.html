@@ -5,9 +5,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Status of the project &#8212; SATAY DATA ANALYSIS LAAN-LAB TU DELFT</title>
+    <title>Status of the project &#8212; SATAY pipeline at Delft :)</title>
     
-  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,26 +20,19 @@
 
     
       
-  <link rel="stylesheet"
-    href="_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx_tabs/semantic-ui-2.4.1/segment.min.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx_tabs/semantic-ui-2.4.1/menu.min.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx_tabs/semantic-ui-2.4.1/tab.min.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx_tabs/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -48,7 +42,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -59,15 +53,16 @@
     <link rel="shortcut icon" href="_static/Greg.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="1. Flowchart of the pipeline" href="Intro/flowchart.html" />
-
+    <link rel="next" title="Data analysis steps" href="00-Intro/data-analysis-workflow.html" />
+    <link rel="prev" title="Documentation for processing SATAY" href="documentation_satay.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -76,103 +71,115 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="index.html">
-  
-  <img src="_static/Greg.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">SATAY DATA ANALYSIS LAAN-LAB TU DELFT</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/Greg.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">SATAY pipeline at Delft :)</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="documentation_satay.html">
+   Documentation for processing SATAY
+   <!-- omit in toc -->
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
-  <a class="reference internal" href="#">
+  <a class="current reference internal" href="#">
    Status of the project
   </a>
  </li>
-</ul>
-<p class="caption collapsible-parent">
- <span class="caption-text">
-  Get started
- </span>
-</p>
-<ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="Intro/flowchart.html">
-   1. Flowchart of the pipeline
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="00-Intro/data-analysis-workflow.html">
+   Data analysis steps
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="00-Intro/flowchart.html">
+     Flowchart of the pipeline
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="00-Intro/Installation_Guide_SATAY_Analysis_Software.html">
+     Software installation guide for whole genome sequencing and transposon mapping
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="00-Intro/satay_analysis_notes.html">
+     All what you need to know from SATAY
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Intro/satay_analysis_notes.html">
-   2. All what you need to know from SATAY
+  <a class="reference internal" href="01-bash-GUI/processing_workflow.html">
+   Code for the bash GUI
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Intro/Installation_Guide_SATAY_Analysis_Software.html">
-   3. Software installation guide for whole genome sequencing and transposon mapping
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="02-postprocessing-scripts/00-Introduction.html">
+   Python scripts
   </a>
- </li>
-</ul>
-<p class="caption collapsible-parent">
- <span class="caption-text">
-  Bash GUI - Data Preprocessing
- </span>
-</p>
-<ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="bash-GUI/processing_workflow.html">
-   1. Code for the bash GUI
-  </a>
- </li>
-</ul>
-<p class="caption collapsible-parent">
- <span class="caption-text">
-  Postprocessing python scripts
- </span>
-</p>
-<ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="postprocessing-scripts/Introduction.html">
-   1. Python scripts
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="postprocessing-scripts/clean_bedwigfiles.html">
-   2. Cleaning bed and wig files
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="postprocessing-scripts/transposonread_profileplot_genome.html">
-   3. Transposon profile for the whole genome
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="postprocessing-scripts/transposonread_profileplot.html">
-   4. Transposon profile for a chromosome of interest
-  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02-postprocessing-scripts/01-clean_bedwigfiles.html">
+     Cleaning bed and wig files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02-postprocessing-scripts/02-transposonread_profileplot_genome.html">
+     Transposon profile for the whole genome
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02-postprocessing-scripts/03-transposonread_profileplot.html">
+     Transposon profile for a chromosome of interest
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02-postprocessing-scripts/04-scatterplot_genes.html">
+     Create a scatterplot for all genes and all essential genes.
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02-postprocessing-scripts/05-volcanoplot.html">
+     Volcano plots to two different libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02-postprocessing-scripts/06-genomicfeatures_dataframe.html">
+     Searching for genomic features  of transposition events
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="postprocessing-scripts/genomicfeatures_dataframe.html">
-   5. Searching for genomic features  of transposition events
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="postprocessing-scripts/scatterplot_genes.html">
-   6. Create a scatterplot for all genes and all essential genes.
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="postprocessing-scripts/volcanoplot.html">
-   7. Volcano plots to two different libraries
+  <a class="reference internal" href="03-docker-doc/Docker-Users.html">
+   Build your own docker container with ours satay pipeline
   </a>
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -188,21 +195,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -220,54 +227,59 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
-            href="https://github.com/leilaicruz/SATAY-jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+            href="https://github.com/SATAY-LL/SATAY-jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/leilaicruz/SATAY-jupyter-book/issues/new?title=Issue%20on%20page%20%2FIntroduction.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/SATAY-LL/SATAY-jupyter-book/issues/new?title=Issue%20on%20page%20%2FIntroduction.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
    Status of the project
   </a>
-  <ul class="nav section-nav flex-column">
+  <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#next-steps">
      Next steps
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#find-the-right-documentation-resources">
+   Find the right documentation resources
+  </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#what-do-we-have-currently">
@@ -283,13 +295,16 @@
   <a class="reference internal nav-link" href="#current-contact">
    Current Contact
   </a>
-  <ul class="nav section-nav flex-column">
-  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#acknowledgements">
+   Acknowledgements
+  </a>
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -318,7 +333,7 @@
 Currently the trimming and processing options are chosen by trial-and-error.
 Each dataset requires unique processing and therefore no fixed settings for the trimming and alignment can be determined, but potentially some guidelines can be created that helps for the processing.</p></li>
 <li><p>The code is relying on software third party software tools (e.g. for the trimming, alignment and quality checking).
-This currently requires to be installed manually and in the <a class="reference external" href="https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/satay.sh">workflow</a> paths need to be set to some these tools (in satay.sh, the paths are all defined in the beginning of the script in the <code class="docutils literal notranslate"><span class="pre">DEFINE</span> <span class="pre">PATHS</span></code> section). This is not convenient for other users and is prone to errors.
+This currently requires to be installed manually and in the <a class="reference external" href="https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/satay.sh">workflow</a> paths need to be set to some these tools (in <a class="reference external" href="http://satay.sh">satay.sh</a>, the paths are all defined in the beginning of the script in the <code class="docutils literal notranslate"><span class="pre">DEFINE</span> <span class="pre">PATHS</span></code> section). This is not convenient for other users and is prone to errors.
 Therefore a package need to be created that installs the third party software tools at a fixed location relative to the workflow.
 Then the paths doesn’t have to set manually by the user and makes it easier to set up and use.</p></li>
 <li><p>Implementing unit testing in the Github repository. This allows for automatic testing of the codes after changes have been made in the repository and should ensure the outcome is still correct.
@@ -336,13 +351,124 @@ The current aligner is implemented in the section <code class="docutils literal 
 Note to set the option for paired-end and single-end alignment for bowtie (defined in the variable <code class="docutils literal notranslate"><span class="pre">${paired}</span></code>).</p></li>
 <li><p>Allow mulitple files to be processed at once using a for-loop in the <a class="reference external" href="https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/blob/master/satay.sh">bash script</a>.
 Currently only one dataset at the time can be processed, but this can be extended to allow a series of datasets to be processed in a for-loop.
-To allow for this, the bash script satay.sh should be altered where the code between line 285 and line 680 (of the original code) should be placed in a loop over all file paths.
+To allow for this, the bash script <a class="reference external" href="http://satay.sh">satay.sh</a> should be altered where the code between line 285 and line 680 (of the original code) should be placed in a loop over all file paths.
 Ideally each dataset is located in a separate folder where the output folders and files are stored for that particular dataset.
 If multiple datasets are located in the same folder, it might happen that things are being overwritten.
 It is possible to put all datasets to be processed in the same folder, but then in the code all these datasets should be automatically be moved to individual folders.
 Note to pay attention that the paths to the datasets are all correct in the for-loop.</p></li>
 <li><p>Automated documentation based on the help texts from the python scripts.</p></li>
 </ol>
+<div class="sphinx-bs container pb-4 full-width text-center docutils">
+<div class="row docutils">
+<div class="d-flex col-lg-6 px-2 py-2 docutils">
+<div class="card w-100 docutils">
+<div class="card-header docutils">
+<p class="card-text"><strong><span class="xref myst">Publication-quality content</span></strong> ✍</p>
+</div>
+<div class="card-body docutils">
+<p class="card-text">Write in either Jupyter Markdown, MyST Markdown for more <span class="xref myst">publishing features</span>, <span class="xref myst">reStructuredText</span>, <span class="xref myst">Jupyter Notebooks</span>, or <span class="xref myst">any Jupytext format</span>.
+Includes support for rich syntax such as <span class="xref myst">citations and cross-references</span>, <span class="xref myst">math and equations</span>, and <span class="xref myst">figures</span>.</p>
+</div>
+</div>
+</div>
+<div class="d-flex col-lg-6 px-2 py-2 docutils">
+<div class="card w-100 docutils">
+<div class="card-header docutils">
+<p class="card-text"><strong><span class="xref myst">Execute, cache, and insert computational content</span></strong> 🚀</p>
+</div>
+<div class="card-body docutils">
+<p class="card-text">Execute notebook cells, then <span class="xref myst">format and insert the latest outputs</span> into your book.
+<a class="reference external" href="https://myst-nb.readthedocs.io/en/latest/use/execute.html#execute-cache" title="(in MyST-NB)"><span class="xref myst">Cache outputs to save time in re-building later</span></a>.
+Even <span class="xref myst">save notebook outputs and insert them into other pages</span>.</p>
+</div>
+</div>
+</div>
+<div class="d-flex col-lg-6 px-2 py-2 docutils">
+<div class="card w-100 docutils">
+<div class="card-header docutils">
+<p class="card-text"><strong><span class="xref myst">Add interactivity to content and outputs</span></strong> ✨</p>
+</div>
+<div class="card-body docutils">
+<p class="card-text">Create interactive such as <span class="xref myst"></span>, <span class="xref myst"></span>. <span class="xref myst">Toggle cell visibility</span> and include <span class="xref myst">interactive cell outputs</span> with Jupyter notebooks. <span class="xref myst">Launch interactive sessions</span> with Binder or Colab, <span class="xref myst">make your code executable with Thebe</span>, or <span class="xref myst">connect with commenting services like Hypothes.is</span>.</p>
+</div>
+</div>
+</div>
+<div class="d-flex col-lg-6 px-2 py-2 docutils">
+<div class="card w-100 docutils">
+<div class="card-header docutils">
+<p class="card-text"><strong><span class="xref myst">Build books and articles in many formats</span></strong> 🎁</p>
+</div>
+<div class="card-body docutils">
+<p class="card-text">Build <span class="xref myst">multi-page books</span> or <span class="xref myst">single articles</span>, and generate many kinds of outputs from them, such as <span class="xref myst">HTML websites</span> or <span class="xref myst">PDF outputs</span>. Jupyter Book uses <a class="reference external" href="https://sphinx-doc.org">the Sphinx Documentation engine</a> which supports <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/builders/index.html">a variety of output types</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>This documentation is organized into a few major sections.</p>
+<ul class="simple">
+<li><p><strong>Tutorials</strong> are step-by-step introductory guides to Jupyter Book.</p></li>
+<li><p><strong>Topic Guides</strong> cover specific areas in more depth, and are organized as discrete “how-to” sections.</p></li>
+<li><p><strong>Reference</strong> sections describe the API/syntax/etc of Jupyter Book in detail.</p></li>
+</ul>
+<div class="tip full-width admonition">
+<p class="admonition-title">Learn more and get involved</p>
+<dl class="simple myst">
+<dt>💡 <a class="reference external" href="https://github.com/executablebooks/jupyter-book/issues/new/choose">Open an issue</a></dt><dd><p>We track enhancement requests, bug-reports, and to-do items via GitHub issues.</p>
+</dd>
+<dt>💬 <a class="reference external" href="https://github.com/executablebooks/meta/discussions">Join the discussion</a></dt><dd><p>We have community discussions, talk about ideas, and share general questions and feedback in our <a class="reference external" href="https://github.com/executablebooks/meta/discussions">community forum</a>.</p>
+</dd>
+<dt>👍 <a class="reference external" href="https://executablebooks.org/en/latest/feature-vote.html#feature-note" title="(in Executable Book Project)"><span class="xref myst">Vote for new features</span></a></dt><dd><p>The community provides feedback by adding a 👍 reaction to issues in our repositories.
+You can find a list of the top issues <a class="reference external" href="https://executablebooks.org/en/latest/feature-vote.html#feature-note" title="(in Executable Book Project)"><span class="xref myst">in the Executable Books issue leader board</span></a>.</p>
+</dd>
+<dt>🙌 <span class="xref myst">Join the community</span></dt><dd><p>Jupyter Book is developed by the <a class="reference external" href="https://executablebooks.org">Executable Books community</a>.
+We welcome anyone to join us in improving Jupyter Book and helping one another learn and create their books.
+To join, check out our <span class="xref myst">contributing guide</span>.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="section" id="find-the-right-documentation-resources">
+<h1>Find the right documentation resources<a class="headerlink" href="#find-the-right-documentation-resources" title="Permalink to this headline">¶</a></h1>
+<p>Here are a few pointers to help you get started.</p>
+<div class="sphinx-bs container pb-4 full-width docutils">
+<div class="row docutils">
+<div class="d-flex col-lg-4 px-2 py-2 docutils">
+<div class="card w-100 shadow docutils">
+<div class="card-header bg-jb-one docutils">
+<p class="card-text"><strong>Get started</strong></p>
+</div>
+<div class="card-body docutils">
+<p class="card-text"><strong><span class="xref myst"></span></strong>: a step-by-step tutorial to get started.</p>
+<p class="card-text"><strong><span class="xref myst"></span></strong>: get started with a simple template book.</p>
+</div>
+</div>
+</div>
+<div class="d-flex col-lg-4 px-2 py-2 docutils">
+<div class="card w-100 shadow docutils">
+<div class="card-header bg-jb-two docutils">
+<p class="card-text"><strong>Learn more</strong></p>
+</div>
+<div class="card-body docutils">
+<p class="card-text"><strong><span class="xref myst"></span></strong>: Learn how to structure and organize your content.</p>
+<p class="card-text"><strong><span class="xref myst"></span></strong>: Learn how to write rich narrative content.</p>
+<p class="card-text"><strong><span class="xref myst"></span></strong>: Write computational content.</p>
+</div>
+</div>
+</div>
+<div class="d-flex col-lg-4 px-2 py-2 docutils">
+<div class="card w-100 shadow docutils">
+<div class="card-header bg-jb-three docutils">
+<p class="card-text"><strong>Be inspired</strong></p>
+</div>
+<div class="card-body docutils">
+<p class="card-text"><a class="reference external" href="http://gallery.jupyterbook.org"><strong>The Jupyter Book Gallery</strong></a>: A gallery of community books that have been created with Jupyter Book.</p>
+<p class="card-text"><a class="reference external" href="https://python.quantecon.org/intro.html"><strong>The QuantEcon Python Lectures</strong></a>: A full mathematical textbook built with a customer Jupyter Book theme.</p>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="what-do-we-have-currently">
@@ -365,17 +491,18 @@ The 2.0 version of the Apache License, approved by the ASF in 2004, helps us ach
 <ul class="simple">
 <li><p>Leila Inigo de la Cruz</p>
 <ul>
-<li><p>email: L.M.InigoDeLaCruz&#64;tudelft.nl</p></li>
+<li><p>email: <a class="reference external" href="mailto:L&#46;M&#46;InigoDeLaCruz&#37;&#52;&#48;tudelft&#46;nl">L<span>&#46;</span>M<span>&#46;</span>InigoDeLaCruz<span>&#64;</span>tudelft<span>&#46;</span>nl</a></p></li>
 </ul>
 </li>
 </ul>
-<div class="toctree-wrapper compound">
 </div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-</div>
+<div class="section" id="acknowledgements">
+<h1>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this headline">¶</a></h1>
+<p>Many thanks to the group of <a class="reference external" href="https://www.bioch.ox.ac.uk/research/kornmann">Prof. Benoit Kornmann</a> , in particular to Prof. Agnes Michel , for all the nice discussions and colaboration with our team. Also thanks to them because of  the <a class="reference external" href="https://groups.google.com/forum/#%21forum/satayusers">SATAY forum</a>  they maintain running for all the community of satayers 🎉 .</p>
+<!-- :::{image} https://pbs.twimg.com/profile_images/1226944724365447169/MzFpwY5P_400x400.png
+:class: float-left mr-2 rounded
+:width: 100px
+::: --></div>
 
     <script type="text/x-thebe-config">
     {
@@ -399,20 +526,21 @@ The 2.0 version of the Apache License, approved by the ASF in 2004, helps us ach
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
-    <a class='right-next' id="next-link" href="Intro/flowchart.html" title="next page"><span class="section-number">1. </span>Flowchart of the pipeline</a>
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="documentation_satay.html" title="previous page">Documentation for processing SATAY <!-- omit in toc --></a>
+    <a class='right-next' id="next-link" href="00-Intro/data-analysis-workflow.html" title="next page">Data analysis steps</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
         
-          By Gregory van Beek , Leila Iñigo de la Cruz<br/>
+          By Gregory van Beek , Maurits Kok, Leila Iñigo de la Cruz<br/>
         
             &copy; Copyright Apache 2.0.<br/>
       </p>
@@ -423,11 +551,9 @@ The 2.0 version of the Apache License, approved by the ASF in 2004, helps us ach
 
       </div>
     </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
-
-
-    
+  
   </body>
 </html>

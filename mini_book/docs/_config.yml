@@ -1,7 +1,8 @@
 #######################################################################################
 # Book settings
-title : SATAY DATA ANALYSIS LAAN-LAB TU DELFT 
-author: Gregory van Beek , Leila Iñigo de la Cruz
+title : SATAY pipeline at Delft :)  
+author: Gregory van Beek , Maurits Kok, Leila Iñigo de la Cruz
+email: L.M.InigoDeLaCruz@tudelft.nl
 copyright : Apache 2.0 
 logo: 'Greg.png'
 
@@ -34,7 +35,7 @@ only_build_toc_files          :  true
 #######################################################################################
 # Launch button settings
 repository:
-  url                         : https://github.com/leilaicruz/SATAY-jupyter-book
+  url                         : https://github.com/SATAY-LL/SATAY-jupyter-book
   # path_to_book                : mini_book/docs/_build/html
   branch                      : gh-pages 
 
@@ -47,6 +48,7 @@ latex:
   latex_engine                : "xelatex"
 
 launch_buttons:
+  notebook_interface        : "classic" # The interface interactive links will activate ["classic", "jupyterlab"]
   thebelab                  : false # Add a thebelab button to pages (requires the repository to run on Binder)
   notebook_interface        : jupyterlab  # The interface interactive links will activate ["classic", "jupyterlab"]
   binderhub_url             : https://mybinder.org/  # The URL of the BinderHub (e.g., https://mybinder.org)
@@ -101,7 +103,14 @@ sphinx:
     - sphinxext.rediraffe
 parse:
   myst_enable_extensions:
+    - amsmath
     - colon_fence
+    - deflist
     - dollarmath
+    - html_admonition
+    - html_image
+    - linkify
+    - replacements
+    - smartquotes
     - substitution
  

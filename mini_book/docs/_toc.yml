@@ -1,27 +1,19 @@
-# - file: README
-
+root: documentation_satay
+entries:
 - file: Introduction
-  numbered: true
-- part: Get started
-  chapters:
-  - file: Intro/flowchart
-  - file: Intro/satay_analysis_notes
-  - file: Intro/Installation_Guide_SATAY_Analysis_Software
-- part: Bash GUI - Data Preprocessing
-  chapters:
-   - file: bash-GUI/processing_workflow
-- part: Postprocessing python scripts
-  chapters:
-  - file: postprocessing-scripts/Introduction
-  - file: postprocessing-scripts/clean_bedwigfiles
-  - file: postprocessing-scripts/transposonread_profileplot_genome
-  - file: postprocessing-scripts/transposonread_profileplot
-  - file: postprocessing-scripts/genomicfeatures_dataframe
-  - file: postprocessing-scripts/scatterplot_genes
-  - file: postprocessing-scripts/volcanoplot
-  
-
-
-
-
+- file: 00-Intro/data-analysis-workflow
+  entries:
+  - file: 00-Intro/flowchart
+  - file: 00-Intro/Installation_Guide_SATAY_Analysis_Software
+  - file: 00-Intro/satay_analysis_notes
+- file: 01-bash-GUI/processing_workflow
+- file: 02-postprocessing-scripts/00-Introduction
+  entries:
+  - file: 02-postprocessing-scripts/01-clean_bedwigfiles
+  - file: 02-postprocessing-scripts/02-transposonread_profileplot_genome
+  - file: 02-postprocessing-scripts/03-transposonread_profileplot
+  - file: 02-postprocessing-scripts/04-scatterplot_genes
+  - file: 02-postprocessing-scripts/05-volcanoplot
+  - file: 02-postprocessing-scripts/06-genomicfeatures_dataframe
+- file: 03-docker-doc/Docker-Users
 
