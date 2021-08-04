@@ -125,17 +125,34 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="01-bash-GUI/processing_workflow.html">
-   Code for the bash GUI
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="01-bash-GUI/00-guidelines.html">
+   Guidelines on how to use the bash-GUI to analyze your data
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01-bash-GUI/01-processing_workflow.html">
+     Code for the bash GUI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01-bash-GUI/allow-open-chrome-in-docker.html">
+     Allow chrome to run without a sandbox (a manual tweak)
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="02-postprocessing-scripts/00-Introduction.html">
    Python scripts
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -307,7 +324,7 @@
         
               <div>
                 
-  <p>Hello there 😄 Welcome to this Jupyter Book instance to document mainly a data analysis workflow for analysing data from the technique : <strong>S</strong>aturated <strong>T</strong>ransposition <strong>A</strong>nalysis in <strong>Y</strong>east.</p>
+  <p>Hello there 😄 Welcome to this Jupyter Book instance to document our data processing pipeline to analyze data from the technique : <strong>Sa</strong>turated <strong>T</strong>ransposition <strong>A</strong>nalysis in <strong>Y</strong>east.</p>
 <div class="section" id="status-of-the-project">
 <h1>Status of the project<a class="headerlink" href="#status-of-the-project" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
@@ -369,7 +386,7 @@ Note to pay attention that the paths to the datasets are all correct in the for-
 <div class="d-flex col-lg-6 px-2 py-2 docutils">
 <div class="card w-100 docutils">
 <div class="card-header docutils">
-<p class="card-text"><strong>Data sequencing processing gudelines</strong> 🚀</p>
+<p class="card-text"><strong>Data sequencing processing guidelines</strong> 🚀</p>
 </div>
 <div class="card-body docutils">
 <p class="card-text">Each dataset requires unique processing and therefore no fixed settings for the trimming and alignment can be determined, but potentially some guidelines can be created that helps for the processing.</p>
@@ -382,7 +399,7 @@ Note to pay attention that the paths to the datasets are all correct in the for-
 <p class="card-text"><strong>Unit testing continous integration</strong> ✨</p>
 </div>
 <div class="card-body docutils">
-<p class="card-text">Unit testing implemented in the main functions to make the pipeline more maintanable and prevent crashes when customizing it.</p>
+<p class="card-text">Unit testing implemented in the main functions to make the pipeline more maintanable and to prevent crashes when customizing it.</p>
 </div>
 </div>
 </div>

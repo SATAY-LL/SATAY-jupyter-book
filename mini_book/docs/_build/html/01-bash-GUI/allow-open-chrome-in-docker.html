@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flowchart of the pipeline &#8212; SATAY pipeline at Delft :)</title>
+    <title>Allow chrome to run without a sandbox (a manual tweak) &#8212; SATAY pipeline at Delft :)</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,8 +53,8 @@
     <link rel="shortcut icon" href="../_static/genetica_modified_neon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Software installation guide for whole genome sequencing and transposon mapping" href="Installation_Guide_SATAY_Analysis_Software.html" />
-    <link rel="prev" title="Data analysis steps" href="data-analysis-workflow.html" />
+    <link rel="next" title="Python scripts" href="../02-postprocessing-scripts/00-Introduction.html" />
+    <link rel="prev" title="Code for the bash GUI" href="01-processing_workflow.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -98,50 +98,50 @@
    Status of the project
   </a>
  </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="data-analysis-workflow.html">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../00-Intro/data-analysis-workflow.html">
    Data analysis steps
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Flowchart of the pipeline
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Installation_Guide_SATAY_Analysis_Software.html">
-     Software installation guide for whole genome sequencing and transposon mapping
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="satay_analysis_notes.html">
-     All what you need to know from SATAY
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../01-bash-GUI/00-guidelines.html">
-   Guidelines on how to use the bash-GUI to analyze your data
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../01-bash-GUI/01-processing_workflow.html">
-     Code for the bash GUI
+    <a class="reference internal" href="../00-Intro/flowchart.html">
+     Flowchart of the pipeline
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../01-bash-GUI/allow-open-chrome-in-docker.html">
+    <a class="reference internal" href="../00-Intro/Installation_Guide_SATAY_Analysis_Software.html">
+     Software installation guide for whole genome sequencing and transposon mapping
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00-Intro/satay_analysis_notes.html">
+     All what you need to know from SATAY
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="00-guidelines.html">
+   Guidelines on how to use the bash-GUI to analyze your data
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="01-processing_workflow.html">
+     Code for the bash GUI
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Allow chrome to run without a sandbox (a manual tweak)
     </a>
    </li>
@@ -235,7 +235,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/00-Intro/flowchart.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/01-bash-GUI/allow-open-chrome-in-docker.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -255,7 +255,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/SATAY-LL/SATAY-jupyter-book/issues/new?title=Issue%20on%20page%20%2F00-Intro/flowchart.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/SATAY-LL/SATAY-jupyter-book/issues/new?title=Issue%20on%20page%20%2F01-bash-GUI/allow-open-chrome-in-docker.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -284,9 +284,39 @@
         
               <div>
                 
-  <div class="section" id="flowchart-of-the-pipeline">
-<h1>Flowchart of the pipeline<a class="headerlink" href="#flowchart-of-the-pipeline" title="Permalink to this headline">¶</a></h1>
-<p><img alt="" src="../_images/satay_processing_pipeline.png" /></p>
+  <div class="section" id="allow-chrome-to-run-without-a-sandbox-a-manual-tweak">
+<h1>Allow chrome to run without a sandbox (a manual tweak)<a class="headerlink" href="#allow-chrome-to-run-without-a-sandbox-a-manual-tweak" title="Permalink to this headline">¶</a></h1>
+<p>Steps:</p>
+<ol class="simple">
+<li><p>Run the container in bash mode :</p></li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">--rm</span> <span class="pre">-it</span> <span class="pre">--net=host</span> <span class="pre">-e</span> <span class="pre">DISPLAY=:0</span> <span class="pre">-v</span> <span class="pre">$(pwd):/data</span> <span class="pre">USERNAME/satay</span> <span class="pre">bash</span></code></p>
+<ol class="simple">
+<li><p>Open this document outside the GUI to follow the steps</p></li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">xdg-open</span> <span class="pre">../opt/src/allow-open-chrome-in-docker.md</span></code></p>
+<ol class="simple">
+<li><p>Open the google chrome config file in the nano editor in the terminal of the container</p></li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">../usr/bin/google-chrome</span></code></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Steps inside nano:
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">–no-sandbox</span></code> at the end of the last line (Line No: 49) of the file.</p>
+<ul class="simple">
+<li><p>That is from <code class="docutils literal notranslate"><span class="pre">exec</span> <span class="pre">-a</span> <span class="pre">&quot;$0&quot;</span> <span class="pre">&quot;$HERE/chrome&quot;</span> <span class="pre">&quot;$&#64;&quot;</span></code> go to <code class="docutils literal notranslate"><span class="pre">exec</span> <span class="pre">-a</span> <span class="pre">&quot;$0&quot;</span> <span class="pre">&quot;$HERE/chrome&quot;</span> <span class="pre">&quot;$&#64;&quot;</span> <span class="pre">--no-sandbox</span></code></p></li>
+</ul>
+</li>
+<li><p>Save and exit</p>
+<ul class="simple">
+<li><p>Ctrl-O</p></li>
+<li><p>Ctrl-X</p></li>
+</ul>
+</li>
+<li><p>Run the pipeline by writing the following command:</p></li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">../opt/satay/satay.sh</span></code></p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -302,7 +332,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./00-Intro"
+            path: "./01-bash-GUI"
         },
         predefinedOutput: true
     }
@@ -314,8 +344,8 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="data-analysis-workflow.html" title="previous page">Data analysis steps</a>
-    <a class='right-next' id="next-link" href="Installation_Guide_SATAY_Analysis_Software.html" title="next page">Software installation guide for whole genome sequencing and transposon mapping</a>
+    <a class='left-prev' id="prev-link" href="01-processing_workflow.html" title="previous page">Code for the bash GUI</a>
+    <a class='right-next' id="next-link" href="../02-postprocessing-scripts/00-Introduction.html" title="next page">Python scripts</a>
 
         </div>
         

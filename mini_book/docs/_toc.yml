@@ -6,7 +6,9 @@ entries:
   - file: 00-Intro/flowchart
   - file: 00-Intro/Installation_Guide_SATAY_Analysis_Software
   - file: 00-Intro/satay_analysis_notes
-- file: 01-bash-GUI/processing_workflow
+- file: 01-bash-GUI/00-guidelines
+  entries:
+  - file: 01-bash-GUI/01-processing_workflow
 - file: 02-postprocessing-scripts/00-Introduction
   entries:
   - file: 02-postprocessing-scripts/01-clean_bedwigfiles

@@ -1,6 +1,6 @@
 
 
-Hello there 😄 Welcome to this Jupyter Book instance to document mainly a data analysis workflow for analysing data from the technique : **S**aturated **T**ransposition **A**nalysis in **Y**east. 
+Hello there 😄 Welcome to this Jupyter Book instance to document our data processing pipeline to analyze data from the technique : **Sa**turated **T**ransposition **A**nalysis in **Y**east. 
 
 ## Status of the project
 - Beta release on Zenodo 
@@ -64,14 +64,14 @@ Make the software package ready to be published in [Journal of Open Source Softw
     - GitFlow implementation for contributors to the software -->
 
 ---
-**Data sequencing processing gudelines** 🚀
+**Data sequencing processing guidelines** 🚀
 ^^^
 Each dataset requires unique processing and therefore no fixed settings for the trimming and alignment can be determined, but potentially some guidelines can be created that helps for the processing.
 
 ---
 **Unit testing continous integration** ✨
 ^^^
-Unit testing implemented in the main functions to make the pipeline more maintanable and prevent crashes when customizing it. 
+Unit testing implemented in the main functions to make the pipeline more maintanable and to prevent crashes when customizing it. 
 
 ---
 **Multiple files analysis** 🎁

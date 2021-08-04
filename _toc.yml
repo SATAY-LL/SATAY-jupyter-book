@@ -1,0 +1,17 @@
+root: README
+entries:
+- file: _sources/gene_reads
+  entries:
+  - file: _sources/Intro
+  - file: _sources/Introduction
+  - file: _sources/MysT_Notebooks
+  - file: _sources/pysam_test
+  - file: _sources/statistics_perchromosome_Compare
+  - file: _sources/statistics_pergene
+  - file: _sources/transposonmapping_satay
+  - file: _sources/TransposonRead_Profile_Compare
+  - file: _sources/Intro/data-analysis-workflow
+    entries:
+    - file: _sources/Intro/Installation_Guide_SATAY_Analysis_Software
+    - file: _sources/Intro/satay_analysis_notes
+

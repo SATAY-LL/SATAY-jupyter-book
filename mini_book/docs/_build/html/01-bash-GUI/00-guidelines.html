@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flowchart of the pipeline &#8212; SATAY pipeline at Delft :)</title>
+    <title>How to use the pipeline in the docker container &#8212; SATAY pipeline at Delft :)</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,8 +53,8 @@
     <link rel="shortcut icon" href="../_static/genetica_modified_neon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Software installation guide for whole genome sequencing and transposon mapping" href="Installation_Guide_SATAY_Analysis_Software.html" />
-    <link rel="prev" title="Data analysis steps" href="data-analysis-workflow.html" />
+    <link rel="next" title="Code for the bash GUI" href="01-processing_workflow.html" />
+    <link rel="prev" title="All what you need to know from SATAY" href="../00-Intro/satay_analysis_notes.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -98,51 +98,46 @@
    Status of the project
   </a>
  </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="data-analysis-workflow.html">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../00-Intro/data-analysis-workflow.html">
    Data analysis steps
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../00-Intro/flowchart.html">
      Flowchart of the pipeline
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="Installation_Guide_SATAY_Analysis_Software.html">
+    <a class="reference internal" href="../00-Intro/Installation_Guide_SATAY_Analysis_Software.html">
      Software installation guide for whole genome sequencing and transposon mapping
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="satay_analysis_notes.html">
+    <a class="reference internal" href="../00-Intro/satay_analysis_notes.html">
      All what you need to know from SATAY
     </a>
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../01-bash-GUI/00-guidelines.html">
-   Guidelines on how to use the bash-GUI to analyze your data
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   How to use the pipeline in the docker container
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../01-bash-GUI/01-processing_workflow.html">
+    <a class="reference internal" href="01-processing_workflow.html">
      Code for the bash GUI
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../01-bash-GUI/allow-open-chrome-in-docker.html">
-     Allow chrome to run without a sandbox (a manual tweak)
     </a>
    </li>
   </ul>
@@ -235,7 +230,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/00-Intro/flowchart.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/01-bash-GUI/00-guidelines.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -255,7 +250,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/SATAY-LL/SATAY-jupyter-book/issues/new?title=Issue%20on%20page%20%2F00-Intro/flowchart.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/SATAY-LL/SATAY-jupyter-book/issues/new?title=Issue%20on%20page%20%2F01-bash-GUI/00-guidelines.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -276,6 +271,34 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#run-the-pipeline">
+   Run the pipeline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#access-the-terminal-of-the-docker-container">
+   Access the terminal of the docker container
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-a-custom-adapterfile-fa-in-your-data-folder">
+   Creating a custom adapterfile.fa in your data/ folder
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#troubleshooting">
+   Troubleshooting
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -284,9 +307,116 @@
         
               <div>
                 
-  <div class="section" id="flowchart-of-the-pipeline">
-<h1>Flowchart of the pipeline<a class="headerlink" href="#flowchart-of-the-pipeline" title="Permalink to this headline">¶</a></h1>
-<p><img alt="" src="../_images/satay_processing_pipeline.png" /></p>
+  <div class="section" id="how-to-use-the-pipeline-in-the-docker-container">
+<h1>How to use the pipeline in the docker container<a class="headerlink" href="#how-to-use-the-pipeline-in-the-docker-container" title="Permalink to this headline">¶</a></h1>
+<ol class="simple">
+<li><p>Pull the docker image from Docker Hub</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker pull mwakok/satay:latest
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Build the image and create the docker container locally in your computer</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker build . -t mwakok/satay:latest
+</pre></div>
+</div>
+<div class="section" id="run-the-pipeline">
+<h2>Run the pipeline<a class="headerlink" href="#run-the-pipeline" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Move to the location where you have the data you would like to mount to the container ,
+to use <code class="docutils literal notranslate"><span class="pre">$(pwd)</span></code> in the command bellow (simplest option) , otherwise indicate the absolute path from your computer you would like to be loaded.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For Windows (and WSL):</span>
+docker run --rm -it -e <span class="nv">DISPLAY</span><span class="o">=</span>host.docker.internal:0 -v /<span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:data/ mwakok/satay:latest 
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For macOS</span>
+docker run --rm -it -e <span class="nv">DISPLAY</span><span class="o">=</span>docker.for.mac.host.internal:0 -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/data mwakok/satay 
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For Linux</span>
+docker run --rm -it --net<span class="o">=</span>host -e <span class="nv">DISPLAY</span><span class="o">=</span>:0 -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/data mwakok/satay
+</pre></div>
+</div>
+</div>
+<div class="section" id="access-the-terminal-of-the-docker-container">
+<h2>Access the terminal of the docker container<a class="headerlink" href="#access-the-terminal-of-the-docker-container" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For Windows (and WSL):</span>
+docker run --rm -it -e <span class="nv">DISPLAY</span><span class="o">=</span>host.docker.internal:0 -v /<span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:data/ mwakok/satay:latest bash
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For macOS</span>
+docker run --rm -it -e <span class="nv">DISPLAY</span><span class="o">=</span>docker.for.mac.host.internal:0 -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/data mwakok/satay bash
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For Linux</span>
+docker run --rm -it --net<span class="o">=</span>host -e <span class="nv">DISPLAY</span><span class="o">=</span>:0 -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/data mwakok/satay bash
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The flag <code class="docutils literal notranslate"><span class="pre">-e</span></code> enables viewing of the GUI outside the container via the Xserver</p></li>
+<li><p>The flag <code class="docutils literal notranslate"><span class="pre">-v</span></code> mounts the current directory (pwd) on the host system to the data/ folder inside the container</p></li>
+</ul>
+</div>
+<div class="section" id="creating-a-custom-adapterfile-fa-in-your-data-folder">
+<h2>Creating a custom adapterfile.fa in your data/ folder<a class="headerlink" href="#creating-a-custom-adapterfile-fa-in-your-data-folder" title="Permalink to this headline">¶</a></h2>
+<p>To know the adapters sequence , one way is to look for the overrepresented sequences in your dataset.
+Steps:</p>
+<ol>
+<li><p>Run the pipeline with the</p>
+<ul class="simple">
+<li><p>[x] Quality checking raw data CHECKED</p></li>
+<li><p>[x] Quality check interrupt CHECKED</p></li>
+</ul>
+</li>
+<li><p>When the GUI ask you to continue , say NO and go to your local <code class="docutils literal notranslate"><span class="pre">/data/fastqc_out/</span></code></p>
+<ul class="simple">
+<li><p>Open the corresponding html file and go to the “Overrepresented sequences” section</p></li>
+<li><p>Copy the sequence that has more than 15% of representation.</p></li>
+</ul>
+</li>
+<li><p>Create the adapterfile.fa in your local data folder</p>
+<ul class="simple">
+<li><p>Open a bash terminal and move to the location where you have the data you would like to mount in the pipeline (fastq files)</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="sb">`</span><span class="nb">cd</span> /data<span class="sb">`</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Create the adapterfile file customized to your dataset.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="sb">`</span>nano adapterfile.fa<span class="sb">`</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Inside the <code class="docutils literal notranslate"><span class="pre">nano</span></code> editor , edit the file as follows:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt; NAME1  <span class="o">(</span>e.g. triming, adapters, etc<span class="o">)</span>
+Paste the copied overrepresented sequence <span class="m">1</span>
+&gt; NAME2 <span class="o">(</span>e.g. triming, adapters, etc<span class="o">)</span>
+Paste the copied overrepresented sequence <span class="m">2</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Ctrl-O save , Ctrl-X and quit the editor</p></li>
+</ul>
+</li>
+<li><p>Run again the container  and it will automatically look for that file (adapterfile.fa) in the data folder .</p></li>
+</ol>
+</div>
+<div class="section" id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>When running the container , mainly for the 1st time , after a reboot of your PC, this may pops up:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Gtk-WARNING **: cannot open display: :0
+</pre></div>
+</div>
+<p>There is a solution in Linux is typing the following command in the terminal : <code class="docutils literal notranslate"><span class="pre">xhost</span> <span class="pre">+</span></code></p>
+</div>
+<div class="toctree-wrapper compound">
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -302,7 +432,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./00-Intro"
+            path: "./01-bash-GUI"
         },
         predefinedOutput: true
     }
@@ -314,8 +444,8 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="data-analysis-workflow.html" title="previous page">Data analysis steps</a>
-    <a class='right-next' id="next-link" href="Installation_Guide_SATAY_Analysis_Software.html" title="next page">Software installation guide for whole genome sequencing and transposon mapping</a>
+    <a class='left-prev' id="prev-link" href="../00-Intro/satay_analysis_notes.html" title="previous page">All what you need to know from SATAY</a>
+    <a class='right-next' id="next-link" href="01-processing_workflow.html" title="next page">Code for the bash GUI</a>
 
         </div>
         
