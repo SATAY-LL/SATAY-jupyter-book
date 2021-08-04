@@ -1,6 +1,6 @@
-# Data analysis steps
+# Overview of the pipeline functions
 
-For data analysis, the following steps need to be taken:
+<!-- For data analysis, the following steps need to be taken:
 
 1. Process data and represent this in a standardized way that can be easily processed.
 
@@ -14,7 +14,7 @@ For data analysis, the following steps need to be taken:
 
 5. Use these relations to obtain training for machine learning.
 
-First, the main focus will be step 1 of the analysis (see next section).
+First, the main focus will be step 1 of the analysis (see next section). -->
 
 ## Step 1 data analysis; From raw data to essential protein overview
 

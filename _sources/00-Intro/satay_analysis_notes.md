@@ -1,5 +1,5 @@
 
-# All what you need to know from SATAY
+# What is SATAY
 
 SAturated Transposon Analysis in Yeast (SATAY) is method of transposon analysis optimised for usage in Saccharomyces Cerevisiae.
 This method uses transposons (short DNA sequences, also known as jumping genes) which can integrate in the native yeast DNA at random locations.

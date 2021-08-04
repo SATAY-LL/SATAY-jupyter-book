@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Data analysis steps &#8212; SATAY pipeline at Delft :)</title>
+    <title>Overview of the pipeline functions &#8212; SATAY pipeline at Delft :)</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -96,7 +96,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
   <a class="current reference internal" href="#">
-   Data analysis steps
+   Overview of the pipeline functions
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -111,7 +111,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="satay_analysis_notes.html">
-     All what you need to know from SATAY
+     What is SATAY
     </a>
    </li>
   </ul>
@@ -190,10 +190,42 @@
    Code of Conduct
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../06-Workflow/00-workflow.html">
-   Jupyter notebook workflow of the pipeline
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../06-Tutorials/00-name.html">
+   Tutorials
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-Tutorials/01-tutorial.html">
+     Tutorial-1 : How to run the transposonmapper python package in a specific environment.
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-Tutorials/02-tutorial.html">
+     Tutorial-2 :  How to clean the wig and bed files.
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-Tutorials/03-tutorial.html">
+     Tutorial-3: Visualize the insertions and reads per gene  throughout the genome
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-Tutorials/04-tutorial.html">
+     Tutorial-4: Zoom in into the chromosomes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-Tutorials/05-tutorial.html">
+     Tutorial-5: Volcano plots
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -347,22 +379,23 @@
         
               <div>
                 
-  <div class="section" id="data-analysis-steps">
-<h1>Data analysis steps<a class="headerlink" href="#data-analysis-steps" title="Permalink to this headline">¶</a></h1>
-<p>For data analysis, the following steps need to be taken:</p>
-<ol class="simple">
-<li><p>Process data and represent this in a standardized way that can be easily processed.</p></li>
-<li><p>Put the genes in an overview for comparison with other backgrounds.</p>
-<ul class="simple">
-<li><p>Make visual overview of the results (e.g. the number of insertions and reads per gene).</p></li>
-<li><p>Compare the genes of different genetic backgrounds using a Venn-diagram</p></li>
-</ul>
-</li>
-<li><p>Obtain the interactions of the different genes to create an interaction map (use <a class="reference external" href="http://thecellmap.org">thecellmap.org</a>)</p></li>
-<li><p>Look for possible relations between the genes and their interactions.</p></li>
-<li><p>Use these relations to obtain training for machine learning.</p></li>
-</ol>
-<p>First, the main focus will be step 1 of the analysis (see next section).</p>
+  <div class="section" id="overview-of-the-pipeline-functions">
+<h1>Overview of the pipeline functions<a class="headerlink" href="#overview-of-the-pipeline-functions" title="Permalink to this headline">¶</a></h1>
+<!-- For data analysis, the following steps need to be taken:
+
+1. Process data and represent this in a standardized way that can be easily processed.
+
+2. Put the genes in an overview for comparison with other backgrounds.
+      - Make visual overview of the results (e.g. the number of insertions and reads per gene).
+      - Compare the genes of different genetic backgrounds using a Venn-diagram
+
+3. Obtain the interactions of the different genes to create an interaction map (use thecellmap.org)
+
+4. Look for possible relations between the genes and their interactions.
+
+5. Use these relations to obtain training for machine learning.
+
+First, the main focus will be step 1 of the analysis (see next section). -->
 <div class="section" id="step-1-data-analysis-from-raw-data-to-essential-protein-overview">
 <h2>Step 1 data analysis; From raw data to essential protein overview<a class="headerlink" href="#step-1-data-analysis-from-raw-data-to-essential-protein-overview" title="Permalink to this headline">¶</a></h2>
 <p>SATAY experiments need to be sequenced which results in a FASTQ file.
