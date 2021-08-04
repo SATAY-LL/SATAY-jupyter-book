@@ -8,11 +8,9 @@ For data analysis, the following steps need to be taken:
       - Make visual overview of the results (e.g. the number of insertions and reads per gene).
       - Compare the genes of different genetic backgrounds using a Venn-diagram
 
-3. Obtain the interactions of the different genes to create an
-    interaction map (use thecellmap.org)
+3. Obtain the interactions of the different genes to create an interaction map (use thecellmap.org)
 
-4. Look for possible relations between the genes and their
-    interactions.
+4. Look for possible relations between the genes and their interactions.
 
 5. Use these relations to obtain training for machine learning.
 
@@ -24,9 +22,6 @@ SATAY experiments need to be sequenced which results in a FASTQ file.
 The sequence reads from this file needs to be aligned to create a SAM file (and/or the compressed {bash}ary equivalent BAM file).
 Using the BAM file, the number of transposons can be determined for each insertion location.
 
-For guides and manuals of the software discussed below, see the folder
-
-`M:\\tnw\\bn\\ll\\Shared\\Gregory\\Software\\Guides & Manuals`.
 
 Raw data (.FASTQ file) discussed in the paper of Michel et.al. 2017 can be found at [<https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-4885/samples/>].
 
@@ -84,108 +79,9 @@ An overview of the different steps including some software that can handle this 
 
 7. Creating transposon insertion maps for the genome (see the [satay users website](<https://sites.google.com/site/satayusers/>)) and comparison essential genes between different genetic backgrounds using Venn diagrams, customized software needs to be created.
 
-### Initializing
 
-The steps discussed in this section are not obligatory, but might help in organizing the data.
-The **bold** printed commands in this and the following sections are put so that they can be copied directly to the {bash}.
-(Note to modify the respective paths on your own machine in this Initialization step, though).
-If the paths below are correctly defined, the boldface commands defined in the different processing steps below can be literally copied and pasted in the {bash}.
 
-Since this protocol works mostly in the Linux Virtual Machine, the commands below are defined for Linux.
-First, a possible method for organizing the data is shown, but feel free to change this as you like.
-
-1. Create an empty datafolder.
-
-2. Add the .fastq file to the datafolder.
-
-3. Add the following empty folders for the outcomes of the different processing steps:
-
-    A. filename_QC
-
-    B. filename_Trimmed
-
-    C. filename_Aligned
-
-4. When this is done in Windows, copy the datafolder to the shared folder for processing in the Virtual Machine using the commands (using git-{bash})
-
-Considering that :
-
-**`pathwin_sharedfolder='/C/Users/gregoryvanbeek/Documents/ VirtualBox VMs/ VMSharedFolder_Ubuntu64_1'`**
-
-**`pathwin_data='C:\Users\gregoryvanbeek\Desktop\Cerevisiae_WT2_Seqdata_Michel2017\Cerevisiae_WT2_Seqdata_Michel2017_ProcessingTest'`**
-
-```{bash}
-
-cp -r ${pathwin_data} "${pathwin_sharedfolder}"
-```
-
-5. The main processing is done in the Linux Virtual Machine.
-Since the software tools are mostly commandline based, it might be convenient to be able to define variables, for example for the paths to the difference programs and files so that these do not have te be entered every single time.
-For this start with the command that enables defining variables **`#!/{bash}/{bash}`**.
-
-6. Define the following variables. (copy paste the commands in the {bash} using `shift+Ins`. Remember to first alter the respective variables given below to the paths and filenames in your computer):
-
-    A. Path to the shared folder used for communicating with the virtual machine running Linux (**`path_sf=/media/sf_VMSharedFolder_Ubuntu64_1/`**).
-
-    B. Name of the folder containing the data
-    (**`foldername='Cerevisiae_WT2_Seqdata_ Michel2017_ProcessingTest'`**)
-
-    C. Name of the data file
-    (**`filename='Cerevisiae_WT2_Michel2017.fastq'`**)
-
-    D. Name of the trimmed data file
-    (**`filename_trimmed='Cerevisiae_WT2_Michel2017_trimmed.fastq'`**)
-
-    D. The processing can be performed in shared folder, but this is not recommended.
-    It is better to move the folder temporarily to the hard drive of the Virtual Machine.
-    For this define the location where the processing is performed (in this example located in the Documents directory)
-    (**`pathdata=~/Documents/data_processing/${foldername}`**)
-    If this directory does not already exists, create it using the command `mkdir ${pathdata}`
-
-    E. Move the datafolder from shared folder to data processing folder
-    (**`mv ${path_sf}${foldername} ${pathdata}`**)
-
-    F. Path to the location where the Trimmomatic software is located
-    (**`path_trimm_software=~/Documents/ Software/Trimmomatic-0.39/`**).
-
-    G. Path to the location where the BBDuk software is located
-    (**`path_bbduk_software=~/Documents/ Software/BBMap/bbmap/`**)
-
-    H. Path to the outcome folder for the fastqc software
-    (**`path_fastqc_out=${pathdata}/ Cerevisiae_WT2_Michel2017_QC/`**).
-
-    I. Path to the outcome folder for the trimmomatic software
-    (**`path_trimm_out=${pathdata}/ Cerevisiae_WT2_Michel2017_Trimmed/`**).
-
-    J. Path to the outcome folder for the aligned software
-    (**`path_align_out=${pathdata}/ Cerevisiae_WT2_Michel2017_Aligned/`**).
-
-    K. Path to the reference genome fasta file
-    (**`path_refgenome=/home/gregoryvanbeek/Documents/
-    Reference_Sequences/Reference_Sequence_S288C/S288C_reference_sequence_R64-2-1_20150113.fsa`**)
-
-Some useful commands:
-
-1. `echo`: Print a variable name or some text.
-
-2. `gunzip`: Unzip a .gz file.
-
-3. `bunzip`: Unzip a .bz file.
-
-4. `${}`: when using a variable, the name of the variable should be placed between curly brackets and should start with a dollar sign (`$`), otherwise the {bash} won't recognize the name as a variable.
-
-5. `less`: open the first few lines of a files that can be read as a text file.
-
-6. When using or defining strings of texts, putting the string between accolades ('') tells the {bash} to take the text within the accolades literally.
-Remember this when using the variables, as `'${var}'` is literally taken as the string ${var} whereas when using `${var}` (without accolades) the {bash} will try implement the variable 'var' depending on what you have defined before for this variable.
-
-7. Copying texts in the {bash} does not work using `crtl-v`, instead use `shift-Insert`
-
-A suggestion is to put all the commands with the correct paths in a text file and store this text file together with the raw sequencing file ('Linux_Processing_Commands.txt' located at the [SATAY github repository](https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/dev_Gregory/docs/Linux_Processing_Commands.txt)).
-The variables containing the paths and names in this file can be changed to point at the right files and directories in your computer.
-Then all the commands can be easily copy-pasted in the {bash} and all the processing steps can be traced back later using this text file.
-
-### 1. Quality checking of the sequencing reads; FASTQC (0.11.9)
+###  Quality checking of the sequencing reads; FASTQC (0.11.9)
 
 FASTQC creates a report for the quality of sequencing data.
 The input should be a fastq (both zipped and unzipped), sam or bam file (it can handle multiple files at once).
@@ -277,7 +173,7 @@ If a specific sequence occurs at the same location (i.e. basepair number) in man
 Note that in later editions (0.11.6 and up) this module is by default turned off.
 If you want to turn this module on again, go to the Configuration folder in the Fastqc folder and edit the limits.txt file in the line where it says 'kmer  ignore  1' and change the 1 in a 0.
 
-### 2. Trimming of the sequencing reads
+###  Trimming of the sequencing reads
 
 Next is the trimming of the sequencing reads to cut out, for example, repeated (adapter) sequences and low quality reads.
 There are two software tools adviced, Trimmomatic and BBDuk.
@@ -290,7 +186,7 @@ Currently, it is advised to use BBDuk (see section 2b).
 
 For a discussion about trimming, see for example the discussion in [MacManes et.al. 2014](https://www.frontiersin.org/articles/10.3389/fgene.2014.00013/full), [Del Fabbro et.al. 2013](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0085024) or [Delhomme et. al. 2014](https://pdfs.semanticscholar.org/daa6/191f2a91a1bd5008f2bda068ae3f99ec85fd.pdf) or at [basepairtech.com](https://www.basepairtech.com/blog/trimming-for-rna-seq-data/#:~:text=Quality%20trimming%20decreases%20the%20overall,useful%20data%20for%20downstream%20analyses.&text=Too%20aggressive%20quality%20trimming%20can,%2C%20estimation%20of%20gene%20expression) (although this discussion is on RNA, similar arguments hold for DNA sequence analysis).
 
-#### 2a. Trimming of the sequencing reads; Trimmomatic (0.39)
+####  Trimming of the sequencing reads; Trimmomatic (0.39)
 
 Trimmomatic alters the sequencing result by trimming the reads from unwanted sequences, as is specified by the user.
 The program does not need to be installed, but after downloading only requires to be unzipped.
@@ -392,9 +288,7 @@ All basepairs will be removed until the first basepair that has a quality score 
 
 Note that the input files can be either uncompressed FASTQ files or gzipped FASTQ (with an extension fastq.gz or fq.gz) and the output fields should ideally have the same extension as the input files (i.e. .fastq or .fq).
 The convention is using field:parameter, where ‘parameter’ is typically a number.
-(To make the (relative long commands) more readable in the command line, use \\ and press enter to continue the statement on the next line) (See ‘Datacarpentry workshop > data Wrangling and Processing for Genomics > Trimming and Filtering’ for examples how to run software).
-Trimmomatic can only run a single file at the time.
-If more files need to be trimmed using the same parameters, use
+(To make the (relative long commands) more readable in the command line, use \\ and press enter to continue the statement on the next line) (See https://datacarpentry.org/wrangling-genomics/03-trimming/index.html for examples how to run software). Trimmomatic can only run a single file at the time.If more files need to be trimmed using the same parameters, use: 
 
 ```{bash}
 for infile in *.fastq
@@ -442,12 +336,11 @@ cp ${path_bbduk_software}'resources/adapters.fa' ${pathdata}
 
 The adapters.fa file from the BBDuk package includes many different adapter sequences, so it might be good to remove everything that is not relevant.
 One option can be to create a custom fasta file where all the sequences are placed that need to be trimmed and save this file in the bbmap/resources folder.
-To do this, in order to let everything work properly it is best to alter one of the existing .fa files.
-First copy that file as a backup using a different name (e.g. in the `#{path_bbduk_software}/resources` directory type the command `cp adapters.fa adapters_original_backup.fa`).
-Then, alter the adapters.fa file with any sequences you want to get trimmed.
-Note to not put empty lines in the text file, otherwise BBDuk might yield an error about not finding the adapters.fa file.
+To do this, See {doc}`here <../01-bash-GUI/guidelines>` to know how to do it.
 
-Typically it is useful to clip overrepresented sequences that were found by FASTQC and sequences that start with 'CATG' or 'GATC' which are the recognition sites for NlaIII and DpnII respectively.
+- Note to not put empty lines in the text file, otherwise BBDuk might yield an error about not finding the adapters.fa file.
+
+- Typically it is useful to clip overrepresented sequences that were found by FASTQC and sequences that start with 'CATG' or 'GATC' which are the recognition sites for NlaIII and DpnII respectively.
 Note that the trimming is performed in the order in which the steps are given as input.
 Typically the adapter clipping is performed as one of the first steps and removing short sequences as one of the final steps.
 

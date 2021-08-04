@@ -88,18 +88,12 @@
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../documentation_satay.html">
-   Documentation for processing SATAY
-   <!-- omit in toc -->
-  </a>
- </li>
-</ul>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1">
   <a class="reference internal" href="../Introduction.html">
    Status of the project
   </a>
  </li>
+</ul>
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
   <a class="current reference internal" href="#">
    Data analysis steps
@@ -116,11 +110,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="Installation_Guide_SATAY_Analysis_Software.html">
-     Software installation guide for whole genome sequencing and transposon mapping
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="satay_analysis_notes.html">
      All what you need to know from SATAY
     </a>
@@ -129,7 +118,7 @@
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../01-bash-GUI/00-guidelines.html">
-   Guidelines on how to use the bash-GUI to analyze your data
+   How to use the pipeline in the docker container
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -140,11 +129,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../01-bash-GUI/01-processing_workflow.html">
      Code for the bash GUI
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../01-bash-GUI/allow-open-chrome-in-docker.html">
-     Allow chrome to run without a sandbox (a manual tweak)
     </a>
    </li>
   </ul>
@@ -194,6 +178,21 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../03-docker-doc/00-Docker-Users.html">
    Build your own docker container with ours satay pipeline
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-Developers/00-contributing-guidelines.html">
+   Contributing guidelines for developers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05-Code-of-conduct/00-code-of-conduct.html">
+   Code of Conduct
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06-Workflow/00-workflow.html">
+   Jupyter notebook workflow of the pipeline
   </a>
  </li>
 </ul>
@@ -294,23 +293,18 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#initializing">
-     Initializing
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#quality-checking-of-the-sequencing-reads-fastqc-0-11-9">
-     1. Quality checking of the sequencing reads; FASTQC (0.11.9)
+     Quality checking of the sequencing reads; FASTQC (0.11.9)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#trimming-of-the-sequencing-reads">
-     2. Trimming of the sequencing reads
+     Trimming of the sequencing reads
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#a-trimming-of-the-sequencing-reads-trimmomatic-0-39">
-       2a. Trimming of the sequencing reads; Trimmomatic (0.39)
+      <a class="reference internal nav-link" href="#trimming-of-the-sequencing-reads-trimmomatic-0-39">
+       Trimming of the sequencing reads; Trimmomatic (0.39)
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
@@ -364,10 +358,8 @@
 <li><p>Compare the genes of different genetic backgrounds using a Venn-diagram</p></li>
 </ul>
 </li>
-<li><p>Obtain the interactions of the different genes to create an
-interaction map (use <a class="reference external" href="http://thecellmap.org">thecellmap.org</a>)</p></li>
-<li><p>Look for possible relations between the genes and their
-interactions.</p></li>
+<li><p>Obtain the interactions of the different genes to create an interaction map (use <a class="reference external" href="http://thecellmap.org">thecellmap.org</a>)</p></li>
+<li><p>Look for possible relations between the genes and their interactions.</p></li>
 <li><p>Use these relations to obtain training for machine learning.</p></li>
 </ol>
 <p>First, the main focus will be step 1 of the analysis (see next section).</p>
@@ -376,8 +368,6 @@ interactions.</p></li>
 <p>SATAY experiments need to be sequenced which results in a FASTQ file.
 The sequence reads from this file needs to be aligned to create a SAM file (and/or the compressed {bash}ary equivalent BAM file).
 Using the BAM file, the number of transposons can be determined for each insertion location.</p>
-<p>For guides and manuals of the software discussed below, see the folder</p>
-<p><code class="docutils literal notranslate"><span class="pre">M:\\tnw\\bn\\ll\\Shared\\Gregory\\Software\\Guides</span> <span class="pre">&amp;</span> <span class="pre">Manuals</span></code>.</p>
 <p>Raw data (.FASTQ file) discussed in the paper of Michel <a class="reference external" href="http://et.al">et.al</a>. 2017 can be found at [<a class="reference external" href="https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-4885/samples/">https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-4885/samples/</a>].</p>
 </div>
 <div class="section" id="workflow">
@@ -423,77 +413,8 @@ Visualization of the genomic dataset can be done using (<a class="reference exte
 Also (<a class="reference external" href="https://lomereiter.github.io/sambamba/"><strong>sambamba</strong></a>) (Linux, Mac) can be used, especially for sorting and indexing the bam files.</p></li>
 <li><p>Creating transposon insertion maps for the genome (see the <a class="reference external" href="https://sites.google.com/site/satayusers/">satay users website</a>) and comparison essential genes between different genetic backgrounds using Venn diagrams, customized software needs to be created.</p></li>
 </ol>
-<div class="section" id="initializing">
-<h3>Initializing<a class="headerlink" href="#initializing" title="Permalink to this headline">¶</a></h3>
-<p>The steps discussed in this section are not obligatory, but might help in organizing the data.
-The <strong>bold</strong> printed commands in this and the following sections are put so that they can be copied directly to the {bash}.
-(Note to modify the respective paths on your own machine in this Initialization step, though).
-If the paths below are correctly defined, the boldface commands defined in the different processing steps below can be literally copied and pasted in the {bash}.</p>
-<p>Since this protocol works mostly in the Linux Virtual Machine, the commands below are defined for Linux.
-First, a possible method for organizing the data is shown, but feel free to change this as you like.</p>
-<ol>
-<li><p>Create an empty datafolder.</p></li>
-<li><p>Add the .fastq file to the datafolder.</p></li>
-<li><p>Add the following empty folders for the outcomes of the different processing steps:</p>
-<p>A. filename_QC</p>
-<p>B. filename_Trimmed</p>
-<p>C. filename_Aligned</p>
-</li>
-<li><p>When this is done in Windows, copy the datafolder to the shared folder for processing in the Virtual Machine using the commands (using git-{bash})</p></li>
-</ol>
-<p>Considering that :</p>
-<p><strong><code class="docutils literal notranslate"><span class="pre">pathwin_sharedfolder='/C/Users/gregoryvanbeek/Documents/</span> <span class="pre">VirtualBox</span> <span class="pre">VMs/</span> <span class="pre">VMSharedFolder_Ubuntu64_1'</span></code></strong></p>
-<p><strong><code class="docutils literal notranslate"><span class="pre">pathwin_data='C:\Users\gregoryvanbeek\Desktop\Cerevisiae_WT2_Seqdata_Michel2017\Cerevisiae_WT2_Seqdata_Michel2017_ProcessingTest'</span></code></strong></p>
-<ol>
-<li><p>The main processing is done in the Linux Virtual Machine.
-Since the software tools are mostly commandline based, it might be convenient to be able to define variables, for example for the paths to the difference programs and files so that these do not have te be entered every single time.
-For this start with the command that enables defining variables <strong><code class="docutils literal notranslate"><span class="pre">#!/{bash}/{bash}</span></code></strong>.</p></li>
-<li><p>Define the following variables. (copy paste the commands in the {bash} using <code class="docutils literal notranslate"><span class="pre">shift+Ins</span></code>. Remember to first alter the respective variables given below to the paths and filenames in your computer):</p>
-<p>A. Path to the shared folder used for communicating with the virtual machine running Linux (<strong><code class="docutils literal notranslate"><span class="pre">path_sf=/media/sf_VMSharedFolder_Ubuntu64_1/</span></code></strong>).</p>
-<p>B. Name of the folder containing the data
-(<strong><code class="docutils literal notranslate"><span class="pre">foldername='Cerevisiae_WT2_Seqdata_</span> <span class="pre">Michel2017_ProcessingTest'</span></code></strong>)</p>
-<p>C. Name of the data file
-(<strong><code class="docutils literal notranslate"><span class="pre">filename='Cerevisiae_WT2_Michel2017.fastq'</span></code></strong>)</p>
-<p>D. Name of the trimmed data file
-(<strong><code class="docutils literal notranslate"><span class="pre">filename_trimmed='Cerevisiae_WT2_Michel2017_trimmed.fastq'</span></code></strong>)</p>
-<p>D. The processing can be performed in shared folder, but this is not recommended.
-It is better to move the folder temporarily to the hard drive of the Virtual Machine.
-For this define the location where the processing is performed (in this example located in the Documents directory)
-(<strong><code class="docutils literal notranslate"><span class="pre">pathdata=~/Documents/data_processing/${foldername}</span></code></strong>)
-If this directory does not already exists, create it using the command <code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">${pathdata}</span></code></p>
-<p>E. Move the datafolder from shared folder to data processing folder
-(<strong><code class="docutils literal notranslate"><span class="pre">mv</span> <span class="pre">${path_sf}${foldername}</span> <span class="pre">${pathdata}</span></code></strong>)</p>
-<p>F. Path to the location where the Trimmomatic software is located
-(<strong><code class="docutils literal notranslate"><span class="pre">path_trimm_software=~/Documents/</span> <span class="pre">Software/Trimmomatic-0.39/</span></code></strong>).</p>
-<p>G. Path to the location where the BBDuk software is located
-(<strong><code class="docutils literal notranslate"><span class="pre">path_bbduk_software=~/Documents/</span> <span class="pre">Software/BBMap/bbmap/</span></code></strong>)</p>
-<p>H. Path to the outcome folder for the fastqc software
-(<strong><code class="docutils literal notranslate"><span class="pre">path_fastqc_out=${pathdata}/</span> <span class="pre">Cerevisiae_WT2_Michel2017_QC/</span></code></strong>).</p>
-<p>I. Path to the outcome folder for the trimmomatic software
-(<strong><code class="docutils literal notranslate"><span class="pre">path_trimm_out=${pathdata}/</span> <span class="pre">Cerevisiae_WT2_Michel2017_Trimmed/</span></code></strong>).</p>
-<p>J. Path to the outcome folder for the aligned software
-(<strong><code class="docutils literal notranslate"><span class="pre">path_align_out=${pathdata}/</span> <span class="pre">Cerevisiae_WT2_Michel2017_Aligned/</span></code></strong>).</p>
-<p>K. Path to the reference genome fasta file
-(<strong><code class="docutils literal notranslate"><span class="pre">path_refgenome=/home/gregoryvanbeek/Documents/</span>&#160; <span class="pre">Reference_Sequences/Reference_Sequence_S288C/S288C_reference_sequence_R64-2-1_20150113.fsa</span></code></strong>)</p>
-</li>
-</ol>
-<p>Some useful commands:</p>
-<ol class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">echo</span></code>: Print a variable name or some text.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">gunzip</span></code>: Unzip a .gz file.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">bunzip</span></code>: Unzip a .bz file.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">${}</span></code>: when using a variable, the name of the variable should be placed between curly brackets and should start with a dollar sign (<code class="docutils literal notranslate"><span class="pre">$</span></code>), otherwise the {bash} won’t recognize the name as a variable.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">less</span></code>: open the first few lines of a files that can be read as a text file.</p></li>
-<li><p>When using or defining strings of texts, putting the string between accolades (‘’) tells the {bash} to take the text within the accolades literally.
-Remember this when using the variables, as <code class="docutils literal notranslate"><span class="pre">'${var}'</span></code> is literally taken as the string <span class="math notranslate nohighlight">\({var} whereas when using `\)</span>{var}` (without accolades) the {bash} will try implement the variable ‘var’ depending on what you have defined before for this variable.</p></li>
-<li><p>Copying texts in the {bash} does not work using <code class="docutils literal notranslate"><span class="pre">crtl-v</span></code>, instead use <code class="docutils literal notranslate"><span class="pre">shift-Insert</span></code></p></li>
-</ol>
-<p>A suggestion is to put all the commands with the correct paths in a text file and store this text file together with the raw sequencing file (‘Linux_Processing_Commands.txt’ located at the <a class="reference external" href="https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/dev_Gregory/docs/Linux_Processing_Commands.txt">SATAY github repository</a>).
-The variables containing the paths and names in this file can be changed to point at the right files and directories in your computer.
-Then all the commands can be easily copy-pasted in the {bash} and all the processing steps can be traced back later using this text file.</p>
-</div>
 <div class="section" id="quality-checking-of-the-sequencing-reads-fastqc-0-11-9">
-<h3>1. Quality checking of the sequencing reads; FASTQC (0.11.9)<a class="headerlink" href="#quality-checking-of-the-sequencing-reads-fastqc-0-11-9" title="Permalink to this headline">¶</a></h3>
+<h3>Quality checking of the sequencing reads; FASTQC (0.11.9)<a class="headerlink" href="#quality-checking-of-the-sequencing-reads-fastqc-0-11-9" title="Permalink to this headline">¶</a></h3>
 <p>FASTQC creates a report for the quality of sequencing data.
 The input should be a fastq (both zipped and unzipped), sam or bam file (it can handle multiple files at once).
 The program does not need to be installed, but after downloading only requires to be unzipped.
@@ -563,7 +484,7 @@ If you want to turn this module on again, go to the Configuration folder in the 
 </ul>
 </div>
 <div class="section" id="trimming-of-the-sequencing-reads">
-<h3>2. Trimming of the sequencing reads<a class="headerlink" href="#trimming-of-the-sequencing-reads" title="Permalink to this headline">¶</a></h3>
+<h3>Trimming of the sequencing reads<a class="headerlink" href="#trimming-of-the-sequencing-reads" title="Permalink to this headline">¶</a></h3>
 <p>Next is the trimming of the sequencing reads to cut out, for example, repeated (adapter) sequences and low quality reads.
 There are two software tools adviced, Trimmomatic and BBDuk.
 Trimmomatic is relative simple to use and can be used interactively together with FASTQC.
@@ -573,8 +494,8 @@ This allows for more options, but can therefore also be more confusing to use in
 Both software packages are explained below, but only one needs to be used.
 Currently, it is advised to use BBDuk (see section 2b).</p>
 <p>For a discussion about trimming, see for example the discussion in <a class="reference external" href="https://www.frontiersin.org/articles/10.3389/fgene.2014.00013/full">MacManes et.al. 2014</a>, <a class="reference external" href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0085024">Del Fabbro et.al. 2013</a> or <a class="reference external" href="https://pdfs.semanticscholar.org/daa6/191f2a91a1bd5008f2bda068ae3f99ec85fd.pdf">Delhomme et. al. 2014</a> or at <a class="reference external" href="https://www.basepairtech.com/blog/trimming-for-rna-seq-data/#:~:text=Quality%20trimming%20decreases%20the%20overall,useful%20data%20for%20downstream%20analyses.&amp;text=Too%20aggressive%20quality%20trimming%20can,%2C%20estimation%20of%20gene%20expression">basepairtech.com</a> (although this discussion is on RNA, similar arguments hold for DNA sequence analysis).</p>
-<div class="section" id="a-trimming-of-the-sequencing-reads-trimmomatic-0-39">
-<h4>2a. Trimming of the sequencing reads; Trimmomatic (0.39)<a class="headerlink" href="#a-trimming-of-the-sequencing-reads-trimmomatic-0-39" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="trimming-of-the-sequencing-reads-trimmomatic-0-39">
+<h4>Trimming of the sequencing reads; Trimmomatic (0.39)<a class="headerlink" href="#trimming-of-the-sequencing-reads-trimmomatic-0-39" title="Permalink to this headline">¶</a></h4>
 <p>Trimmomatic alters the sequencing result by trimming the reads from unwanted sequences, as is specified by the user.
 The program does not need to be installed, but after downloading only requires to be unzipped.
 Trimmomatic can be ran as an interactive program (for this 123FASTQ needs to be used) or non-interactively using the command line options.</p>
@@ -639,9 +560,7 @@ All basepairs will be removed until the first basepair that has a quality score 
 </ul>
 <p>Note that the input files can be either uncompressed FASTQ files or gzipped FASTQ (with an extension fastq.gz or fq.gz) and the output fields should ideally have the same extension as the input files (i.e. .fastq or .fq).
 The convention is using field:parameter, where ‘parameter’ is typically a number.
-(To make the (relative long commands) more readable in the command line, use \ and press enter to continue the statement on the next line) (See ‘Datacarpentry workshop &gt; data Wrangling and Processing for Genomics &gt; Trimming and Filtering’ for examples how to run software).
-Trimmomatic can only run a single file at the time.
-If more files need to be trimmed using the same parameters, use</p>
+(To make the (relative long commands) more readable in the command line, use \ and press enter to continue the statement on the next line) (See <a class="reference external" href="https://datacarpentry.org/wrangling-genomics/03-trimming/index.html">https://datacarpentry.org/wrangling-genomics/03-trimming/index.html</a> for examples how to run software). Trimmomatic can only run a single file at the time.If more files need to be trimmed using the same parameters, use:</p>
 <p>Where <code class="docutils literal notranslate"><span class="pre">xxx</span></code> should be replaced with the commands for trimmomatic.</p>
 </div>
 <div class="section" id="b-trimming-of-the-sequencing-reads-bbduk-38-84">
@@ -663,13 +582,13 @@ To copy the .fasta file to the data folder (see below for detailed explanation) 
 <p>When using the adapter file that comes with BBMap, use the command:</p>
 <p>The adapters.fa file from the BBDuk package includes many different adapter sequences, so it might be good to remove everything that is not relevant.
 One option can be to create a custom fasta file where all the sequences are placed that need to be trimmed and save this file in the bbmap/resources folder.
-To do this, in order to let everything work properly it is best to alter one of the existing .fa files.
-First copy that file as a backup using a different name (e.g. in the <code class="docutils literal notranslate"><span class="pre">#{path_bbduk_software}/resources</span></code> directory type the command <code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">adapters.fa</span> <span class="pre">adapters_original_backup.fa</span></code>).
-Then, alter the adapters.fa file with any sequences you want to get trimmed.
-Note to not put empty lines in the text file, otherwise BBDuk might yield an error about not finding the adapters.fa file.</p>
-<p>Typically it is useful to clip overrepresented sequences that were found by FASTQC and sequences that start with ‘CATG’ or ‘GATC’ which are the recognition sites for NlaIII and DpnII respectively.
+To do this, See <span class="xref std std-doc">here</span> to know how to do it.</p>
+<ul class="simple">
+<li><p>Note to not put empty lines in the text file, otherwise BBDuk might yield an error about not finding the adapters.fa file.</p></li>
+<li><p>Typically it is useful to clip overrepresented sequences that were found by FASTQC and sequences that start with ‘CATG’ or ‘GATC’ which are the recognition sites for NlaIII and DpnII respectively.
 Note that the trimming is performed in the order in which the steps are given as input.
-Typically the adapter clipping is performed as one of the first steps and removing short sequences as one of the final steps.</p>
+Typically the adapter clipping is performed as one of the first steps and removing short sequences as one of the final steps.</p></li>
+</ul>
 <p>BBDuk uses a kmers algorithm, which basically means it divides the reads in pieces of length k.
 (For example, the sequence ‘abcd’ has the following 2mers: ab,bc,cd).
 For each of these pieces the software checks if it contains any sequences that are present in the adapter file.

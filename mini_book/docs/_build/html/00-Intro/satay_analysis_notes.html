@@ -55,8 +55,8 @@
     <link rel="shortcut icon" href="../_static/genetica_modified_neon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Guidelines on how to use the bash-GUI to analyze your data" href="../01-bash-GUI/00-guidelines.html" />
-    <link rel="prev" title="Software installation guide for whole genome sequencing and transposon mapping" href="Installation_Guide_SATAY_Analysis_Software.html" />
+    <link rel="next" title="How to use the pipeline in the docker container" href="../01-bash-GUI/00-guidelines.html" />
+    <link rel="prev" title="Flowchart of the pipeline" href="flowchart.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -88,18 +88,12 @@
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../documentation_satay.html">
-   Documentation for processing SATAY
-   <!-- omit in toc -->
-  </a>
- </li>
-</ul>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1">
   <a class="reference internal" href="../Introduction.html">
    Status of the project
   </a>
  </li>
+</ul>
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="data-analysis-workflow.html">
    Data analysis steps
@@ -115,11 +109,6 @@
      Flowchart of the pipeline
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Installation_Guide_SATAY_Analysis_Software.html">
-     Software installation guide for whole genome sequencing and transposon mapping
-    </a>
-   </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      All what you need to know from SATAY
@@ -129,7 +118,7 @@
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../01-bash-GUI/00-guidelines.html">
-   Guidelines on how to use the bash-GUI to analyze your data
+   How to use the pipeline in the docker container
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -140,11 +129,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../01-bash-GUI/01-processing_workflow.html">
      Code for the bash GUI
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../01-bash-GUI/allow-open-chrome-in-docker.html">
-     Allow chrome to run without a sandbox (a manual tweak)
     </a>
    </li>
   </ul>
@@ -194,6 +178,21 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../03-docker-doc/00-Docker-Users.html">
    Build your own docker container with ours satay pipeline
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-Developers/00-contributing-guidelines.html">
+   Contributing guidelines for developers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05-Code-of-conduct/00-code-of-conduct.html">
+   Code of Conduct
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06-Workflow/00-workflow.html">
+   Jupyter notebook workflow of the pipeline
   </a>
  </li>
 </ul>
@@ -759,9 +758,9 @@ The insertions that have a position outside the chromosome are removed and the c
 <p>A pergene.txt and peressential.txt file are yet another outputs from the transposon mapping pipeline.
 Where bed and wig files store <em>all</em> insertions throughout the genome, these files only store the insertions in each gene or each essential gene, respectively.
 Essential genes are the annotated essential genes as stated by SGD for wild type cells.
-The genes are taken from the <a class="reference external" href="https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/master/Data_Files/Yeast_Protein_Names.txt">Yeast_Protein_Names.txt</a> file, which is downloaded from <a class="reference external" href="https://www.uniprot.org/docs/yeast">uniprot</a>.
-The positions of each gene are determined by a <a class="reference external" href="https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/master/Data_Files/Saccharomyces_cerevisiae.R64-1-1.99.gff3">gff3 file</a> downloaded from SGD.
-Essential genes are defined in <a class="reference external" href="https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/master/Data_Files/Cerevisiae_AllEssentialGenes_List.txt">Cerevisiae_AllEssentialGenes.txt</a>.</p>
+The genes are taken from the <a class="reference external" href="https://github.com/SATAY-LL/Transposonmapper/blob/main/transposonmapper/data_files/Yeast_Protein_Names.txt">Yeast_Protein_Names.txt</a> file, which is downloaded from <a class="reference external" href="https://www.uniprot.org/docs/yeast">uniprot</a>.
+The positions of each gene are determined by a <a class="reference external" href="https://github.com/SATAY-LL/Transposonmapper/blob/main/transposonmapper/data_files/Saccharomyces_cerevisiae.R64-1-1.99.gff3">gff3 file</a> downloaded from SGD.
+Essential genes are defined in <a class="reference external" href="https://github.com/SATAY-LL/Transposonmapper/blob/main/transposonmapper/data_files/Cerevisiae_AllEssentialGenes_List.txt">Cerevisiae_AllEssentialGenes.txt</a>.</p>
 <p>The pergene.txt and the peressential.txt have the same format.
 This consists of a header and then each row contains three tab delimited columns:</p>
 <ol class="simple">
@@ -775,7 +774,7 @@ Therefore, it might occur that a gene has 1 insertion, but 0 reads.</p>
 <p>Note that when comparing files that include gene names there might be differences in the gene naming.
 Genes have multiple names, e.g. systematic names like ‘YBR200W’ or standard names like ‘BEM1’ which can have aliases such as ‘SRO1’.
 The above three names all refer to the same gene.
-The <a class="reference external" href="https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/master/Data_Files/Yeast_Protein_Names.txt">Yeast_Protein_Names.txt</a> file can be used to search for aliases when comparing gene names in different files, or the <a class="reference external" href="#genomicfeatures_dataframepy">genomicfeatures_dataframe.py</a> python script can be used which creates a pandas dataframe that includes the different gene names (this python script itself makes also use of the Yeast_Protein_Names.txt file).</p>
+The <a class="reference external" href="https://github.com/SATAY-LL/Transposonmapper/blob/main/transposonmapper/data_files/Yeast_Protein_Names.txt">Yeast_Protein_Names.txt</a> file can be used to search for aliases when comparing gene names in different files.</p>
 <p>Example of pergene.txt file:</p>
 <blockquote>
 <div><p><code class="docutils literal notranslate"><span class="pre">Gene</span> <span class="pre">name</span> <span class="pre">Number</span> <span class="pre">of</span> <span class="pre">transposons</span> <span class="pre">per</span> <span class="pre">gene</span> <span class="pre">Number</span> <span class="pre">of</span> <span class="pre">reads</span> <span class="pre">per</span> <span class="pre">gene</span></code><br />
@@ -789,7 +788,7 @@ The <a class="reference external" href="https://github.com/Gregory94/LaanLab-SAT
 <h3>pergene_insertions.txt, peressential_insertions.txt<a class="headerlink" href="#pergene-insertions-txt-peressential-insertions-txt" title="Permalink to this headline">¶</a></h3>
 <p>The final two files that are created by the transposon mapping pipeline are the pergene_insertions.txt and the peressential_insertions.txt.
 The files have a similar format as the pergene.txt file, but are more extensive in terms of the information per gene.
-The information is taken from <a class="reference external" href="https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/master/Data_Files/Yeast_Protein_Names.txt">Yeast_Protein_Names.txt</a>, the <a class="reference external" href="https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/master/Data_Files/Saccharomyces_cerevisiae.R64-1-1.99.gff3">gff3 file</a> and <a class="reference external" href="https://github.com/Gregory94/LaanLab-SATAY-DataAnalysis/blob/master/Data_Files/Cerevisiae_AllEssentialGenes_List.txt">Cerevisiae_AllEssentialGenes.txt</a>, similar as the pergene.txt files.</p>
+The information is taken from <a class="reference external" href="https://github.com/SATAY-LL/Transposonmapper/blob/main/transposonmapper/data_files/Yeast_Protein_Names.txt">Yeast_Protein_Names.txt</a>, the <a class="reference external" href="https://github.com/SATAY-LL/Transposonmapper/blob/main/transposonmapper/data_files/Saccharomyces_cerevisiae.R64-1-1.99.gff3">gff3 file</a> and <a class="reference external" href="https://github.com/SATAY-LL/Transposonmapper/blob/main/transposonmapper/data_files/Cerevisiae_AllEssentialGenes_List.txt">Cerevisiae_AllEssentialGenes.txt</a>, similar as the pergene.txt files.</p>
 <p>Both the pergene_insertions.txt and the peressential_insertions.txt files have a header and then each row contains six tab delimited columns:</p>
 <ol class="simple">
 <li><p>gene name</p></li>
@@ -800,16 +799,13 @@ The information is taken from <a class="reference external" href="https://github
 <li><p>list of all read counts in the same order as the insertion list</p></li>
 </ol>
 <p>This file can be useful when not only the number of insertions is important, but also the distribution of the insertions within the genes.
-Similarily as the <a class="reference external" href="#pergenetxt-peressentialtxt">pergene.txt and peresential.txt file</a>, to suppress noise the insertion with the highest read count in a gene is removed from that gene.</p>
-<p>This file is uniquely created in the processing workflow described below.
-To create this file from a dataset processed in another workflow, store the bam file and the corresponding .bam.bai index file on the Linux desktop (see <a class="reference external" href="#how-to-use-the-linux-desktop">How to use the Linux desktop</a>).
-Go to the python folder in the Terminal with the following command: <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">/home/laanlab/satay/Documents/software/python_codes/</span></code>.
-Run the transposonmapping_satay.py script with the bam file using the command <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">transposonmapping_satay.py</span> <span class="pre">[path]/[filename.bam]</span></code> (see <a class="reference external" href="#how-does-it-work">How does it work</a> for more explanation about the python script).
-If the index file .bam.bai is not present, create this before running the python script.
+Similarily as the pergene.txt and peresential.txt file, to suppress noise the insertion with the highest read count in a gene is removed from that gene.</p>
+<ul class="simple">
+<li><p>This file is uniquely created in the processing workflow described below.</p></li>
+<li><p>If the index file .bam.bai is not present, create this before running the python script.
 The index file can be created using the command <code class="docutils literal notranslate"><span class="pre">sambamba-0.7.1.-linux-static</span> <span class="pre">sort</span> <span class="pre">-m</span> <span class="pre">1GB</span> <span class="pre">[path]/[filename.bam]</span></code>.
-This creates a sorted.bam file and a sorted.bam.bai index file.
-Run the sorted.bam file in the python script using the command <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">transposonmapping_satay.py</span> <span class="pre">[path]/[filename.sorted.bam]</span></code>.</p>
-<p>Example of pergene_insertions.txt file:</p>
+This creates a sorted.bam file and a sorted.bam.bai index file.</p></li>
+</ul>
 <p>Example of peressential_insertions.txt file:</p>
 <blockquote>
 <div><p><code class="docutils literal notranslate"><span class="pre">EFB1</span> <span class="pre">I</span> <span class="pre">142174</span> <span class="pre">143160</span> <span class="pre">[142325,</span> <span class="pre">142886]</span> <span class="pre">[1,</span> <span class="pre">1]</span></code><br />
@@ -822,12 +818,11 @@ Run the sorted.bam file in the python script using the command <code class="docu
 <li><p>Using the number of transposons and reads, it can be determined which genes are potentially essential and which are not.</p></li>
 <li><p>To check this method, the transposon count for wild type cells are determined.
 Currently, genes that are taken as essential are the annotated essentials based on previous research.</p></li>
-<li><p>We can use statitiscal learning methods to find what is the expected number of transposons per essential gene. See this <a class="reference external" href="https://github.com/leilaicruz/LaanLab-SATAY-DataAnalysis/tree/dev_Wessel/Matlab%20code">Matlab Code</a> done by one of our Master students in our lab, Wessel Teunisse.</p></li>
+<li><p>We can use statitiscal learning methods to find what is the expected number of transposons per essential gene. See this <a class="reference external" href="https://sites.google.com/site/satayusers/complete-protocol/bioinformatics-analysis/matlab-script">Matlab Code</a> done by one of our Master students in our lab, Wessel Teunisse.</p></li>
 </ul>
 </div>
 <div class="section" id="distribution-number-of-insertions-and-reads-compared-with-essential-and-non-essential-genes">
 <h4>Distribution number of insertions and reads compared with essential and non-essential genes<a class="headerlink" href="#distribution-number-of-insertions-and-reads-compared-with-essential-and-non-essential-genes" title="Permalink to this headline">¶</a></h4>
-<p>See <span class="xref myst">this script to visualize the implementation</span></p>
 <p>Ideally, the number of transposon insertions of all essential genes are small and the number of insertions in non-essential genes are is large so that there is a clear distinction can be made.
 However, this is not always so clear.
 For example, the distribution of transposons in WT cells in the data from Michel et. al. looks like this:</p>
@@ -844,7 +839,6 @@ Significant attention needs to be given to the postprocessing of the data.</p>
 </div>
 <div class="section" id="profile-plot-for-number-of-reads">
 <h4>Profile plot for number of reads<a class="headerlink" href="#profile-plot-for-number-of-reads" title="Permalink to this headline">¶</a></h4>
-<p>(<em>See <code class="docutils literal notranslate"><span class="pre">TransposonRead_Profile_Plot.py</span></code></em>)</p>
 <p>To create a visual overview where the insertions are and how many reads there are for each insertion, a profile plot is created for each chromosome.</p>
 <p><img alt="Read profile plot for chromosome XV (note the y-axis is in logarithmic scale)." src="../_images/Read_ProfilePlot_chrxv.png" /></p>
 <p>The bars indicate the absolute number of reads for all insertions located in the bars (bar width is 545bp).
@@ -886,8 +880,8 @@ Also an alternative version of this plot is made (<code class="docutils literal 
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="Installation_Guide_SATAY_Analysis_Software.html" title="previous page">Software installation guide for whole genome sequencing and transposon mapping</a>
-    <a class='right-next' id="next-link" href="../01-bash-GUI/00-guidelines.html" title="next page">Guidelines on how to use the bash-GUI to analyze your data</a>
+    <a class='left-prev' id="prev-link" href="flowchart.html" title="previous page">Flowchart of the pipeline</a>
+    <a class='right-next' id="next-link" href="../01-bash-GUI/00-guidelines.html" title="next page">How to use the pipeline in the docker container</a>
 
         </div>
         
