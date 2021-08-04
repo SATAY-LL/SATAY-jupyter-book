@@ -86,18 +86,12 @@
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../documentation_satay.html">
-   Documentation for processing SATAY
-   <!-- omit in toc -->
-  </a>
- </li>
-</ul>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1">
   <a class="reference internal" href="../Introduction.html">
    Status of the project
   </a>
  </li>
+</ul>
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../00-Intro/data-analysis-workflow.html">
    Data analysis steps
@@ -187,6 +181,16 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../03-docker-doc/00-Docker-Users.html">
    Build your own docker container with ours satay pipeline
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-Developers/00-contributing-guidelines.html">
+   Contributing guidelines for developers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05-Code-of-conduct/00-code-of-conduct.html">
+   Code of Conduct
   </a>
  </li>
 </ul>
@@ -392,15 +396,22 @@ Steps:</p>
 <ul class="simple">
 <li><p>Inside the <code class="docutils literal notranslate"><span class="pre">nano</span></code> editor , edit the file as follows:</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt; NAME1  <span class="o">(</span>e.g. triming, adapters, etc<span class="o">)</span>
-Paste the copied overrepresented sequence <span class="m">1</span>
-&gt; NAME2 <span class="o">(</span>e.g. triming, adapters, etc<span class="o">)</span>
-Paste the copied overrepresented sequence <span class="m">2</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt; <span class="se">\&gt;</span> Sequence1
+&gt;
+&gt; Overrepresented sequence <span class="m">1</span>
+&gt;
+&gt; <span class="se">\&gt;</span> Sequence2
+&gt;
+&gt; Overrepresented sequence <span class="m">2</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>Ctrl-O save , Ctrl-X and quit the editor</p></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note to not put empty lines in the text file, otherwise BBDuk might yield an error about not finding the adapters.fa file.!</p>
+</div>
 </li>
 <li><p>Run again the container  and it will automatically look for that file (adapterfile.fa) in the data folder .</p></li>
 </ol>

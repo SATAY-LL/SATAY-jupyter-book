@@ -82,13 +82,20 @@ Steps:
     ```
     - Inside the `nano` editor , edit the file as follows: 
     ```bash
-    > NAME1  (e.g. triming, adapters, etc)
-    Paste the copied overrepresented sequence 1
-    > NAME2 (e.g. triming, adapters, etc)
-    Paste the copied overrepresented sequence 2
+    > \> Sequence1
+    >
+    > Overrepresented sequence 1
+    >
+    > \> Sequence2
+    >
+    > Overrepresented sequence 2
 
     ```
     -  Ctrl-O save , Ctrl-X and quit the editor
+
+    ```{note}
+    Note to not put empty lines in the text file, otherwise BBDuk might yield an error about not finding the adapters.fa file.!
+    ```
 
  
 4. Run again the container  and it will automatically look for that file (adapterfile.fa) in the data folder . 
