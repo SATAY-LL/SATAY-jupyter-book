@@ -73,12 +73,12 @@ Steps:
     - Open a bash terminal and move to the location where you have the data you would like to mount in the pipeline (fastq files)
 
     ```bash
-    `cd /data`
+    cd /data
     ```
     - Create the adapterfile file customized to your dataset. 
 
     ```bash
-    `nano adapterfile.fa`
+    nano adapterfile.fa
     ```
     - Inside the `nano` editor , edit the file as follows: 
     ```bash
